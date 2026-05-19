@@ -1,0 +1,602 @@
+[
+  {
+    "id": "pal_0",
+    "name": "Palette 1",
+    "category": "vibrant",
+    "colors": [
+      "#39bef2",
+      "#b7f641",
+      "#ad9f55",
+      "#6c3bc8",
+      "#7810ee"
+    ]
+  },
+  {
+    "id": "pal_1",
+    "name": "Palette 2",
+    "category": "vibrant",
+    "colors": [
+      "#c5f194",
+      "#5a58bb",
+      "#dcedf9",
+      "#cfe5ef",
+      "#7e81fc"
+    ]
+  },
+  {
+    "id": "pal_2",
+    "name": "Palette 3",
+    "category": "vibrant",
+    "colors": [
+      "#6eda9f",
+      "#1ef5d7",
+      "#669a8f",
+      "#d8d27c",
+      "#fae043"
+    ]
+  },
+  {
+    "id": "pal_3",
+    "name": "Palette 4",
+    "category": "vibrant",
+    "colors": [
+      "#39a923",
+      "#8c141a",
+      "#186865",
+      "#df879b",
+      "#b42542"
+    ]
+  },
+  {
+    "id": "pal_4",
+    "name": "Palette 5",
+    "category": "vibrant",
+    "colors": [
+      "#c09bd0",
+      "#44ec86",
+      "#5290d7",
+      "#64ce94",
+      "#c87519"
+    ]
+  },
+  {
+    "id": "pal_5",
+    "name": "Palette 6",
+    "category": "vibrant",
+    "colors": [
+      "#905129",
+      "#1391e6",
+      "#39d77b",
+      "#99ea5a",
+      "#9e8413"
+    ]
+  },
+  {
+    "id": "pal_6",
+    "name": "Palette 7",
+    "category": "vibrant",
+    "colors": [
+      "#af9f9a",
+      "#d03774",
+      "#285696",
+      "#1caafd",
+      "#29b34c"
+    ]
+  },
+  {
+    "id": "pal_7",
+    "name": "Palette 8",
+    "category": "vibrant",
+    "colors": [
+      "#27d57f",
+      "#16c824",
+      "#ea941a",
+      "#c91bed",
+      "#bc53da"
+    ]
+  },
+  {
+    "id": "pal_8",
+    "name": "Palette 9",
+    "category": "vibrant",
+    "colors": [
+      "#9accd3",
+      "#651040",
+      "#c34887",
+      "#69e54d",
+      "#2f88a0"
+    ]
+  },
+  {
+    "id": "pal_9",
+    "name": "Palette 10",
+    "category": "vibrant",
+    "colors": [
+      "#6ae815",
+      "#c2c640",
+      "#bd0619",
+      "#333210",
+      "#6ac28b"
+    ]
+  },
+  {
+    "id": "pal_10",
+    "name": "Palette 11",
+    "category": "pastel",
+    "colors": [
+      "#6fc077",
+      "#25ccb8",
+      "#50f0fb",
+      "#31624e",
+      "#0e67bc"
+    ]
+  },
+  {
+    "id": "pal_11",
+    "name": "Palette 12",
+    "category": "pastel",
+    "colors": [
+      "#b672e0",
+      "#2e8294",
+      "#625a61",
+      "#2a4a38",
+      "#ee4646"
+    ]
+  },
+  {
+    "id": "pal_12",
+    "name": "Palette 13",
+    "category": "pastel",
+    "colors": [
+      "#e7f829",
+      "#2c1c9a",
+      "#0320ff",
+      "#92eee4",
+      "#2742f6"
+    ]
+  },
+  {
+    "id": "pal_13",
+    "name": "Palette 14",
+    "category": "pastel",
+    "colors": [
+      "#f9da91",
+      "#b0f310",
+      "#6601a5",
+      "#9beb09",
+      "#7134e0"
+    ]
+  },
+  {
+    "id": "pal_14",
+    "name": "Palette 15",
+    "category": "pastel",
+    "colors": [
+      "#b9f819",
+      "#cd1c15",
+      "#215a82",
+      "#21a96d",
+      "#f5d5a8"
+    ]
+  },
+  {
+    "id": "pal_15",
+    "name": "Palette 16",
+    "category": "pastel",
+    "colors": [
+      "#f8134d",
+      "#e3d334",
+      "#a3bf32",
+      "#a4c53d",
+      "#d5917e"
+    ]
+  },
+  {
+    "id": "pal_16",
+    "name": "Palette 17",
+    "category": "pastel",
+    "colors": [
+      "#70c23f",
+      "#7f10e9",
+      "#b88f1c",
+      "#3224cd",
+      "#d40ad1"
+    ]
+  },
+  {
+    "id": "pal_17",
+    "name": "Palette 18",
+    "category": "pastel",
+    "colors": [
+      "#af5bb5",
+      "#9de599",
+      "#023856",
+      "#8e1d79",
+      "#738b83"
+    ]
+  },
+  {
+    "id": "pal_18",
+    "name": "Palette 19",
+    "category": "pastel",
+    "colors": [
+      "#ded1a5",
+      "#53d847",
+      "#db2f6f",
+      "#2780f9",
+      "#caac9d"
+    ]
+  },
+  {
+    "id": "pal_19",
+    "name": "Palette 20",
+    "category": "pastel",
+    "colors": [
+      "#c8b983",
+      "#364d10",
+      "#88d4c2",
+      "#42ad8d",
+      "#de1a3b"
+    ]
+  },
+  {
+    "id": "pal_20",
+    "name": "Palette 21",
+    "category": "dark",
+    "colors": [
+      "#1be240",
+      "#f94c47",
+      "#34301f",
+      "#67245a",
+      "#dd21b0"
+    ]
+  },
+  {
+    "id": "pal_21",
+    "name": "Palette 22",
+    "category": "dark",
+    "colors": [
+      "#9e84a7",
+      "#3ca986",
+      "#7e5685",
+      "#f3587e",
+      "#e4e00b"
+    ]
+  },
+  {
+    "id": "pal_22",
+    "name": "Palette 23",
+    "category": "dark",
+    "colors": [
+      "#b99440",
+      "#627924",
+      "#4738e0",
+      "#571ed8",
+      "#7936ba"
+    ]
+  },
+  {
+    "id": "pal_23",
+    "name": "Palette 24",
+    "category": "dark",
+    "colors": [
+      "#8d99e8",
+      "#1f25bb",
+      "#dbd18f",
+      "#dc6adf",
+      "#b9041e"
+    ]
+  },
+  {
+    "id": "pal_24",
+    "name": "Palette 25",
+    "category": "dark",
+    "colors": [
+      "#528bfe",
+      "#9153c4",
+      "#a39094",
+      "#9eb55a",
+      "#6237ac"
+    ]
+  },
+  {
+    "id": "pal_25",
+    "name": "Palette 26",
+    "category": "dark",
+    "colors": [
+      "#d311fb",
+      "#b6612d",
+      "#bb9c27",
+      "#541b65",
+      "#836c9f"
+    ]
+  },
+  {
+    "id": "pal_26",
+    "name": "Palette 27",
+    "category": "dark",
+    "colors": [
+      "#f3997d",
+      "#bf98fc",
+      "#aca78f",
+      "#96b2c0",
+      "#1ef2a2"
+    ]
+  },
+  {
+    "id": "pal_27",
+    "name": "Palette 28",
+    "category": "dark",
+    "colors": [
+      "#1752e1",
+      "#730d84",
+      "#53df1c",
+      "#08ea1a",
+      "#464657"
+    ]
+  },
+  {
+    "id": "pal_28",
+    "name": "Palette 29",
+    "category": "dark",
+    "colors": [
+      "#6850c3",
+      "#6ed018",
+      "#f33d8a",
+      "#247dc3",
+      "#05c61d"
+    ]
+  },
+  {
+    "id": "pal_29",
+    "name": "Palette 30",
+    "category": "dark",
+    "colors": [
+      "#8a392e",
+      "#ee4e43",
+      "#318264",
+      "#640baf",
+      "#f5b9c8"
+    ]
+  },
+  {
+    "id": "pal_30",
+    "name": "Palette 31",
+    "category": "earth",
+    "colors": [
+      "#44f5ab",
+      "#0097b5",
+      "#4d98fd",
+      "#26f4c6",
+      "#20ada2"
+    ]
+  },
+  {
+    "id": "pal_31",
+    "name": "Palette 32",
+    "category": "earth",
+    "colors": [
+      "#6f62ce",
+      "#625039",
+      "#92522e",
+      "#c207d3",
+      "#ab0e1d"
+    ]
+  },
+  {
+    "id": "pal_32",
+    "name": "Palette 33",
+    "category": "earth",
+    "colors": [
+      "#713d05",
+      "#609713",
+      "#bef942",
+      "#abb360",
+      "#5d278a"
+    ]
+  },
+  {
+    "id": "pal_33",
+    "name": "Palette 34",
+    "category": "earth",
+    "colors": [
+      "#39dd55",
+      "#a3f5fe",
+      "#517205",
+      "#ce5f9f",
+      "#37748d"
+    ]
+  },
+  {
+    "id": "pal_34",
+    "name": "Palette 35",
+    "category": "earth",
+    "colors": [
+      "#cc5c27",
+      "#f75ca3",
+      "#c15173",
+      "#64600a",
+      "#fbbe79"
+    ]
+  },
+  {
+    "id": "pal_35",
+    "name": "Palette 36",
+    "category": "earth",
+    "colors": [
+      "#5fdb15",
+      "#eda621",
+      "#bbd399",
+      "#6696ad",
+      "#95ecf3"
+    ]
+  },
+  {
+    "id": "pal_36",
+    "name": "Palette 37",
+    "category": "earth",
+    "colors": [
+      "#c71573",
+      "#f1c452",
+      "#8fbe84",
+      "#0687f0",
+      "#a306a7"
+    ]
+  },
+  {
+    "id": "pal_37",
+    "name": "Palette 38",
+    "category": "earth",
+    "colors": [
+      "#f6c4cb",
+      "#945c42",
+      "#402aee",
+      "#b2e47c",
+      "#3ab8ff"
+    ]
+  },
+  {
+    "id": "pal_38",
+    "name": "Palette 39",
+    "category": "earth",
+    "colors": [
+      "#d6f167",
+      "#af08b7",
+      "#360e0a",
+      "#8254fb",
+      "#b938e1"
+    ]
+  },
+  {
+    "id": "pal_39",
+    "name": "Palette 40",
+    "category": "earth",
+    "colors": [
+      "#c8c767",
+      "#c82936",
+      "#ed8cea",
+      "#0196f2",
+      "#788050"
+    ]
+  },
+  {
+    "id": "pal_40",
+    "name": "Palette 41",
+    "category": "neon",
+    "colors": [
+      "#4901ea",
+      "#ba49f2",
+      "#933204",
+      "#518844",
+      "#fc9af3"
+    ]
+  },
+  {
+    "id": "pal_41",
+    "name": "Palette 42",
+    "category": "neon",
+    "colors": [
+      "#d48884",
+      "#b442ee",
+      "#8600cf",
+      "#63ad02",
+      "#9c73d8"
+    ]
+  },
+  {
+    "id": "pal_42",
+    "name": "Palette 43",
+    "category": "neon",
+    "colors": [
+      "#bbb9a3",
+      "#83ec50",
+      "#6c24ee",
+      "#3f8beb",
+      "#ed2100"
+    ]
+  },
+  {
+    "id": "pal_43",
+    "name": "Palette 44",
+    "category": "neon",
+    "colors": [
+      "#67e6c1",
+      "#274929",
+      "#636717",
+      "#2d2fc8",
+      "#bec06b"
+    ]
+  },
+  {
+    "id": "pal_44",
+    "name": "Palette 45",
+    "category": "neon",
+    "colors": [
+      "#ffdf19",
+      "#39b77c",
+      "#4eab32",
+      "#6d2c55",
+      "#b95d94"
+    ]
+  },
+  {
+    "id": "pal_45",
+    "name": "Palette 46",
+    "category": "neon",
+    "colors": [
+      "#268edd",
+      "#49dcc5",
+      "#ab89bc",
+      "#6243e6",
+      "#2e0fa3"
+    ]
+  },
+  {
+    "id": "pal_46",
+    "name": "Palette 47",
+    "category": "neon",
+    "colors": [
+      "#8c0fdc",
+      "#23826c",
+      "#edaac3",
+      "#09ca5d",
+      "#e6f99d"
+    ]
+  },
+  {
+    "id": "pal_47",
+    "name": "Palette 48",
+    "category": "neon",
+    "colors": [
+      "#45c0eb",
+      "#ffd9a3",
+      "#f8ff4d",
+      "#103cb8",
+      "#3902ab"
+    ]
+  },
+  {
+    "id": "pal_48",
+    "name": "Palette 49",
+    "category": "neon",
+    "colors": [
+      "#eaa56c",
+      "#af4d32",
+      "#4cd243",
+      "#9849a6",
+      "#04e587"
+    ]
+  },
+  {
+    "id": "pal_49",
+    "name": "Palette 50",
+    "category": "neon",
+    "colors": [
+      "#1a5ff0",
+      "#b29d6a",
+      "#4df829",
+      "#3f3181",
+      "#7190b1"
+    ]
+  }
+]

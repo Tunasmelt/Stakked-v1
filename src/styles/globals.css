@@ -1,0 +1,372 @@
+/* ============================================================
+ * src/styles/globals.css — Stakked Claude Design System
+ * 5 themes × 2 modes × 3 densities × 3 chrome intensities × 3 font pairings
+ * ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Space+Grotesk:wght@300..700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+/* -----------------------------------------------------------
+ * BASE TOKENS — theme-agnostic skeleton (dark ghost defaults)
+ * --------------------------------------------------------- */
+:root {
+  --bg:          #0c0c0d;
+  --bg-2:        #111113;
+  --surface:     #141417;
+  --surface-2:   #1a1a1e;
+  --line:        #232327;
+  --line-2:      #2d2d33;
+  --text:        #f1f1f2;
+  --text-mute:   #8c8c93;
+  --text-dim:    #5a5a61;
+  --accent:      #d6ff3d;
+  --accent-ink:  #0c0c0d;
+  --danger:      #ff5c5c;
+  --ok:          #8bff9a;
+
+  --r-sm: 4px;
+  --r-md: 6px;
+  --r-lg: 10px;
+
+  --pad-y: 14px;
+  --pad-x: 14px;
+  --row-h: 30px;
+
+  --font-ui:      'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono:    'JetBrains Mono', ui-monospace, Menlo, monospace;
+  --font-display: 'Inter', system-ui, -apple-system, sans-serif;
+
+  /* Legacy aliases kept so older Phase-1/2 CSS keeps working */
+  --editor-bg:         var(--bg);
+  --editor-bg-dark:    var(--bg-2);
+  --editor-surface:    var(--surface);
+  --editor-border:     var(--line);
+  --editor-text:       var(--text);
+  --editor-text-muted: var(--text-mute);
+  --editor-accent:     var(--accent);
+  --editor-accent-hover: color-mix(in oklab, var(--accent) 85%, white);
+  --font-sans:    var(--font-ui);
+  --font-heading: var(--font-display);
+
+  --chrome-border: 1px solid var(--line);
+  --chrome-scan: 0.25;
+}
+
+/* -----------------------------------------------------------
+ * LIGHT MODE — mode inversion on top of theme
+ * --------------------------------------------------------- */
+[data-mode="light"] {
+  --bg:          #f7f6f3;
+  --bg-2:        #efeee9;
+  --surface:     #ffffff;
+  --surface-2:   #fafaf8;
+  --line:        #e3e1db;
+  --line-2:      #cfcdc5;
+  --text:        #0f0f10;
+  --text-mute:   #5a5a5f;
+  --text-dim:    #9b9ba0;
+  --accent-ink:  #0c0c0d;
+}
+
+/* -----------------------------------------------------------
+ * FONT PAIRINGS
+ * --------------------------------------------------------- */
+[data-font="geist"] {
+  --font-ui:      'Inter', system-ui, sans-serif;
+  --font-mono:    'JetBrains Mono', ui-monospace, monospace;
+  --font-display: 'Inter', system-ui, sans-serif;
+}
+[data-font="jb"] {
+  --font-ui:      'Instrument Sans', 'Inter', sans-serif;
+  --font-mono:    'JetBrains Mono', ui-monospace, monospace;
+  --font-display: 'Instrument Sans', sans-serif;
+}
+[data-font="space"] {
+  --font-ui:      'Space Grotesk', sans-serif;
+  --font-mono:    'Space Mono', monospace;
+  --font-display: 'Space Grotesk', sans-serif;
+}
+
+/* -----------------------------------------------------------
+ * DENSITY
+ * --------------------------------------------------------- */
+[data-density="compact"]  { --pad-y: 8px;  --pad-x: 10px; --row-h: 26px; }
+[data-density="cozy"]     { --pad-y: 12px; --pad-x: 14px; --row-h: 30px; }
+[data-density="spacious"] { --pad-y: 18px; --pad-x: 20px; --row-h: 36px; }
+
+/* -----------------------------------------------------------
+ * CHROME INTENSITY (scan-line + grid overlay strength)
+ * --------------------------------------------------------- */
+[data-chrome="minimal"]  { --chrome-scan: 0; }
+[data-chrome="balanced"] { --chrome-scan: 0.25; }
+[data-chrome="edgy"]     { --chrome-scan: 1; }
+
+/* -----------------------------------------------------------
+ * THEMES (5 × 2)
+ * --------------------------------------------------------- */
+
+/* Ghost — neutral default */
+[data-theme="ghost"][data-mode="dark"]  { --accent: #d6ff3d; }
+[data-theme="ghost"][data-mode="light"] { --accent: #0f0f10; }
+
+/* Neon — cyber magenta */
+[data-theme="neon"][data-mode="dark"] {
+  --bg:#07000f; --bg-2:#0c0120; --surface:#130327; --surface-2:#18062e;
+  --line:#2a114a; --line-2:#3d1a6a;
+  --text:#f6eaff; --text-mute:#a98cff; --text-dim:#6845b0;
+  --accent:#ff2e9a;
+}
+[data-theme="neon"][data-mode="light"] {
+  --bg:#fff3fb; --bg-2:#ffe6f5; --surface:#ffffff; --surface-2:#fff7fc;
+  --line:#ffb7de; --line-2:#ff79bc;
+  --text:#2a0430; --text-mute:#85286c; --text-dim:#b665a0;
+  --accent:#e0006a;
+}
+
+/* Brutal — maximum contrast */
+[data-theme="brutal"][data-mode="dark"] {
+  --bg:#000; --bg-2:#0a0a0a; --surface:#0f0f0f; --surface-2:#141414;
+  --line:#2c2c2c; --line-2:#4a4a4a;
+  --text:#fff; --text-mute:#bfbfbf; --text-dim:#777;
+  --accent:#ffee00;
+}
+[data-theme="brutal"][data-mode="light"] {
+  --bg:#fff; --bg-2:#f0f0f0; --surface:#fff; --surface-2:#fafafa;
+  --line:#000; --line-2:#000;
+  --text:#000; --text-mute:#222; --text-dim:#555;
+  --accent:#ff0000;
+}
+
+/* Paper — warm editorial */
+[data-theme="paper"][data-mode="dark"] {
+  --bg:#1e1b15; --bg-2:#27231b; --surface:#2c2822; --surface-2:#322d25;
+  --line:#3f392f; --line-2:#564e3f;
+  --text:#e8e2d0; --text-mute:#b39b78; --text-dim:#7a6a51;
+  --accent:#d4a574;
+}
+[data-theme="paper"][data-mode="light"] {
+  --bg:#f5f1e8; --bg-2:#ede5d3; --surface:#fbf7eb; --surface-2:#f1ecdb;
+  --line:#d5ccb0; --line-2:#b8ac8a;
+  --text:#2f2f2f; --text-mute:#7d6f55; --text-dim:#a89a7b;
+  --accent:#a06b2a;
+}
+
+/* Sunset — dusk / coral */
+[data-theme="sunset"][data-mode="dark"] {
+  --bg:#1c0f14; --bg-2:#2a1a1a; --surface:#331e1f; --surface-2:#3c2424;
+  --line:#4d2c2a; --line-2:#6b3f3a;
+  --text:#ffe8d6; --text-mute:#f5a98a; --text-dim:#a86960;
+  --accent:#ff8e53;
+}
+[data-theme="sunset"][data-mode="light"] {
+  --bg:#fff5e4; --bg-2:#ffe8cf; --surface:#fffaf0; --surface-2:#fff1dc;
+  --line:#ffd1a8; --line-2:#ffb67a;
+  --text:#3d2c2e; --text-mute:#a66244; --text-dim:#c99672;
+  --accent:#e55a2b;
+}
+
+/* -----------------------------------------------------------
+ * RESET
+ * --------------------------------------------------------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-ui);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* App is a full-viewport canvas inside /editor */
+html.editor-shell, body.editor-shell { overflow: hidden; height: 100%; }
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+input, textarea, select {
+  font: inherit;
+  color: inherit;
+  background: transparent;
+  border: 0;
+  outline: 0;
+}
+
+a { color: inherit; text-decoration: none; }
+
+::selection { background: var(--accent); color: var(--accent-ink); }
+
+/* -----------------------------------------------------------
+ * SCROLLBARS
+ * --------------------------------------------------------- */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--line); border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: var(--line-2); }
+
+/* -----------------------------------------------------------
+ * GLOBAL UTILITIES used across Landing / Editor shell
+ * --------------------------------------------------------- */
+
+/* System bar (top of landing) */
+.sysbar {
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  border-bottom: var(--chrome-border);
+  background: var(--bg-2);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-mute);
+  letter-spacing: 0.02em;
+}
+.sysbar .left, .sysbar .right { display: flex; align-items: center; gap: 14px; }
+.sysbar .dot {
+  width: 6px; height: 6px; border-radius: 999px;
+  background: var(--accent); box-shadow: 0 0 8px var(--accent);
+}
+.sysbar .wordmark { color: var(--text); font-weight: 600; letter-spacing: 0.14em; }
+.sysbar kbd {
+  font-family: var(--font-mono); font-size: 10px;
+  padding: 2px 5px; border: 1px solid var(--line); border-radius: 3px;
+  color: var(--text-mute); background: var(--surface);
+}
+
+/* Brief / landing hero block */
+.brief {
+  padding: 56px clamp(16px, 4vw, 48px) 40px;
+  border-bottom: var(--chrome-border);
+  background: linear-gradient(var(--bg), var(--bg-2));
+  position: relative;
+}
+.brief::before {
+  content: "";
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 48px 48px;
+  opacity: calc(0.18 * var(--chrome-scan));
+  pointer-events: none;
+  mask-image: linear-gradient(to bottom, black, transparent 80%);
+}
+.brief-inner { position: relative; max-width: 1280px; margin: 0 auto; }
+.brief .tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: .14em;
+  color: var(--text-mute); text-transform: uppercase;
+  padding: 4px 10px; border: 1px solid var(--line); border-radius: 999px;
+  margin-bottom: 24px;
+}
+.brief .tag::before {
+  content: ""; width: 6px; height: 6px;
+  background: var(--accent); border-radius: 999px;
+}
+.brief h1 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(40px, 6vw, 72px);
+  line-height: 0.95; letter-spacing: -0.03em;
+  margin-bottom: 18px;
+  text-wrap: balance;
+}
+.brief h1 em { font-style: normal; color: var(--accent); }
+.brief p.lede {
+  font-size: 18px; color: var(--text-mute);
+  max-width: 720px; line-height: 1.5;
+}
+.brief .meta {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  overflow: hidden;
+  background: var(--surface);
+}
+.brief .meta > div {
+  padding: 16px 18px;
+  border-right: 1px solid var(--line);
+}
+.brief .meta > div:last-child { border-right: 0; }
+.brief .meta dt {
+  font-family: var(--font-mono); font-size: 10px;
+  letter-spacing: .12em; text-transform: uppercase;
+  color: var(--text-dim); margin-bottom: 8px;
+}
+.brief .meta dd { font-size: 14px; color: var(--text); font-weight: 500; }
+
+/* Section header (numbered) */
+.section-h {
+  display: flex; align-items: baseline; gap: 16px;
+  padding: 48px clamp(16px, 4vw, 48px) 20px;
+  border-bottom: 1px dashed var(--line);
+  max-width: min(1280px, 100%); margin: 0 auto;
+}
+.section-h .idx {
+  font-family: var(--font-mono); font-size: 11px;
+  color: var(--text-dim); letter-spacing: .14em;
+}
+.section-h h2 {
+  font-family: var(--font-display); font-weight: 600;
+  letter-spacing: -0.02em; font-size: 28px;
+}
+.section-h p {
+  color: var(--text-mute); font-size: 13px;
+  margin-left: auto; max-width: 420px; text-align: right;
+}
+.section-body {
+  padding: 32px clamp(16px, 4vw, 48px) 64px;
+  max-width: min(1280px, 100%); margin: 0 auto;
+}
+
+/* Scan line overlay (driven by --chrome-scan) */
+.scan {
+  position: absolute; inset: 0; pointer-events: none;
+  background: repeating-linear-gradient(0deg, rgba(255,255,255,0.02) 0 1px, transparent 1px 3px);
+  opacity: calc(var(--chrome-scan) * 0.6);
+}
+
+/* Wordmark logo glyph */
+.logo-glyph {
+  display: inline-grid; grid-template-rows: repeat(3, 1fr); gap: 2px;
+  width: 18px; height: 14px;
+}
+.logo-glyph span { background: currentColor; height: 100%; border-radius: 1px; }
+.logo-glyph span:nth-child(1) { width: 100%; }
+.logo-glyph span:nth-child(2) { width: 80%; }
+.logo-glyph span:nth-child(3) { width: 60%; }
+
+/* Caption footer */
+.cap {
+  padding: 28px clamp(16px, 4vw, 48px);
+  border-top: 1px solid var(--line);
+  display: flex; justify-content: space-between; align-items: center;
+  font-family: var(--font-mono); font-size: 11px; color: var(--text-dim);
+  background: var(--bg-2);
+}
+.cap .logo { color: var(--text); letter-spacing: .22em; font-weight: 600; }
+
+/* -----------------------------------------------------------
+ * ANIMATIONS
+ * --------------------------------------------------------- */
+@keyframes stk-fadein { from { opacity: 0; } to { opacity: 1; } }
+@keyframes stk-pulse  { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }

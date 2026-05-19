@@ -1,0 +1,346 @@
+/* src/styles/Workflow.module.css */
+
+/* ── Outer container ── */
+.workflowContainer {
+  width: 100%;
+  height: 100%;
+  background: var(--bg-1);
+  position: relative;
+  display: flex;
+}
+
+/* ── ReactFlow overrides ── */
+.controls button {
+  background: var(--bg-3) !important;
+  fill: var(--text) !important;
+  border-bottom: 1px solid var(--line) !important;
+}
+
+/* ── Info panels ── */
+.panel {
+  padding: 10px 14px;
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  pointer-events: none;
+}
+
+.panelRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.chip {
+  display: inline-block;
+  padding: 2px 8px;
+  background: var(--accent);
+  color: var(--accent-ink, #000);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  border-radius: 99px;
+}
+
+.caption {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-mute);
+}
+
+/* ── Legend panel ── */
+.legend {
+  padding: 8px 12px;
+  background: rgba(0,0,0,0.45);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  pointer-events: none;
+}
+
+.legendRow {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-mute);
+}
+
+.legendDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ── Element Node ── */
+.elementNode {
+  min-width: 160px;
+  max-width: 200px;
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  cursor: grab;
+  transition: border-color 150ms, box-shadow 150ms;
+  overflow: hidden;
+}
+
+.elementNode:hover {
+  border-color: var(--line-2);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+
+.elementNode.selected {
+  border-color: var(--accent) !important;
+  box-shadow: 0 0 0 2px rgba(var(--accent-rgb, 180 180 180), 0.2);
+}
+
+.elementNodeHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border-left: 3px solid transparent;
+}
+
+.elementNodeIcon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+
+.elementNodeInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.elementNodeName {
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.elementNodeType {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--text-mute);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.behaviorBadge {
+  flex-shrink: 0;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  background: var(--accent);
+  color: var(--accent-ink, #000);
+  border-radius: 99px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Handles ── */
+.handle {
+  width: 10px !important;
+  height: 10px !important;
+  border: 2px solid var(--bg-1) !important;
+  border-radius: 50% !important;
+  transition: transform 120ms;
+}
+
+.handle:hover {
+  transform: scale(1.4) !important;
+}
+
+/* ── Config panel (right side overlay) ── */
+.configPanel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 280px;
+  height: 100%;
+  background: var(--bg-2);
+  border-left: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  z-index: 10;
+  overflow: hidden;
+}
+
+.configHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--line);
+}
+
+.configTitle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-ui);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.configIcon {
+  color: var(--accent);
+}
+
+.configClose {
+  background: none;
+  border: none;
+  color: var(--text-mute);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: var(--r-sm);
+  display: flex;
+  align-items: center;
+  transition: background 120ms, color 120ms;
+}
+.configClose:hover {
+  background: var(--surface);
+  color: var(--text);
+}
+
+.configFlow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 14px;
+  background: var(--bg-1);
+  border-bottom: 1px solid var(--line);
+}
+
+.configNode {
+  flex: 1;
+  padding: 4px 8px;
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+}
+
+.configArrow {
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+.configBody {
+  flex: 1;
+  overflow-y: auto;
+  padding: 14px;
+}
+
+.configField {
+  margin-bottom: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.configLabel {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-mute);
+}
+
+.configSelect,
+.configInput {
+  width: 100%;
+  box-sizing: border-box;
+  background: var(--bg-1);
+  border: 1px solid var(--line);
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  padding: 6px 8px;
+  border-radius: var(--r-sm);
+  outline: none;
+  transition: border-color 120ms;
+  appearance: auto;
+}
+.configSelect:focus,
+.configInput:focus {
+  border-color: var(--accent);
+}
+
+.configDesc {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-mute);
+  line-height: 1.4;
+}
+
+.configFooter {
+  padding: 10px 14px;
+  border-top: 1px solid var(--line);
+}
+
+.configDelete {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: 1px solid transparent;
+  color: var(--danger, #ef4444);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  cursor: pointer;
+  padding: 5px 8px;
+  border-radius: var(--r-sm);
+  width: 100%;
+  transition: background 120ms, border-color 120ms;
+}
+.configDelete:hover {
+  background: rgba(239, 68, 68, 0.08);
+  border-color: var(--danger, #ef4444);
+}
+
+/* ── Empty states ── */
+.emptyWorkflow {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: var(--text-mute);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  background: var(--bg-1);
+}
+
+/* ── Legacy aliases (kept for compatibility) ── */
+.pageNode { display: none; }
+.logicNode { display: none; }

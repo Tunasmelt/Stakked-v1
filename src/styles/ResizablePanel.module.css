@@ -1,0 +1,40 @@
+/* ResizablePanel.module.css */
+
+.panel {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  min-width: 0;
+  flex-shrink: 0;
+  background: var(--bg-2);
+  transition: none; /* disable transition while dragging — looks instant */
+}
+
+/* Handle shared styles */
+.handle {
+  position: absolute;
+  top: 0;
+  width: 5px;
+  height: 100%;
+  cursor: col-resize;
+  z-index: 20;
+  /* Invisible by default */
+  background: transparent;
+  transition: background 120ms ease;
+}
+.handle:hover,
+.handle:active {
+  background: color-mix(in oklab, var(--accent) 40%, transparent);
+}
+
+/* Left panel: handle sits on the RIGHT edge */
+.handle_left {
+  right: 0;
+  border-right: 1px solid var(--line);
+}
+
+/* Right panel: handle sits on the LEFT edge */
+.handle_right {
+  left: 0;
+  border-left: 1px solid var(--line);
+}

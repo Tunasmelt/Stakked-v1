@@ -1,0 +1,493 @@
+/* Community.module.css — Claude Design `.cx` tile */
+
+.container {
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-ui);
+}
+
+/* Top bar — chips + search */
+.top {
+  padding: 12px 18px;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-mute);
+  background: var(--bg-2);
+  flex-wrap: wrap;
+}
+
+.topLeft {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.topRight {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--accent);
+  box-shadow: 0 0 6px color-mix(in oklab, var(--accent) 60%, transparent);
+}
+
+.topTitle {
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+}
+.topSep {
+  color: var(--text-dim);
+}
+
+/* Filter chips (prototype `.cx-chip`) */
+.chip {
+  padding: 3px 10px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-mute);
+  background: transparent;
+  cursor: pointer;
+  transition: background 120ms, border-color 120ms, color 120ms;
+}
+.chip:hover {
+  color: var(--text);
+  border-color: var(--line-2);
+}
+.chip.active {
+  background: var(--accent);
+  color: var(--accent-ink);
+  border-color: var(--accent);
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 10px;
+  height: 26px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text);
+  min-width: 200px;
+}
+.search input {
+  background: transparent;
+  border: 0;
+  outline: none;
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  flex: 1;
+}
+.search input::placeholder {
+  color: var(--text-dim);
+}
+
+/* Grid: 4 columns of community items */
+.grid {
+  padding: 14px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  flex: 1;
+  align-content: start;
+}
+
+.item {
+  aspect-ratio: 4 / 5;
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  cursor: pointer;
+  transition: border-color 120ms, transform 120ms, background 120ms;
+}
+.item:hover {
+  border-color: var(--accent);
+  background: var(--surface-2);
+  transform: translateY(-2px);
+}
+
+/* Visualization variants — prototype cx-item .vis.a/.b/.c/.d */
+.vis {
+  flex: 1;
+  background: var(--bg-2);
+  position: relative;
+  overflow: hidden;
+}
+
+.remixOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(2px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 160ms;
+}
+
+.item:hover .remixOverlay {
+  opacity: 1;
+}
+
+.remixButton {
+  background: var(--accent);
+  color: var(--accent-ink);
+  border: 0;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: transform 120ms;
+}
+
+.remixButton:hover {
+  transform: scale(1.05);
+}
+
+.visA {
+  background:
+    radial-gradient(circle at 30% 30%, var(--accent), transparent 60%),
+    var(--bg-2);
+}
+.visB {
+  background: repeating-linear-gradient(
+    45deg,
+    var(--accent) 0 4px,
+    var(--bg-2) 4px 16px
+  );
+}
+.visC {
+  background: var(--surface-2);
+}
+.visC::after {
+  content: '';
+  position: absolute;
+  inset: 12px;
+  border: 2px solid var(--accent);
+  border-radius: 4px;
+}
+.visD {
+  background:
+    linear-gradient(var(--accent), var(--accent)) no-repeat left / 4px 100%,
+    var(--bg-2);
+}
+
+.meta {
+  padding: 6px 8px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-mute);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* --- Header block --- */
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text);
+  font-weight: 700;
+}
+.crumb {
+  color: var(--text-mute);
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+.sep {
+  display: inline-block;
+  width: 1px;
+  height: 14px;
+  background: var(--line);
+  margin: 0 6px;
+}
+.header {
+  padding: 24px 22px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  border-bottom: 1px solid var(--line);
+}
+.title {
+  font-family: var(--font-display, var(--font-ui));
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+.sub {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-mute);
+}
+
+/* --- Filter row --- */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 12px 22px;
+  align-items: center;
+  border-bottom: 1px solid var(--line);
+}
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.chipActive {
+  background: var(--accent);
+  color: var(--accent-ink);
+  border-color: var(--accent);
+}
+
+/* --- Card grid --- */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--accent) 12%, transparent);
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  background: var(--bg-2);
+  overflow: hidden;
+  transition: transform 160ms, border-color 160ms, box-shadow 160ms;
+}
+.card:hover {
+  border-color: var(--line-2);
+  transform: translateY(-1px);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.22);
+}
+.cardTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--line);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-mute);
+}
+.cardCat {
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.thumb {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  border-bottom: 1px solid var(--line);
+  background: var(--surface);
+}
+.cardBody {
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.cardTitle {
+  font-family: var(--font-ui);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+}
+.cardAuthor {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-mute);
+}
+.cardMeta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  border-top: 1px solid var(--line);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-mute);
+}
+.cardForks {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.cardActions {
+  display: flex;
+  gap: 6px;
+  padding: 0 10px 10px;
+}
+.remixBtn,
+.shareBtn {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 28px;
+  border-radius: var(--r-sm);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  transition: background 120ms, color 120ms, border-color 120ms;
+}
+.remixBtn {
+  background: var(--accent);
+  color: var(--accent-ink);
+  border: 1px solid var(--accent);
+}
+.remixBtn:hover { filter: brightness(1.05); }
+.shareBtn {
+  background: transparent;
+  color: var(--text-mute);
+  border: 1px solid var(--line);
+}
+.shareBtn:hover { color: var(--text); border-color: var(--line-2); }
+
+/* Live project badge */
+.cardLive {
+  border-color: color-mix(in oklab, var(--ok) 40%, var(--line));
+}
+.cardLive:hover {
+  border-color: var(--ok);
+}
+.liveTag {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: var(--ok);
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+.liveChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: 10px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--ok) 15%, transparent);
+  color: var(--ok);
+  font-size: 9px;
+  font-family: var(--font-mono);
+  vertical-align: middle;
+}
+
+/* Coming-soon cards */
+.cardComingSoon {
+  opacity: 0.45;
+  pointer-events: none;
+  cursor: default;
+}
+
+.comingSoonBadge {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 7px;
+  border-radius: var(--r-sm);
+  background: color-mix(in oklab, var(--accent) 12%, var(--surface));
+  border: 1px solid color-mix(in oklab, var(--accent) 25%, var(--line));
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+
+.comingSoonBtn {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 28px;
+  border-radius: var(--r-sm);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  background: color-mix(in oklab, var(--accent) 12%, var(--surface));
+  border: 1px solid color-mix(in oklab, var(--accent) 25%, var(--line));
+  color: var(--accent);
+  letter-spacing: 0.05em;
+  cursor: default;
+  pointer-events: none;
+}
+
+/* Loading indicator */
+.loadingRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 22px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-dim);
+}
+.loadingDot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: pulse 1s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}

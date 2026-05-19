@@ -1,0 +1,609 @@
+/* PropertiesPanel.module.css — Claude Design `.props-hd` + `.sect` system */
+
+.panel {
+  width: 100%;
+  height: 100%;
+  background: var(--bg-2);
+  border-left: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  color: var(--text);
+  font-family: var(--font-ui);
+  overflow-y: auto;
+  overflow-x: hidden;
+  min-width: 0;
+}
+
+/* Sticky header — mono label + id subtitle */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 10px 14px;
+  background: var(--bg-2);
+  border-bottom: 1px solid var(--line);
+}
+.title {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--text);
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.sub {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-dim);
+  letter-spacing: 0.04em;
+}
+
+/* Empty state */
+.empty {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 40px 24px;
+  text-align: center;
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  border-left: 1px solid var(--line);
+}
+.emptyBadge {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  padding: 4px 8px;
+  border: 1px dashed var(--line);
+  border-radius: var(--r-sm);
+}
+.emptyHint {
+  max-width: 220px;
+  line-height: 1.5;
+}
+
+/* === Collapsible section ================================================== */
+.section {
+  border-bottom: 1px solid var(--line);
+}
+
+.sectionHeader {
+  width: 100%;
+  padding: 9px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: var(--text-mute);
+  text-transform: uppercase;
+  transition: color 120ms, background 120ms;
+}
+.sectionHeader:hover {
+  color: var(--text);
+  background: var(--surface);
+}
+.sectionHeader svg {
+  color: var(--text-dim);
+  transition: transform 160ms;
+}
+
+/* Body padding + vertical rhythm */
+.sectionContent {
+  padding: 4px 14px 14px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  overflow: hidden;
+}
+
+/* Inner stack used by sections that compose multiple primitives */
+.sectionInner {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* 2-column grid — for X/Y, W/H, pairs of number inputs */
+.grid2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+}
+
+/* Row pattern — 64px mono label + flex control area */
+.row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+}
+.rowLabel {
+  width: 64px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-mute);
+  flex-shrink: 0;
+}
+.rowCtl {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+
+/* Segmented control (prototype `.seg`) */
+.seg {
+  display: flex;
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  overflow: hidden;
+  width: 100%;
+}
+.seg button {
+  flex: 1;
+  height: 26px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-mute);
+  background: transparent;
+  border: 0;
+  border-right: 1px solid var(--line);
+  cursor: pointer;
+  transition: background 120ms, color 120ms;
+}
+.seg button:last-child {
+  border-right: 0;
+}
+.seg button:hover {
+  color: var(--text);
+  background: var(--surface);
+}
+.seg button.active {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+/* Chip / pill */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 8px;
+  border-radius: var(--r-sm);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-mute);
+  cursor: pointer;
+  transition: border-color 120ms, color 120ms;
+}
+.chip:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.chip.active {
+  background: color-mix(in oklab, var(--accent) 18%, transparent);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.pill {
+  padding: 2px 8px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-mute);
+}
+
+/* Layer-stack list — used by EffectsSection / OverlaysSection / AnimationSection */
+.layerStack {
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  background: var(--surface);
+  overflow: hidden;
+}
+.layerStackRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  border-bottom: 1px solid var(--line);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-mute);
+}
+.layerStackRow:last-child {
+  border-bottom: 0;
+}
+.layerStackRow .name {
+  flex: 1;
+  color: var(--text-mute);
+}
+.layerStackRow .op {
+  color: var(--text);
+  font-size: 10px;
+}
+.layerStackAdd {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 6px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-mute);
+  border: 0;
+  border-top: 1px solid var(--line);
+  background: transparent;
+  cursor: pointer;
+  transition: color 120ms;
+}
+.layerStackAdd:hover {
+  color: var(--accent);
+}
+
+/* === Inline primitives (used directly in sections with custom markup) ===== */
+/* controlGroup / controlRow / input / select / inputWrapper / label /
+   numberInput / iconButton match the mono tokenized look from
+   UI.module.css. Sections that don't use <NumberInput/Select/...>
+   primitives use these class names directly. */
+
+.controlGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+}
+.controlRow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+}
+
+.inputWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+}
+.label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: var(--text-mute);
+  text-transform: uppercase;
+  padding-left: 1px;
+}
+.numberInput {
+  display: flex;
+  align-items: center;
+  height: 26px;
+  padding: 0 8px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  transition: border-color 120ms;
+}
+.numberInput:focus-within {
+  border-color: var(--accent);
+}
+.numberInput input {
+  width: 100%;
+  background: transparent;
+  border: 0;
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  outline: none;
+  padding: 0;
+}
+
+.input {
+  width: 100%;
+  height: 26px;
+  padding: 0 8px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text);
+  outline: none;
+  transition: border-color 120ms;
+}
+.input:hover {
+  border-color: var(--line-2);
+}
+.input:focus {
+  border-color: var(--accent);
+}
+
+.select {
+  width: 100%;
+  height: 26px;
+  padding: 0 24px 0 8px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  border-radius: var(--r-sm);
+  outline: none;
+  appearance: none;
+  cursor: pointer;
+  transition: border-color 120ms;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%23707078' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+}
+.select:focus {
+  border-color: var(--accent);
+}
+
+.iconButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  color: var(--text-dim);
+  cursor: pointer;
+  transition: color 120ms, border-color 120ms, background 120ms;
+}
+.iconButton:hover {
+  color: var(--text);
+  background: var(--surface);
+  border-color: var(--line-2);
+}
+.iconButton.danger:hover {
+  color: var(--danger);
+  border-color: var(--danger);
+}
+
+/* Badge for overrides (used by responsive system) */
+.overrideBadge {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  padding: 2px 6px;
+  border-radius: 3px;
+  border: 1px solid var(--accent);
+  background: color-mix(in oklab, var(--accent) 14%, transparent);
+}
+/* Animation Preset Grid */
+.presetBtn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 8px 4px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  cursor: pointer;
+  transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  min-height: 48px;
+}
+.presetBtn span {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--text-mute);
+  text-align: center;
+  line-height: 1.1;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+.presetBtn:hover {
+  background: var(--bg-hover);
+  border-color: var(--line-2);
+}
+.presetBtn:hover span {
+  color: var(--text);
+}
+.presetActive {
+  background: color-mix(in oklab, var(--accent) 12%, var(--surface));
+  border-color: var(--accent) !important;
+  box-shadow: 0 0 0 1px var(--accent);
+}
+.presetActive span {
+  color: var(--accent) !important;
+  font-weight: 600;
+}
+.presetDot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--line-2);
+  transition: all 150ms;
+}
+.presetActive .presetDot {
+  background: var(--accent);
+  transform: scale(1.5);
+  box-shadow: 0 0 8px var(--accent);
+}
+
+/* --- Collapsible section internals --- */
+.chevron {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-mute);
+  transform-origin: center;
+}
+.sectionBody {
+  overflow: hidden;
+  padding: 0 12px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* --- Field / group scaffolding used across section editors --- */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-mute);
+}
+.group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 0;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-mute);
+}
+
+/* --- Animation presets grid --- */
+.presetBtn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 8px;
+  border-radius: var(--r-sm);
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--text-mute);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  transition: background 120ms, color 120ms, border-color 120ms;
+  cursor: pointer;
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.presetBtn:hover { color: var(--text); border-color: var(--line-2); }
+.presetActive {
+  background: color-mix(in oklab, var(--accent) 15%, transparent);
+  color: var(--accent);
+  border-color: var(--accent);
+}
+.presetDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: currentColor;
+  flex-shrink: 0;
+}
+
+/* --- Arrow (used by drawer / disclosure elements) --- */
+.arrow {
+  display: inline-flex;
+  align-items: center;
+  color: var(--text-mute);
+}
+
+/* --- Tag + add button (used in Logic / Accessibility) --- */
+.actionTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  color: var(--text-mute);
+  font-family: var(--font-mono);
+  font-size: 10px;
+}
+.addBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border-radius: var(--r-sm);
+  border: 1px dashed var(--line-2);
+  background: transparent;
+  color: var(--text-mute);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  cursor: pointer;
+  transition: color 120ms, border-color 120ms, background 120ms;
+}
+.addBtn:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: color-mix(in oklab, var(--accent) 8%, transparent);
+}
+.iconBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: var(--r-sm);
+  color: var(--text-mute);
+  transition: background 120ms, color 120ms;
+}
+.iconBtn:hover { background: var(--surface); color: var(--text); }
+
+/* --- Behaviors list (LogicSection) --- */
+.behaviorsList {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.behaviorRow {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 8px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  background: var(--surface);
+}
+.behaviorHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text);
+}
+.behaviorInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-mute);
+}
+.behaviorControls {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}

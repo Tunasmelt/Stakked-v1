@@ -1,0 +1,288 @@
+/* Canvas.module.css — Claude Design viewport
+   Uses radial-dot background, artboard surface with page label,
+   and accent corner bookmarks for selection. */
+
+.wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--bg);
+  /* cursor is set dynamically by Canvas.tsx via inline style */
+  user-select: none;
+  font-family: var(--font-ui);
+}
+
+/* Radial-dot background (prototype `.canvas-bg`) */
+.wrapper::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, var(--line) 1px, transparent 1px);
+  background-size: 16px 16px;
+  background-position: 0 0;
+  opacity: 0.6;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.canvasContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform-origin: 0 0;
+  will-change: transform;
+  z-index: 1;
+}
+
+/* Legacy grid layers — kept as transparent overlays so any code that
+   references them still renders, but the radial-dot background is the
+   primary visual. */
+.grid,
+.gridMajor {
+  position: absolute;
+  top: -5000px;
+  left: -5000px;
+  width: 10000px;
+  height: 10000px;
+  pointer-events: none;
+  opacity: 0;
+}
+
+/* Artboard: the bordered surface that holds all elements */
+.backgroundLayer {
+  position: absolute;
+  background: var(--surface);
+  border: 1px solid var(--line-2);
+  box-shadow: 0 20px 60px -20px rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+  transition: width 240ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* Page label floating above the artboard (mono, small caps) */
+.backgroundLayer::before {
+  content: attr(data-label);
+  position: absolute;
+  top: -22px;
+  left: 0;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-mute);
+  letter-spacing: 0.06em;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.elementsLayer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* SVG overlay layer for guides, snap lines, measurements */
+.guidesLayer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* Rulers (kept from Phase 2 — theme them with accent-aware tokens) */
+.rulers {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.hRuler {
+  position: absolute;
+  top: 0;
+  left: 20px;
+  right: 0;
+  height: 20px;
+  background: var(--bg-2);
+  border-bottom: 1px solid var(--line);
+}
+
+.vRuler {
+  position: absolute;
+  top: 20px;
+  left: 0;
+  bottom: 0;
+  width: 20px;
+  background: var(--bg-2);
+  border-right: 1px solid var(--line);
+}
+
+.corner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  background: var(--bg-2);
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  z-index: 11;
+}
+
+/* Drop-ghost (prototype `.drop-ghost`) — shown under the cursor during
+   tray-to-canvas drag-and-drop. Rendered by Canvas.tsx as an absolutely
+   positioned div. */
+.dropGhost {
+  position: absolute;
+  pointer-events: none;
+  z-index: 30;
+  border: 1.5px dashed var(--accent);
+  background: color-mix(in oklab, var(--accent) 18%, transparent);
+  border-radius: var(--r-sm);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: left 60ms linear, top 60ms linear,
+              width 60ms linear, height 60ms linear;
+}
+
+/* Snap-guide (prototype `.guide`) */
+.guide {
+  position: absolute;
+  background: var(--accent);
+  z-index: 20;
+  pointer-events: none;
+}
+.guide.v {
+  width: 1px;
+  top: 0;
+  bottom: 0;
+}
+.guide.h {
+  height: 1px;
+  left: 0;
+  right: 0;
+}
+
+/* Scan overlay — subtle horizontal scan lines for "cinematic" density */
+.scan {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 3px,
+    rgba(255, 255, 255, 0.025) 3px,
+    rgba(255, 255, 255, 0.025) 4px
+  );
+  pointer-events: none;
+  z-index: 2;
+  mix-blend-mode: overlay;
+  opacity: 0;
+}
+:global([data-chrome="edgy"]) .scan {
+  opacity: 0.6;
+}
+
+/* Global Moveable handle override — make Moveable's handles match the
+   prototype's corner-bookmark pattern (accent border, bg fill, sharp). */
+.wrapper :global(.moveable-control) {
+  background: var(--bg) !important;
+  border: 1.5px solid var(--accent) !important;
+  border-radius: 2px !important;
+  width: 8px !important;
+  height: 8px !important;
+}
+.wrapper :global(.moveable-line) {
+  background: var(--accent) !important;
+  opacity: 0.9 !important;
+}
+.wrapper :global(.moveable-rotation-control) {
+  background: var(--accent) !important;
+  border: 1.5px solid var(--bg) !important;
+}
+.wrapper :global(.moveable-direction) {
+  background: var(--bg) !important;
+  border: 1.5px solid var(--accent) !important;
+}
+
+/* Reference grid overlay — shown inside artboard when toggled (G key) */
+.gridOverlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background-image:
+    linear-gradient(to right, var(--line, rgba(255,255,255,0.08)) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--line, rgba(255,255,255,0.08)) 1px, transparent 1px),
+    linear-gradient(to right, var(--line-2, rgba(255,255,255,0.04)) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--line-2, rgba(255,255,255,0.04)) 1px, transparent 1px);
+  background-size:
+    100px 100px,
+    100px 100px,
+    25px 25px,
+    25px 25px;
+}
+
+/* Grid toggle pill — fixed bottom-right of the canvas viewport */
+.gridToggle {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--text-mute);
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  cursor: pointer;
+  transition: opacity 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+.gridToggle:hover {
+  opacity: 1 !important;
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* Ruler tracks (top + left) — canvas overlay */
+.rulerHorizontal,
+.rulerVertical {
+  position: absolute;
+  background: var(--bg-2);
+  border-color: var(--line);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--text-mute);
+  pointer-events: none;
+  z-index: 20;
+}
+.rulerHorizontal {
+  top: 0;
+  left: 20px;
+  right: 0;
+  height: 20px;
+  border-bottom: 1px solid var(--line);
+}
+.rulerVertical {
+  top: 20px;
+  left: 0;
+  bottom: 0;
+  width: 20px;
+  border-right: 1px solid var(--line);
+}

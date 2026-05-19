@@ -1,0 +1,272 @@
+/* AssetPanel.module.css — Claude Design asset library */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: transparent;
+  font-family: var(--font-ui);
+}
+
+/* Tab strip — mono text tabs, accent underline on active */
+.tabs {
+  display: flex;
+  padding: 0;
+  gap: 2px;
+  border-bottom: 1px solid var(--line);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.tab {
+  flex: 0 0 auto;
+  padding: 8px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: transparent;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--text-mute);
+  cursor: pointer;
+  transition: color 120ms, border-color 120ms;
+  white-space: nowrap;
+}
+.tab:hover {
+  color: var(--text);
+}
+.tab.active {
+  color: var(--text);
+  border-bottom-color: var(--accent);
+}
+
+/* Search input — mono surface with line border */
+.searchWrapper {
+  position: relative;
+  padding: 10px;
+  border-bottom: 1px solid var(--line);
+}
+
+.searchIcon {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-dim);
+  pointer-events: none;
+}
+
+.clearIcon {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-dim);
+  cursor: pointer;
+  transition: color 120ms;
+}
+.clearIcon:hover {
+  color: var(--text);
+}
+
+.searchInput {
+  width: 100%;
+  height: 30px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  padding: 0 32px;
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  outline: none;
+  transition: border-color 120ms;
+}
+.searchInput::placeholder {
+  color: var(--text-dim);
+}
+.searchInput:focus {
+  border-color: var(--accent);
+}
+
+/* Results grid */
+.resultsGrid {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px;
+  align-content: start;
+}
+
+.assetCard {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  padding: 4px;
+  cursor: pointer;
+  transition: transform 120ms, border-color 120ms, background 120ms;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.assetCard:hover {
+  border-color: var(--accent);
+  background: var(--surface-2);
+  transform: translateY(-1px);
+}
+
+.imageThumb {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  border-radius: 3px;
+  background: var(--bg-2);
+}
+
+.iconPreview {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg);
+  border-radius: 3px;
+  color: var(--text);
+}
+.iconPreview img {
+  width: 32px;
+  height: 32px;
+  filter: var(--icon-invert, none);
+}
+:global([data-mode="dark"]) .iconPreview img {
+  filter: invert(1);
+}
+
+.palettePreview {
+  display: flex;
+  height: 48px;
+  border-radius: 3px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+}
+
+.colorStrip {
+  flex: 1;
+}
+
+.gradientPreview {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 3px;
+}
+
+.assetName {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-mute);
+  margin-top: 6px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0 4px 2px;
+}
+
+.loading,
+.empty {
+  grid-column: span 2;
+  text-align: center;
+  padding: 28px 20px;
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  border: 1px dashed var(--line);
+  border-radius: var(--r-sm);
+  line-height: 1.6;
+}
+
+/* Selection-required hint banner — shown when a style-apply tab is active
+   but no element is selected. */
+.hintBanner {
+  margin: 8px 10px 0;
+  padding: 8px 10px;
+  border: 1px dashed var(--accent);
+  border-radius: var(--r-sm);
+  background: color-mix(in srgb, var(--accent) 8%, transparent);
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.02em;
+  line-height: 1.4;
+}
+
+/* Transient toast at the bottom of the panel. Auto-dismiss is handled in
+   AssetPanel.tsx with a 2.2s timer. */
+.toast {
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  padding: 8px 12px;
+  border-radius: var(--r-sm);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 1.4;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
+  animation: toastIn 140ms ease-out;
+  z-index: 10;
+}
+.toastSuccess {
+  background: var(--accent);
+  color: var(--bg);
+  border: 1px solid var(--accent);
+}
+.toastInfo {
+  background: var(--surface-2, var(--surface));
+  color: var(--text);
+  border: 1px solid var(--line);
+}
+.toastWarn {
+  background: #f59e0b;
+  color: #1f1300;
+  border: 1px solid #f59e0b;
+}
+
+@keyframes toastIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Ensure the container is a positioning context for the toast. */
+.container {
+  position: relative;
+}
+
+/* Label row inside asset cards (shape name, etc.) */
+.assetLabel {
+  padding: 4px 6px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-mute);
+  text-align: center;
+  border-top: 1px solid var(--line);
+  background: var(--bg-2);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

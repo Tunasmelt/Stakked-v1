@@ -1,0 +1,289 @@
+/* ============================================================
+ * MarketingNav.module.css
+ * Sticky top navbar for all Stakked marketing pages.
+ * Design tokens: --bg-2, --line, --accent, --font-mono, --font-ui
+ * ============================================================ */
+
+/* ── Nav shell ───────────────────────────────────────────────── */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: color-mix(in oklab, var(--bg-2) 92%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+}
+
+.inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  height: 52px;
+  padding: 0 clamp(16px, 4vw, 48px);
+  gap: 0;
+}
+
+/* ── Brand ───────────────────────────────────────────────────── */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  flex-shrink: 0;
+  margin-right: 32px;
+}
+.brandDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: var(--accent);
+  box-shadow: 0 0 7px color-mix(in oklab, var(--accent) 65%, transparent);
+  flex-shrink: 0;
+}
+.brandName {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  color: var(--text);
+}
+.brandTag {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-dim);
+  letter-spacing: 0.06em;
+  display: none; /* show on wider screens */
+}
+@media (min-width: 900px) {
+  .brandTag { display: block; }
+}
+
+/* ── Desktop nav links ───────────────────────────────────────── */
+.links {
+  display: none;
+  align-items: center;
+  gap: 2px;
+  flex: 1;
+}
+@media (min-width: 768px) {
+  .links { display: flex; }
+}
+
+.link {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--text-dim);
+  text-decoration: none;
+  padding: 5px 10px;
+  border-radius: var(--r-sm);
+  transition: color 120ms, background 120ms;
+}
+.link:hover { color: var(--text); background: var(--surface); }
+.linkActive {
+  color: var(--accent) !important;
+  background: color-mix(in oklab, var(--accent) 8%, transparent) !important;
+}
+
+/* ── Desktop action buttons ──────────────────────────────────── */
+.actions {
+  display: none;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+}
+@media (min-width: 768px) {
+  .actions { display: flex; }
+}
+
+.btnGhost {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 12px;
+  border-radius: var(--r-sm);
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--text-mute);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  text-decoration: none;
+  transition: border-color 120ms, color 120ms, background 120ms;
+}
+.btnGhost:hover {
+  border-color: var(--line-2);
+  color: var(--text);
+  background: var(--surface);
+}
+
+.btnWorkspace {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 32px;
+  padding: 0 12px;
+  border-radius: var(--r-sm);
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--text-mute);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  transition: border-color 120ms, color 120ms;
+}
+.btnWorkspace:hover { border-color: var(--line-2); color: var(--text); }
+
+.btnCta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 14px;
+  border-radius: var(--r-sm);
+  border: none;
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  text-decoration: none;
+  transition: filter 120ms, transform 120ms;
+}
+.btnCta:hover { filter: brightness(1.08); transform: translateY(-1px); }
+
+/* ── Avatar / signed-in dropdown ───────────────────────────────── */
+.avatarWrap { position: relative; }
+
+.avatarBtn {
+  width: 30px;
+  height: 30px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: filter 120ms;
+}
+.avatarBtn:hover { filter: brightness(1.1); }
+
+.avatarMenu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 200px;
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  padding: 4px;
+  z-index: 200;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+  animation: navFadeIn 120ms ease-out;
+}
+.avatarEmail {
+  padding: 7px 10px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-dim);
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 2px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  letter-spacing: 0.04em;
+}
+.avatarItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 7px 10px;
+  border-radius: calc(var(--r-sm) - 1px);
+  border: none;
+  background: transparent;
+  color: var(--text-mute);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  cursor: pointer;
+  text-align: left;
+  transition: background 120ms, color 120ms;
+}
+.avatarItem:hover { background: var(--surface); color: var(--danger); }
+
+/* ── Mobile hamburger ────────────────────────────────────────── */
+.hamburger {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--r-sm);
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--text-mute);
+  cursor: pointer;
+  margin-left: auto;
+  transition: background 120ms, color 120ms;
+}
+.hamburger:hover { background: var(--surface); color: var(--text); }
+@media (min-width: 768px) { .hamburger { display: none; } }
+
+/* ── Mobile drawer ───────────────────────────────────────────── */
+.drawer {
+  border-top: 1px solid var(--line);
+  background: var(--bg-2);
+  padding: 16px clamp(16px, 4vw, 48px) 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  animation: navFadeIn 150ms ease-out;
+}
+.drawerLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.drawerLink {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  border-radius: var(--r-sm);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-mute);
+  text-decoration: none;
+  transition: background 120ms, color 120ms;
+}
+.drawerLink:hover { background: var(--surface); color: var(--text); }
+.drawerLinkActive { color: var(--accent) !important; }
+.drawerArrow {
+  font-size: 10px;
+  color: var(--accent);
+  letter-spacing: 0;
+}
+.drawerActions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* ── Animation ───────────────────────────────────────────────── */
+@keyframes navFadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}

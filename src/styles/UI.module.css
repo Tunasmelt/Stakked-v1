@@ -1,0 +1,198 @@
+/* UI.module.css — Claude Design property primitives
+   Wraps the prototype's .row/.lbl/.ctl/.inp/.seg/.tog/.swatch patterns into
+   named module classes consumed by src/components/ui/Primitives.tsx. */
+
+/* === Row (label + control) ================================================ */
+.inputWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+  font-family: var(--font-ui);
+}
+
+/* Mono caption-style labels — match prototype `.row .lbl`. */
+.label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: var(--text-mute);
+  text-transform: uppercase;
+  padding-left: 1px;
+}
+
+/* === Number input (inp) =================================================== */
+.numberInput {
+  display: flex;
+  align-items: center;
+  height: 26px;
+  padding: 0 8px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  transition: border-color 120ms;
+}
+.numberInput:focus-within {
+  border-color: var(--accent);
+}
+
+.numberInput input {
+  width: 100%;
+  background: transparent;
+  border: 0;
+  color: var(--text);
+  padding: 0;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  outline: none;
+}
+.numberInput input::-webkit-inner-spin-button,
+.numberInput input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  opacity: 0;
+  margin: 0;
+}
+.numberInput input:hover::-webkit-inner-spin-button {
+  opacity: 0.6;
+}
+
+/* === Slider =============================================================== */
+.sliderWrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+.sliderWrapper > span {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-dim);
+  width: 34px;
+  text-align: right;
+}
+
+.slider {
+  appearance: none;
+  -webkit-appearance: none;
+  flex: 1;
+  width: 100%;
+  height: 4px;
+  background: var(--line);
+  border-radius: 999px;
+  outline: 0;
+  cursor: pointer;
+}
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  background: var(--accent);
+  border: 2px solid var(--bg);
+  cursor: pointer;
+  transition: transform 120ms;
+}
+.slider::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  background: var(--accent);
+  border: 2px solid var(--bg);
+  cursor: pointer;
+}
+.slider:hover::-webkit-slider-thumb {
+  transform: scale(1.1);
+}
+.slider:active::-webkit-slider-thumb {
+  transform: scale(0.95);
+}
+
+/* === Toggle (tog) ========================================================= */
+.toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  cursor: pointer;
+  padding: 2px 0;
+}
+
+.toggleTrack {
+  width: 28px;
+  height: 16px;
+  background: var(--line);
+  border-radius: 999px;
+  position: relative;
+  transition: background 160ms;
+  flex-shrink: 0;
+}
+.toggleTrack.active {
+  background: var(--accent);
+}
+
+.toggleThumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 12px;
+  height: 12px;
+  background: var(--text);
+  border-radius: 999px;
+  transition: left 160ms, background 160ms;
+}
+.toggleTrack.active .toggleThumb {
+  left: 14px;
+  background: var(--accent-ink);
+}
+
+/* === Select =============================================================== */
+.select {
+  width: 100%;
+  height: 26px;
+  padding: 0 24px 0 8px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  border-radius: var(--r-sm);
+  outline: none;
+  appearance: none;
+  cursor: pointer;
+  transition: border-color 120ms;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%23707078' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+}
+.select:hover {
+  border-color: var(--line-2);
+}
+.select:focus {
+  border-color: var(--accent);
+}
+
+/* === Color swatch ========================================================= */
+.colorPreview {
+  width: 22px;
+  height: 22px;
+  border-radius: var(--r-sm);
+  border: 1px solid var(--line);
+  cursor: pointer;
+  position: relative;
+  flex-shrink: 0;
+  transition: transform 120ms, border-color 120ms;
+}
+.colorPreview::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: conic-gradient(from 45deg, transparent 0 180deg, rgba(0, 0, 0, 0.15) 180deg 360deg);
+  mix-blend-mode: overlay;
+  opacity: 0.3;
+  pointer-events: none;
+}
+.colorPreview:hover {
+  transform: scale(1.06);
+  border-color: var(--accent);
+}

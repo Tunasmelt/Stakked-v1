@@ -1,0 +1,1112 @@
+[
+  {
+    "id": "grad_0",
+    "name": "Gradient 1",
+    "value": "linear-gradient(135deg, #9f126f 0%, #3ac3cf 100%)",
+    "previewColor": "#9f126f"
+  },
+  {
+    "id": "grad_1",
+    "name": "Gradient 2",
+    "value": "linear-gradient(45deg, #9d122d 0%, #636d0b 100%)",
+    "previewColor": "#9d122d"
+  },
+  {
+    "id": "grad_2",
+    "name": "Gradient 3",
+    "value": "linear-gradient(to right, #59d5a8 0%, #ef17a2 100%)",
+    "previewColor": "#59d5a8"
+  },
+  {
+    "id": "grad_3",
+    "name": "Gradient 4",
+    "value": "linear-gradient(135deg, #593070 0%, #62cfe5 100%)",
+    "previewColor": "#593070"
+  },
+  {
+    "id": "grad_4",
+    "name": "Gradient 5",
+    "value": "linear-gradient(45deg, #76a01c 0%, #f1491c 100%)",
+    "previewColor": "#76a01c"
+  },
+  {
+    "id": "grad_5",
+    "name": "Gradient 6",
+    "value": "linear-gradient(to right, #6d78fd 0%, #7ee9a7 100%)",
+    "previewColor": "#6d78fd"
+  },
+  {
+    "id": "grad_6",
+    "name": "Gradient 7",
+    "value": "linear-gradient(135deg, #362c60 0%, #a06f2d 100%)",
+    "previewColor": "#362c60"
+  },
+  {
+    "id": "grad_7",
+    "name": "Gradient 8",
+    "value": "linear-gradient(45deg, #aa6d39 0%, #d23066 100%)",
+    "previewColor": "#aa6d39"
+  },
+  {
+    "id": "grad_8",
+    "name": "Gradient 9",
+    "value": "linear-gradient(to right, #465f50 0%, #61c169 100%)",
+    "previewColor": "#465f50"
+  },
+  {
+    "id": "grad_9",
+    "name": "Gradient 10",
+    "value": "linear-gradient(135deg, #4919b2 0%, #e178a6 100%)",
+    "previewColor": "#4919b2"
+  },
+  {
+    "id": "grad_10",
+    "name": "Gradient 11",
+    "value": "linear-gradient(45deg, #8720b3 0%, #a1531a 100%)",
+    "previewColor": "#8720b3"
+  },
+  {
+    "id": "grad_11",
+    "name": "Gradient 12",
+    "value": "linear-gradient(to right, #f6e5e0 0%, #8324f9 100%)",
+    "previewColor": "#f6e5e0"
+  },
+  {
+    "id": "grad_12",
+    "name": "Gradient 13",
+    "value": "linear-gradient(135deg, #01137a 0%, #4500cb 100%)",
+    "previewColor": "#01137a"
+  },
+  {
+    "id": "grad_13",
+    "name": "Gradient 14",
+    "value": "linear-gradient(45deg, #516e83 0%, #28e5aa 100%)",
+    "previewColor": "#516e83"
+  },
+  {
+    "id": "grad_14",
+    "name": "Gradient 15",
+    "value": "linear-gradient(to right, #4e2ff8 0%, #ca1382 100%)",
+    "previewColor": "#4e2ff8"
+  },
+  {
+    "id": "grad_15",
+    "name": "Gradient 16",
+    "value": "linear-gradient(135deg, #15f8c7 0%, #32dc4d 100%)",
+    "previewColor": "#15f8c7"
+  },
+  {
+    "id": "grad_16",
+    "name": "Gradient 17",
+    "value": "linear-gradient(45deg, #9e3450 0%, #981e4f 100%)",
+    "previewColor": "#9e3450"
+  },
+  {
+    "id": "grad_17",
+    "name": "Gradient 18",
+    "value": "linear-gradient(to right, #4e2ed0 0%, #7022c4 100%)",
+    "previewColor": "#4e2ed0"
+  },
+  {
+    "id": "grad_18",
+    "name": "Gradient 19",
+    "value": "linear-gradient(135deg, #cea59f 0%, #c905fa 100%)",
+    "previewColor": "#cea59f"
+  },
+  {
+    "id": "grad_19",
+    "name": "Gradient 20",
+    "value": "linear-gradient(45deg, #514cc8 0%, #d44be9 100%)",
+    "previewColor": "#514cc8"
+  },
+  {
+    "id": "grad_20",
+    "name": "Gradient 21",
+    "value": "linear-gradient(to right, #570587 0%, #823acb 100%)",
+    "previewColor": "#570587"
+  },
+  {
+    "id": "grad_21",
+    "name": "Gradient 22",
+    "value": "linear-gradient(135deg, #720c38 0%, #c5eb9f 100%)",
+    "previewColor": "#720c38"
+  },
+  {
+    "id": "grad_22",
+    "name": "Gradient 23",
+    "value": "linear-gradient(45deg, #91b3b9 0%, #ce6458 100%)",
+    "previewColor": "#91b3b9"
+  },
+  {
+    "id": "grad_23",
+    "name": "Gradient 24",
+    "value": "linear-gradient(to right, #5153bd 0%, #20d2ad 100%)",
+    "previewColor": "#5153bd"
+  },
+  {
+    "id": "grad_24",
+    "name": "Gradient 25",
+    "value": "linear-gradient(135deg, #8d70e3 0%, #e26e93 100%)",
+    "previewColor": "#8d70e3"
+  },
+  {
+    "id": "grad_25",
+    "name": "Gradient 26",
+    "value": "linear-gradient(45deg, #2a1fa2 0%, #5d9e80 100%)",
+    "previewColor": "#2a1fa2"
+  },
+  {
+    "id": "grad_26",
+    "name": "Gradient 27",
+    "value": "linear-gradient(to right, #330ca4 0%, #4df7cf 100%)",
+    "previewColor": "#330ca4"
+  },
+  {
+    "id": "grad_27",
+    "name": "Gradient 28",
+    "value": "linear-gradient(135deg, #a47c67 0%, #a0ce25 100%)",
+    "previewColor": "#a47c67"
+  },
+  {
+    "id": "grad_28",
+    "name": "Gradient 29",
+    "value": "linear-gradient(45deg, #d8fc1a 0%, #55edbe 100%)",
+    "previewColor": "#d8fc1a"
+  },
+  {
+    "id": "grad_29",
+    "name": "Gradient 30",
+    "value": "linear-gradient(to right, #da932b 0%, #123bdf 100%)",
+    "previewColor": "#da932b"
+  },
+  {
+    "id": "grad_30",
+    "name": "Gradient 31",
+    "value": "linear-gradient(135deg, #bbdf98 0%, #06a765 100%)",
+    "previewColor": "#bbdf98"
+  },
+  {
+    "id": "grad_31",
+    "name": "Gradient 32",
+    "value": "linear-gradient(45deg, #6691b7 0%, #689f8b 100%)",
+    "previewColor": "#6691b7"
+  },
+  {
+    "id": "grad_32",
+    "name": "Gradient 33",
+    "value": "linear-gradient(to right, #c1a618 0%, #1fe401 100%)",
+    "previewColor": "#c1a618"
+  },
+  {
+    "id": "grad_33",
+    "name": "Gradient 34",
+    "value": "linear-gradient(135deg, #1245e7 0%, #5ff9c4 100%)",
+    "previewColor": "#1245e7"
+  },
+  {
+    "id": "grad_34",
+    "name": "Gradient 35",
+    "value": "linear-gradient(45deg, #318b74 0%, #6ed7a5 100%)",
+    "previewColor": "#318b74"
+  },
+  {
+    "id": "grad_35",
+    "name": "Gradient 36",
+    "value": "linear-gradient(to right, #3facfd 0%, #b41db1 100%)",
+    "previewColor": "#3facfd"
+  },
+  {
+    "id": "grad_36",
+    "name": "Gradient 37",
+    "value": "linear-gradient(135deg, #0a74c2 0%, #cf0c1a 100%)",
+    "previewColor": "#0a74c2"
+  },
+  {
+    "id": "grad_37",
+    "name": "Gradient 38",
+    "value": "linear-gradient(45deg, #cc535d 0%, #4720a4 100%)",
+    "previewColor": "#cc535d"
+  },
+  {
+    "id": "grad_38",
+    "name": "Gradient 39",
+    "value": "linear-gradient(to right, #417ae3 0%, #bcd56c 100%)",
+    "previewColor": "#417ae3"
+  },
+  {
+    "id": "grad_39",
+    "name": "Gradient 40",
+    "value": "linear-gradient(135deg, #e7382d 0%, #aa3f7f 100%)",
+    "previewColor": "#e7382d"
+  },
+  {
+    "id": "grad_40",
+    "name": "Gradient 41",
+    "value": "linear-gradient(45deg, #5b1c47 0%, #d676b9 100%)",
+    "previewColor": "#5b1c47"
+  },
+  {
+    "id": "grad_41",
+    "name": "Gradient 42",
+    "value": "linear-gradient(to right, #390c11 0%, #5c492b 100%)",
+    "previewColor": "#390c11"
+  },
+  {
+    "id": "grad_42",
+    "name": "Gradient 43",
+    "value": "linear-gradient(135deg, #d5f6d0 0%, #4990f1 100%)",
+    "previewColor": "#d5f6d0"
+  },
+  {
+    "id": "grad_43",
+    "name": "Gradient 44",
+    "value": "linear-gradient(45deg, #b2cb15 0%, #c7a517 100%)",
+    "previewColor": "#b2cb15"
+  },
+  {
+    "id": "grad_44",
+    "name": "Gradient 45",
+    "value": "linear-gradient(to right, #b51cc4 0%, #f8c8ec 100%)",
+    "previewColor": "#b51cc4"
+  },
+  {
+    "id": "grad_45",
+    "name": "Gradient 46",
+    "value": "linear-gradient(135deg, #e5a17a 0%, #bf62f8 100%)",
+    "previewColor": "#e5a17a"
+  },
+  {
+    "id": "grad_46",
+    "name": "Gradient 47",
+    "value": "linear-gradient(45deg, #732d31 0%, #a7973c 100%)",
+    "previewColor": "#732d31"
+  },
+  {
+    "id": "grad_47",
+    "name": "Gradient 48",
+    "value": "linear-gradient(to right, #0fcdf3 0%, #96472f 100%)",
+    "previewColor": "#0fcdf3"
+  },
+  {
+    "id": "grad_48",
+    "name": "Gradient 49",
+    "value": "linear-gradient(135deg, #71cb9f 0%, #11ce89 100%)",
+    "previewColor": "#71cb9f"
+  },
+  {
+    "id": "grad_49",
+    "name": "Gradient 50",
+    "value": "linear-gradient(45deg, #0f287c 0%, #005d2a 100%)",
+    "previewColor": "#0f287c"
+  },
+  {
+    "id": "grad_50",
+    "name": "Gradient 51",
+    "value": "linear-gradient(to right, #7fe428 0%, #7bbfd5 100%)",
+    "previewColor": "#7fe428"
+  },
+  {
+    "id": "grad_51",
+    "name": "Gradient 52",
+    "value": "linear-gradient(135deg, #19d462 0%, #2e29fc 100%)",
+    "previewColor": "#19d462"
+  },
+  {
+    "id": "grad_52",
+    "name": "Gradient 53",
+    "value": "linear-gradient(45deg, #33ff07 0%, #25cef2 100%)",
+    "previewColor": "#33ff07"
+  },
+  {
+    "id": "grad_53",
+    "name": "Gradient 54",
+    "value": "linear-gradient(to right, #1edf2f 0%, #a44b8a 100%)",
+    "previewColor": "#1edf2f"
+  },
+  {
+    "id": "grad_54",
+    "name": "Gradient 55",
+    "value": "linear-gradient(135deg, #7a5751 0%, #60a557 100%)",
+    "previewColor": "#7a5751"
+  },
+  {
+    "id": "grad_55",
+    "name": "Gradient 56",
+    "value": "linear-gradient(45deg, #974f52 0%, #eb96c1 100%)",
+    "previewColor": "#974f52"
+  },
+  {
+    "id": "grad_56",
+    "name": "Gradient 57",
+    "value": "linear-gradient(to right, #d7e98e 0%, #34c7a5 100%)",
+    "previewColor": "#d7e98e"
+  },
+  {
+    "id": "grad_57",
+    "name": "Gradient 58",
+    "value": "linear-gradient(135deg, #e60f8d 0%, #927e41 100%)",
+    "previewColor": "#e60f8d"
+  },
+  {
+    "id": "grad_58",
+    "name": "Gradient 59",
+    "value": "linear-gradient(45deg, #76f5cd 0%, #44da0a 100%)",
+    "previewColor": "#76f5cd"
+  },
+  {
+    "id": "grad_59",
+    "name": "Gradient 60",
+    "value": "linear-gradient(to right, #4e9800 0%, #be8c04 100%)",
+    "previewColor": "#4e9800"
+  },
+  {
+    "id": "grad_60",
+    "name": "Gradient 61",
+    "value": "linear-gradient(135deg, #7d82c6 0%, #b1a1b0 100%)",
+    "previewColor": "#7d82c6"
+  },
+  {
+    "id": "grad_61",
+    "name": "Gradient 62",
+    "value": "linear-gradient(45deg, #810a7e 0%, #a3ffa6 100%)",
+    "previewColor": "#810a7e"
+  },
+  {
+    "id": "grad_62",
+    "name": "Gradient 63",
+    "value": "linear-gradient(to right, #c13d99 0%, #2a22f0 100%)",
+    "previewColor": "#c13d99"
+  },
+  {
+    "id": "grad_63",
+    "name": "Gradient 64",
+    "value": "linear-gradient(135deg, #e539d7 0%, #098b41 100%)",
+    "previewColor": "#e539d7"
+  },
+  {
+    "id": "grad_64",
+    "name": "Gradient 65",
+    "value": "linear-gradient(45deg, #63e77e 0%, #db9194 100%)",
+    "previewColor": "#63e77e"
+  },
+  {
+    "id": "grad_65",
+    "name": "Gradient 66",
+    "value": "linear-gradient(to right, #cef956 0%, #f95dde 100%)",
+    "previewColor": "#cef956"
+  },
+  {
+    "id": "grad_66",
+    "name": "Gradient 67",
+    "value": "linear-gradient(135deg, #adbb68 0%, #8d34b1 100%)",
+    "previewColor": "#adbb68"
+  },
+  {
+    "id": "grad_67",
+    "name": "Gradient 68",
+    "value": "linear-gradient(45deg, #ccd8a1 0%, #cb8e77 100%)",
+    "previewColor": "#ccd8a1"
+  },
+  {
+    "id": "grad_68",
+    "name": "Gradient 69",
+    "value": "linear-gradient(to right, #e7ed3e 0%, #9ddd2a 100%)",
+    "previewColor": "#e7ed3e"
+  },
+  {
+    "id": "grad_69",
+    "name": "Gradient 70",
+    "value": "linear-gradient(135deg, #89cb77 0%, #fd0e36 100%)",
+    "previewColor": "#89cb77"
+  },
+  {
+    "id": "grad_70",
+    "name": "Gradient 71",
+    "value": "linear-gradient(45deg, #b85c58 0%, #7bd2f6 100%)",
+    "previewColor": "#b85c58"
+  },
+  {
+    "id": "grad_71",
+    "name": "Gradient 72",
+    "value": "linear-gradient(to right, #ae8086 0%, #377631 100%)",
+    "previewColor": "#ae8086"
+  },
+  {
+    "id": "grad_72",
+    "name": "Gradient 73",
+    "value": "linear-gradient(135deg, #ec7da3 0%, #9bd01b 100%)",
+    "previewColor": "#ec7da3"
+  },
+  {
+    "id": "grad_73",
+    "name": "Gradient 74",
+    "value": "linear-gradient(45deg, #a99f1d 0%, #edcd4c 100%)",
+    "previewColor": "#a99f1d"
+  },
+  {
+    "id": "grad_74",
+    "name": "Gradient 75",
+    "value": "linear-gradient(to right, #66a853 0%, #34aa31 100%)",
+    "previewColor": "#66a853"
+  },
+  {
+    "id": "grad_75",
+    "name": "Gradient 76",
+    "value": "linear-gradient(135deg, #2f524c 0%, #462348 100%)",
+    "previewColor": "#2f524c"
+  },
+  {
+    "id": "grad_76",
+    "name": "Gradient 77",
+    "value": "linear-gradient(45deg, #94c2db 0%, #295877 100%)",
+    "previewColor": "#94c2db"
+  },
+  {
+    "id": "grad_77",
+    "name": "Gradient 78",
+    "value": "linear-gradient(to right, #b881a7 0%, #ead7ba 100%)",
+    "previewColor": "#b881a7"
+  },
+  {
+    "id": "grad_78",
+    "name": "Gradient 79",
+    "value": "linear-gradient(135deg, #3ff7c0 0%, #ab3812 100%)",
+    "previewColor": "#3ff7c0"
+  },
+  {
+    "id": "grad_79",
+    "name": "Gradient 80",
+    "value": "linear-gradient(45deg, #7c21b9 0%, #2f133b 100%)",
+    "previewColor": "#7c21b9"
+  },
+  {
+    "id": "grad_80",
+    "name": "Gradient 81",
+    "value": "linear-gradient(to right, #2455fa 0%, #63b1fc 100%)",
+    "previewColor": "#2455fa"
+  },
+  {
+    "id": "grad_81",
+    "name": "Gradient 82",
+    "value": "linear-gradient(135deg, #47b705 0%, #87cba2 100%)",
+    "previewColor": "#47b705"
+  },
+  {
+    "id": "grad_82",
+    "name": "Gradient 83",
+    "value": "linear-gradient(45deg, #65580e 0%, #dea049 100%)",
+    "previewColor": "#65580e"
+  },
+  {
+    "id": "grad_83",
+    "name": "Gradient 84",
+    "value": "linear-gradient(to right, #ca1572 0%, #a8cddc 100%)",
+    "previewColor": "#ca1572"
+  },
+  {
+    "id": "grad_84",
+    "name": "Gradient 85",
+    "value": "linear-gradient(135deg, #b99e56 0%, #05ccfc 100%)",
+    "previewColor": "#b99e56"
+  },
+  {
+    "id": "grad_85",
+    "name": "Gradient 86",
+    "value": "linear-gradient(45deg, #d7d26f 0%, #2a2ce1 100%)",
+    "previewColor": "#d7d26f"
+  },
+  {
+    "id": "grad_86",
+    "name": "Gradient 87",
+    "value": "linear-gradient(to right, #f2bd05 0%, #d9765f 100%)",
+    "previewColor": "#f2bd05"
+  },
+  {
+    "id": "grad_87",
+    "name": "Gradient 88",
+    "value": "linear-gradient(135deg, #33828d 0%, #269c0d 100%)",
+    "previewColor": "#33828d"
+  },
+  {
+    "id": "grad_88",
+    "name": "Gradient 89",
+    "value": "linear-gradient(45deg, #1e64a7 0%, #0dcae6 100%)",
+    "previewColor": "#1e64a7"
+  },
+  {
+    "id": "grad_89",
+    "name": "Gradient 90",
+    "value": "linear-gradient(to right, #eab24f 0%, #260d43 100%)",
+    "previewColor": "#eab24f"
+  },
+  {
+    "id": "grad_90",
+    "name": "Gradient 91",
+    "value": "linear-gradient(135deg, #d80899 0%, #3070bb 100%)",
+    "previewColor": "#d80899"
+  },
+  {
+    "id": "grad_91",
+    "name": "Gradient 92",
+    "value": "linear-gradient(45deg, #a3130d 0%, #5b207f 100%)",
+    "previewColor": "#a3130d"
+  },
+  {
+    "id": "grad_92",
+    "name": "Gradient 93",
+    "value": "linear-gradient(to right, #ae23d7 0%, #3fec55 100%)",
+    "previewColor": "#ae23d7"
+  },
+  {
+    "id": "grad_93",
+    "name": "Gradient 94",
+    "value": "linear-gradient(135deg, #cf99e5 0%, #b2bad3 100%)",
+    "previewColor": "#cf99e5"
+  },
+  {
+    "id": "grad_94",
+    "name": "Gradient 95",
+    "value": "linear-gradient(45deg, #90748b 0%, #6daf00 100%)",
+    "previewColor": "#90748b"
+  },
+  {
+    "id": "grad_95",
+    "name": "Gradient 96",
+    "value": "linear-gradient(to right, #9ce6f0 0%, #8343aa 100%)",
+    "previewColor": "#9ce6f0"
+  },
+  {
+    "id": "grad_96",
+    "name": "Gradient 97",
+    "value": "linear-gradient(135deg, #7c8c32 0%, #f8a751 100%)",
+    "previewColor": "#7c8c32"
+  },
+  {
+    "id": "grad_97",
+    "name": "Gradient 98",
+    "value": "linear-gradient(45deg, #d13b61 0%, #37656a 100%)",
+    "previewColor": "#d13b61"
+  },
+  {
+    "id": "grad_98",
+    "name": "Gradient 99",
+    "value": "linear-gradient(to right, #2cebb5 0%, #c867bc 100%)",
+    "previewColor": "#2cebb5"
+  },
+  {
+    "id": "grad_99",
+    "name": "Gradient 100",
+    "value": "linear-gradient(135deg, #8b8707 0%, #e47117 100%)",
+    "previewColor": "#8b8707"
+  },
+  {
+    "id": "grad_100",
+    "name": "Gradient 101",
+    "value": "linear-gradient(45deg, #fe1f7e 0%, #22e0ba 100%)",
+    "previewColor": "#fe1f7e"
+  },
+  {
+    "id": "grad_101",
+    "name": "Gradient 102",
+    "value": "linear-gradient(to right, #df8e31 0%, #9af3c4 100%)",
+    "previewColor": "#df8e31"
+  },
+  {
+    "id": "grad_102",
+    "name": "Gradient 103",
+    "value": "linear-gradient(135deg, #9d3693 0%, #c4295c 100%)",
+    "previewColor": "#9d3693"
+  },
+  {
+    "id": "grad_103",
+    "name": "Gradient 104",
+    "value": "linear-gradient(45deg, #9d4c64 0%, #0635b0 100%)",
+    "previewColor": "#9d4c64"
+  },
+  {
+    "id": "grad_104",
+    "name": "Gradient 105",
+    "value": "linear-gradient(to right, #2f572f 0%, #07d4a6 100%)",
+    "previewColor": "#2f572f"
+  },
+  {
+    "id": "grad_105",
+    "name": "Gradient 106",
+    "value": "linear-gradient(135deg, #3f89cd 0%, #82b7a6 100%)",
+    "previewColor": "#3f89cd"
+  },
+  {
+    "id": "grad_106",
+    "name": "Gradient 107",
+    "value": "linear-gradient(45deg, #88ce39 0%, #e1d5c0 100%)",
+    "previewColor": "#88ce39"
+  },
+  {
+    "id": "grad_107",
+    "name": "Gradient 108",
+    "value": "linear-gradient(to right, #f9b220 0%, #fa7ce0 100%)",
+    "previewColor": "#f9b220"
+  },
+  {
+    "id": "grad_108",
+    "name": "Gradient 109",
+    "value": "linear-gradient(135deg, #9963b0 0%, #57ac7c 100%)",
+    "previewColor": "#9963b0"
+  },
+  {
+    "id": "grad_109",
+    "name": "Gradient 110",
+    "value": "linear-gradient(45deg, #4313c2 0%, #01d8f6 100%)",
+    "previewColor": "#4313c2"
+  },
+  {
+    "id": "grad_110",
+    "name": "Gradient 111",
+    "value": "linear-gradient(to right, #8a30b5 0%, #3bce69 100%)",
+    "previewColor": "#8a30b5"
+  },
+  {
+    "id": "grad_111",
+    "name": "Gradient 112",
+    "value": "linear-gradient(135deg, #42fc07 0%, #8ebcbd 100%)",
+    "previewColor": "#42fc07"
+  },
+  {
+    "id": "grad_112",
+    "name": "Gradient 113",
+    "value": "linear-gradient(45deg, #4f8524 0%, #252613 100%)",
+    "previewColor": "#4f8524"
+  },
+  {
+    "id": "grad_113",
+    "name": "Gradient 114",
+    "value": "linear-gradient(to right, #2360f6 0%, #00b7ba 100%)",
+    "previewColor": "#2360f6"
+  },
+  {
+    "id": "grad_114",
+    "name": "Gradient 115",
+    "value": "linear-gradient(135deg, #39bf9d 0%, #759678 100%)",
+    "previewColor": "#39bf9d"
+  },
+  {
+    "id": "grad_115",
+    "name": "Gradient 116",
+    "value": "linear-gradient(45deg, #af32e5 0%, #e645bf 100%)",
+    "previewColor": "#af32e5"
+  },
+  {
+    "id": "grad_116",
+    "name": "Gradient 117",
+    "value": "linear-gradient(to right, #f23022 0%, #8b19bc 100%)",
+    "previewColor": "#f23022"
+  },
+  {
+    "id": "grad_117",
+    "name": "Gradient 118",
+    "value": "linear-gradient(135deg, #23989c 0%, #c081fc 100%)",
+    "previewColor": "#23989c"
+  },
+  {
+    "id": "grad_118",
+    "name": "Gradient 119",
+    "value": "linear-gradient(45deg, #57e12f 0%, #36960d 100%)",
+    "previewColor": "#57e12f"
+  },
+  {
+    "id": "grad_119",
+    "name": "Gradient 120",
+    "value": "linear-gradient(to right, #8aab9f 0%, #1c4a0d 100%)",
+    "previewColor": "#8aab9f"
+  },
+  {
+    "id": "grad_120",
+    "name": "Gradient 121",
+    "value": "linear-gradient(135deg, #f619eb 0%, #a249b7 100%)",
+    "previewColor": "#f619eb"
+  },
+  {
+    "id": "grad_121",
+    "name": "Gradient 122",
+    "value": "linear-gradient(45deg, #4ad683 0%, #e2d4b1 100%)",
+    "previewColor": "#4ad683"
+  },
+  {
+    "id": "grad_122",
+    "name": "Gradient 123",
+    "value": "linear-gradient(to right, #c6ed30 0%, #c80b27 100%)",
+    "previewColor": "#c6ed30"
+  },
+  {
+    "id": "grad_123",
+    "name": "Gradient 124",
+    "value": "linear-gradient(135deg, #3fd300 0%, #6ae24c 100%)",
+    "previewColor": "#3fd300"
+  },
+  {
+    "id": "grad_124",
+    "name": "Gradient 125",
+    "value": "linear-gradient(45deg, #8b8e59 0%, #8a4b04 100%)",
+    "previewColor": "#8b8e59"
+  },
+  {
+    "id": "grad_125",
+    "name": "Gradient 126",
+    "value": "linear-gradient(to right, #a9cdc8 0%, #76374a 100%)",
+    "previewColor": "#a9cdc8"
+  },
+  {
+    "id": "grad_126",
+    "name": "Gradient 127",
+    "value": "linear-gradient(135deg, #162d41 0%, #4c59e4 100%)",
+    "previewColor": "#162d41"
+  },
+  {
+    "id": "grad_127",
+    "name": "Gradient 128",
+    "value": "linear-gradient(45deg, #51e1fd 0%, #8a0e62 100%)",
+    "previewColor": "#51e1fd"
+  },
+  {
+    "id": "grad_128",
+    "name": "Gradient 129",
+    "value": "linear-gradient(to right, #96cb86 0%, #2fd0e6 100%)",
+    "previewColor": "#96cb86"
+  },
+  {
+    "id": "grad_129",
+    "name": "Gradient 130",
+    "value": "linear-gradient(135deg, #52fd85 0%, #dbbe94 100%)",
+    "previewColor": "#52fd85"
+  },
+  {
+    "id": "grad_130",
+    "name": "Gradient 131",
+    "value": "linear-gradient(45deg, #8724f3 0%, #14c376 100%)",
+    "previewColor": "#8724f3"
+  },
+  {
+    "id": "grad_131",
+    "name": "Gradient 132",
+    "value": "linear-gradient(to right, #7107aa 0%, #e86816 100%)",
+    "previewColor": "#7107aa"
+  },
+  {
+    "id": "grad_132",
+    "name": "Gradient 133",
+    "value": "linear-gradient(135deg, #51ebc3 0%, #9a5ba5 100%)",
+    "previewColor": "#51ebc3"
+  },
+  {
+    "id": "grad_133",
+    "name": "Gradient 134",
+    "value": "linear-gradient(45deg, #d18f61 0%, #79aea9 100%)",
+    "previewColor": "#d18f61"
+  },
+  {
+    "id": "grad_134",
+    "name": "Gradient 135",
+    "value": "linear-gradient(to right, #0e3f77 0%, #69a8cf 100%)",
+    "previewColor": "#0e3f77"
+  },
+  {
+    "id": "grad_135",
+    "name": "Gradient 136",
+    "value": "linear-gradient(135deg, #efb67a 0%, #997f37 100%)",
+    "previewColor": "#efb67a"
+  },
+  {
+    "id": "grad_136",
+    "name": "Gradient 137",
+    "value": "linear-gradient(45deg, #8487bb 0%, #104e68 100%)",
+    "previewColor": "#8487bb"
+  },
+  {
+    "id": "grad_137",
+    "name": "Gradient 138",
+    "value": "linear-gradient(to right, #755e95 0%, #91cb27 100%)",
+    "previewColor": "#755e95"
+  },
+  {
+    "id": "grad_138",
+    "name": "Gradient 139",
+    "value": "linear-gradient(135deg, #450dd0 0%, #6c1229 100%)",
+    "previewColor": "#450dd0"
+  },
+  {
+    "id": "grad_139",
+    "name": "Gradient 140",
+    "value": "linear-gradient(45deg, #774ee4 0%, #61203e 100%)",
+    "previewColor": "#774ee4"
+  },
+  {
+    "id": "grad_140",
+    "name": "Gradient 141",
+    "value": "linear-gradient(to right, #edb2b9 0%, #8fa9db 100%)",
+    "previewColor": "#edb2b9"
+  },
+  {
+    "id": "grad_141",
+    "name": "Gradient 142",
+    "value": "linear-gradient(135deg, #cf996c 0%, #8ca345 100%)",
+    "previewColor": "#cf996c"
+  },
+  {
+    "id": "grad_142",
+    "name": "Gradient 143",
+    "value": "linear-gradient(45deg, #90e1d3 0%, #5d64e2 100%)",
+    "previewColor": "#90e1d3"
+  },
+  {
+    "id": "grad_143",
+    "name": "Gradient 144",
+    "value": "linear-gradient(to right, #2d9d17 0%, #6d7997 100%)",
+    "previewColor": "#2d9d17"
+  },
+  {
+    "id": "grad_144",
+    "name": "Gradient 145",
+    "value": "linear-gradient(135deg, #d21aec 0%, #81ac05 100%)",
+    "previewColor": "#d21aec"
+  },
+  {
+    "id": "grad_145",
+    "name": "Gradient 146",
+    "value": "linear-gradient(45deg, #201084 0%, #0f477b 100%)",
+    "previewColor": "#201084"
+  },
+  {
+    "id": "grad_146",
+    "name": "Gradient 147",
+    "value": "linear-gradient(to right, #6ab0ec 0%, #1a1b98 100%)",
+    "previewColor": "#6ab0ec"
+  },
+  {
+    "id": "grad_147",
+    "name": "Gradient 148",
+    "value": "linear-gradient(135deg, #a2fa8f 0%, #8a85a3 100%)",
+    "previewColor": "#a2fa8f"
+  },
+  {
+    "id": "grad_148",
+    "name": "Gradient 149",
+    "value": "linear-gradient(45deg, #581c10 0%, #c23627 100%)",
+    "previewColor": "#581c10"
+  },
+  {
+    "id": "grad_149",
+    "name": "Gradient 150",
+    "value": "linear-gradient(to right, #0ee4d3 0%, #90f08c 100%)",
+    "previewColor": "#0ee4d3"
+  },
+  {
+    "id": "grad_150",
+    "name": "Gradient 151",
+    "value": "linear-gradient(135deg, #7c25d9 0%, #935b02 100%)",
+    "previewColor": "#7c25d9"
+  },
+  {
+    "id": "grad_151",
+    "name": "Gradient 152",
+    "value": "linear-gradient(45deg, #c98e0b 0%, #a73c99 100%)",
+    "previewColor": "#c98e0b"
+  },
+  {
+    "id": "grad_152",
+    "name": "Gradient 153",
+    "value": "linear-gradient(to right, #39b69a 0%, #d58b19 100%)",
+    "previewColor": "#39b69a"
+  },
+  {
+    "id": "grad_153",
+    "name": "Gradient 154",
+    "value": "linear-gradient(135deg, #4eed3e 0%, #dc730b 100%)",
+    "previewColor": "#4eed3e"
+  },
+  {
+    "id": "grad_154",
+    "name": "Gradient 155",
+    "value": "linear-gradient(45deg, #a36b99 0%, #42cb0c 100%)",
+    "previewColor": "#a36b99"
+  },
+  {
+    "id": "grad_155",
+    "name": "Gradient 156",
+    "value": "linear-gradient(to right, #aaac33 0%, #f3123f 100%)",
+    "previewColor": "#aaac33"
+  },
+  {
+    "id": "grad_156",
+    "name": "Gradient 157",
+    "value": "linear-gradient(135deg, #5e5a5d 0%, #1da12b 100%)",
+    "previewColor": "#5e5a5d"
+  },
+  {
+    "id": "grad_157",
+    "name": "Gradient 158",
+    "value": "linear-gradient(45deg, #f75bf0 0%, #515085 100%)",
+    "previewColor": "#f75bf0"
+  },
+  {
+    "id": "grad_158",
+    "name": "Gradient 159",
+    "value": "linear-gradient(to right, #6dafbb 0%, #08ce40 100%)",
+    "previewColor": "#6dafbb"
+  },
+  {
+    "id": "grad_159",
+    "name": "Gradient 160",
+    "value": "linear-gradient(135deg, #408fae 0%, #3f0ffc 100%)",
+    "previewColor": "#408fae"
+  },
+  {
+    "id": "grad_160",
+    "name": "Gradient 161",
+    "value": "linear-gradient(45deg, #af6c18 0%, #12bb78 100%)",
+    "previewColor": "#af6c18"
+  },
+  {
+    "id": "grad_161",
+    "name": "Gradient 162",
+    "value": "linear-gradient(to right, #2efde2 0%, #f67872 100%)",
+    "previewColor": "#2efde2"
+  },
+  {
+    "id": "grad_162",
+    "name": "Gradient 163",
+    "value": "linear-gradient(135deg, #57572a 0%, #03e4cf 100%)",
+    "previewColor": "#57572a"
+  },
+  {
+    "id": "grad_163",
+    "name": "Gradient 164",
+    "value": "linear-gradient(45deg, #de329d 0%, #4cc73d 100%)",
+    "previewColor": "#de329d"
+  },
+  {
+    "id": "grad_164",
+    "name": "Gradient 165",
+    "value": "linear-gradient(to right, #7a4d41 0%, #fb222c 100%)",
+    "previewColor": "#7a4d41"
+  },
+  {
+    "id": "grad_165",
+    "name": "Gradient 166",
+    "value": "linear-gradient(135deg, #97aa37 0%, #d10b4e 100%)",
+    "previewColor": "#97aa37"
+  },
+  {
+    "id": "grad_166",
+    "name": "Gradient 167",
+    "value": "linear-gradient(45deg, #c5cd48 0%, #aa471e 100%)",
+    "previewColor": "#c5cd48"
+  },
+  {
+    "id": "grad_167",
+    "name": "Gradient 168",
+    "value": "linear-gradient(to right, #ee0f28 0%, #367db2 100%)",
+    "previewColor": "#ee0f28"
+  },
+  {
+    "id": "grad_168",
+    "name": "Gradient 169",
+    "value": "linear-gradient(135deg, #66101b 0%, #d448a4 100%)",
+    "previewColor": "#66101b"
+  },
+  {
+    "id": "grad_169",
+    "name": "Gradient 170",
+    "value": "linear-gradient(45deg, #e19adf 0%, #eae4be 100%)",
+    "previewColor": "#e19adf"
+  },
+  {
+    "id": "grad_170",
+    "name": "Gradient 171",
+    "value": "linear-gradient(to right, #b453cc 0%, #12ea7e 100%)",
+    "previewColor": "#b453cc"
+  },
+  {
+    "id": "grad_171",
+    "name": "Gradient 172",
+    "value": "linear-gradient(135deg, #a31ab3 0%, #737ce3 100%)",
+    "previewColor": "#a31ab3"
+  },
+  {
+    "id": "grad_172",
+    "name": "Gradient 173",
+    "value": "linear-gradient(45deg, #b2efee 0%, #0eff19 100%)",
+    "previewColor": "#b2efee"
+  },
+  {
+    "id": "grad_173",
+    "name": "Gradient 174",
+    "value": "linear-gradient(to right, #26407b 0%, #403660 100%)",
+    "previewColor": "#26407b"
+  },
+  {
+    "id": "grad_174",
+    "name": "Gradient 175",
+    "value": "linear-gradient(135deg, #fd9c12 0%, #746881 100%)",
+    "previewColor": "#fd9c12"
+  },
+  {
+    "id": "grad_175",
+    "name": "Gradient 176",
+    "value": "linear-gradient(45deg, #667f01 0%, #f83384 100%)",
+    "previewColor": "#667f01"
+  },
+  {
+    "id": "grad_176",
+    "name": "Gradient 177",
+    "value": "linear-gradient(to right, #a713e3 0%, #00b3d6 100%)",
+    "previewColor": "#a713e3"
+  },
+  {
+    "id": "grad_177",
+    "name": "Gradient 178",
+    "value": "linear-gradient(135deg, #12ef2b 0%, #5fdfbc 100%)",
+    "previewColor": "#12ef2b"
+  },
+  {
+    "id": "grad_178",
+    "name": "Gradient 179",
+    "value": "linear-gradient(45deg, #f4c35a 0%, #74266d 100%)",
+    "previewColor": "#f4c35a"
+  },
+  {
+    "id": "grad_179",
+    "name": "Gradient 180",
+    "value": "linear-gradient(to right, #ba10a5 0%, #86dc08 100%)",
+    "previewColor": "#ba10a5"
+  },
+  {
+    "id": "grad_180",
+    "name": "Gradient 181",
+    "value": "linear-gradient(135deg, #c2276d 0%, #b66adb 100%)",
+    "previewColor": "#c2276d"
+  },
+  {
+    "id": "grad_181",
+    "name": "Gradient 182",
+    "value": "linear-gradient(45deg, #7bcad1 0%, #8f6739 100%)",
+    "previewColor": "#7bcad1"
+  },
+  {
+    "id": "grad_182",
+    "name": "Gradient 183",
+    "value": "linear-gradient(to right, #07c885 0%, #b91f63 100%)",
+    "previewColor": "#07c885"
+  },
+  {
+    "id": "grad_183",
+    "name": "Gradient 184",
+    "value": "linear-gradient(135deg, #b13529 0%, #f651b5 100%)",
+    "previewColor": "#b13529"
+  },
+  {
+    "id": "grad_184",
+    "name": "Gradient 185",
+    "value": "linear-gradient(45deg, #02a0ba 0%, #997198 100%)",
+    "previewColor": "#02a0ba"
+  }
+]

@@ -1,0 +1,545 @@
+/* src/styles/SettingsModal.module.css */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
+  z-index: 9000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.modal {
+  width: 680px;
+  max-width: 90vw;
+  height: 480px;
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-xl);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Wide variant for tabbed settings */
+.modalWide {
+  width: 760px;
+  max-width: 94vw;
+  height: 560px;
+  max-height: 90vh;
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-xl);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.header {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.titleGroup {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.titleGroup h2 {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+  margin: 0;
+}
+
+.accentIcon {
+  color: var(--accent);
+}
+
+.closeBtn {
+  background: none;
+  border: none;
+  color: var(--text-dim);
+  cursor: pointer;
+  padding: 4px;
+}
+
+.closeBtn:hover {
+  color: var(--text);
+}
+
+.body {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  overflow: hidden;
+}
+
+.sidebar {
+  border-right: 1px solid var(--line);
+  padding: 12px;
+  background: var(--bg-1);
+}
+
+.navItem {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  border-radius: var(--r-md);
+  font-size: 13px;
+  color: var(--text-dim);
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.15s ease;
+}
+
+.navItem:hover {
+  background: var(--bg-2);
+  color: var(--text);
+}
+
+.navItem.active {
+  background: var(--bg-3);
+  color: var(--text);
+  font-weight: 500;
+}
+
+.content {
+  padding: 24px;
+  overflow-y: auto;
+}
+
+.section h3 {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: var(--text);
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.sectionHeader h3 {
+  margin: 0;
+}
+
+.caption {
+  font-size: 12px;
+  color: var(--text-dim);
+  margin-bottom: 20px;
+}
+
+.field {
+  margin-bottom: 20px;
+}
+
+.field label {
+  display: block;
+  font-size: 12px;
+  color: var(--text-dim);
+  margin-bottom: 6px;
+}
+
+.field input {
+  width: 100%;
+  background: var(--bg-1);
+  border: 1px solid var(--line);
+  padding: 10px 12px;
+  border-radius: var(--r-md);
+  color: var(--text);
+  font-size: 13px;
+  outline: none;
+}
+
+.field input:focus {
+  border-color: var(--accent);
+}
+
+/* Variables List */
+.varList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.varRow {
+  display: grid;
+  grid-template-columns: 1fr 80px 1fr 32px;
+  gap: 8px;
+  align-items: center;
+}
+
+.varName, .varValue, .varType {
+  background: var(--bg-1);
+  border: 1px solid var(--line);
+  padding: 6px 10px;
+  border-radius: 6px;
+  color: var(--text);
+  font-size: 12px;
+  font-family: var(--font-mono);
+  outline: none;
+}
+
+.varType {
+  appearance: none;
+  cursor: pointer;
+}
+
+.removeVar {
+  background: none;
+  border: none;
+  color: var(--text-dim);
+  cursor: pointer;
+  height: 32px;
+  width: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+}
+
+.removeVar:hover {
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+}
+
+.addBtn {
+  background: var(--accent);
+  color: #000;
+  border: none;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.footer {
+  padding: 12px 20px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  justify-content: flex-end;
+}
+
+.primaryBtn {
+  background: var(--text);
+  color: var(--bg-1);
+  border: none;
+  padding: 8px 20px;
+  border-radius: var(--r-md);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.empty {
+  padding: 40px;
+  text-align: center;
+  color: var(--text-dim);
+  font-size: 13px;
+  background: var(--bg-1);
+  border-radius: var(--r-lg);
+  border: 1px dashed var(--line);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* --- Aliases used by SettingsModal + ProjectSettingsModal TSX --- */
+.title {
+  font-family: var(--font-display, var(--font-ui));
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: -0.005em;
+}
+.closeButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--r-sm);
+  color: var(--text-mute);
+  transition: background 120ms, color 120ms;
+}
+.closeButton:hover { background: var(--surface); color: var(--text); }
+.sectionTitle {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-mute);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 10px 0 6px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 10px;
+}
+.fieldLabel {
+  font-family: var(--font-ui);
+  font-size: 12px;
+  color: var(--text);
+  font-weight: 600;
+}
+.fieldDesc {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-mute);
+  margin-top: 2px;
+}
+.select {
+  height: 28px;
+  padding: 0 8px;
+  border-radius: var(--r-sm);
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+.select:focus { outline: none; border-color: var(--accent); }
+
+/* ProjectSettingsModal — per-variable checkbox */
+.varCheck {
+  width: 14px;
+  height: 14px;
+  accent-color: var(--accent);
+}
+
+/* Generic button shim (used in footer actions) */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 30px;
+  padding: 0 12px;
+  border-radius: var(--r-sm);
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  transition: background 120ms, color 120ms, border-color 120ms;
+}
+.button:hover { border-color: var(--line-2); background: var(--bg-2); }
+
+/* ── Tabbed Settings Modal ── */
+
+/* Sidebar nav */
+.sidebar {
+  width: 168px;
+  min-width: 168px;
+  border-right: 1px solid var(--line);
+  padding: 10px 8px;
+  background: var(--bg-1);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 10px;
+  border-radius: var(--r-sm);
+  border: none;
+  background: transparent;
+  color: var(--text-mute);
+  font-family: var(--font-ui);
+  font-size: 12px;
+  cursor: pointer;
+  text-align: left;
+  transition: background 120ms, color 120ms;
+}
+.navItem:hover {
+  background: var(--bg-2);
+  color: var(--text);
+}
+.navItem.active {
+  background: var(--bg-3, var(--surface));
+  color: var(--text);
+  font-weight: 500;
+}
+
+/* Body = sidebar + content side-by-side */
+.body {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}
+
+/* Content scroll area */
+.content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px 24px;
+}
+
+/* Tab section grouping */
+.tabSection {
+  margin-bottom: 24px;
+}
+
+.tabDesc {
+  font-size: 12px;
+  color: var(--text-mute);
+  margin: 0 0 16px;
+  font-family: var(--font-mono);
+}
+
+/* Row layout: label left, control right */
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+}
+.row:last-child { border-bottom: none; }
+
+.rowLabel {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+  min-width: 0;
+}
+
+/* Field: stacked label above input */
+.field {
+  margin-bottom: 16px;
+}
+
+.field label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+/* Input */
+.input {
+  width: 100%;
+  box-sizing: border-box;
+  background: var(--bg-1);
+  border: 1px solid var(--line);
+  padding: 7px 10px;
+  border-radius: var(--r-sm);
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  outline: none;
+  transition: border-color 120ms;
+}
+.input:focus { border-color: var(--accent); }
+
+/* Textarea */
+.textarea {
+  width: 100%;
+  box-sizing: border-box;
+  background: var(--bg-1);
+  border: 1px solid var(--line);
+  padding: 8px 10px;
+  border-radius: var(--r-sm);
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  outline: none;
+  resize: vertical;
+  transition: border-color 120ms;
+  line-height: 1.5;
+}
+.textarea:focus { border-color: var(--accent); }
+
+/* Code textarea */
+.codeArea {
+  width: 100%;
+  box-sizing: border-box;
+  background: var(--bg-0, #0a0a0a);
+  border: 1px solid var(--line);
+  padding: 10px 12px;
+  border-radius: var(--r-sm);
+  color: #a8ff78;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  outline: none;
+  resize: vertical;
+  transition: border-color 120ms;
+  line-height: 1.6;
+}
+.codeArea:focus { border-color: var(--accent); }
+
+/* Input with icon prefix */
+.inputWithIcon {
+  position: relative;
+}
+.inputWithIcon .input {
+  padding-left: 30px;
+}
+.inputIcon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-mute);
+  pointer-events: none;
+}
+
+/* OG image thumbnail preview */
+.imgPreview {
+  margin-top: 8px;
+  border-radius: var(--r-sm);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  max-width: 260px;
+  aspect-ratio: 1200/630;
+  background: var(--bg-1);
+}
+.imgPreview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Analytics note callout */
+.analyticsNote {
+  background: var(--bg-1);
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  padding: 10px 14px;
+  font-size: 12px;
+  color: var(--text-mute);
+  font-family: var(--font-mono);
+  margin-top: 8px;
+}
+
+/* Footer: cancel + save side by side */
+.footer {
+  padding: 12px 20px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}

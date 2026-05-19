@@ -1,0 +1,518 @@
+{
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\app\\layout.tsx": {
+    "mtime": 1776639451.3271089,
+    "hash": "753a9383a5327754de93602a57c9b36a"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\app\\page.tsx": {
+    "mtime": 1776724032.1419444,
+    "hash": "dd1b8384a0b0f4f4a8d82f7abdfa5b03"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\app\\api\\ai\\layout\\route.ts": {
+    "mtime": 1776889794.2819037,
+    "hash": "9e869f06e74fe2fad7d6266a7563cf60"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\app\\api\\ai\\providers\\route.ts": {
+    "mtime": 1776639361.46562,
+    "hash": "98eafa703fd3ef31fb62d11910d40ba6"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\app\\api\\ai\\summary\\route.ts": {
+    "mtime": 1776555514.865499,
+    "hash": "4f4faf6d8324bab4527669d31f597aec"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\app\\api\\ai\\theme\\route.ts": {
+    "mtime": 1776555528.9304779,
+    "hash": "bb2ba3b7d8f02daa332b9abc249ebd41"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\app\\api\\assets\\icons\\route.ts": {
+    "mtime": 1776554092.8108752,
+    "hash": "a94ccb919060430eecad66862c4df4de"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\app\\api\\assets\\images\\route.ts": {
+    "mtime": 1776619584.7917986,
+    "hash": "6a1b50ba1c2a47f4a542e1162420b6bc"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\app\\api\\assets\\oembed\\route.ts": {
+    "mtime": 1776552608.2598803,
+    "hash": "79234a09e1aede1795a3070c5c33bfc1"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\app\\api\\assets\\proxy\\route.ts": {
+    "mtime": 1776554220.0950403,
+    "hash": "ce0407809d2a82b0d245d80bb28e5501"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\app\\api\\publish\\route.ts": {
+    "mtime": 1776891464.509572,
+    "hash": "e2e86841e0999344d8cb520c48848ddd"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\app\\auth\\callback\\route.ts": {
+    "mtime": 1776717965.1975713,
+    "hash": "0643f86b205c858fe7c444f1735051f9"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\app\\auth\\login\\page.tsx": {
+    "mtime": 1776723980.5855155,
+    "hash": "0b6473215538b0520d41b8b047410683"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\app\\auth\\signup\\page.tsx": {
+    "mtime": 1776723981.8115807,
+    "hash": "be497133c1399bab3afc75ade8321265"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\app\\changelog\\page.tsx": {
+    "mtime": 1776724006.5858676,
+    "hash": "86559f2a98ed46df52bc9e78b51167cf"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\app\\community\\page.tsx": {
+    "mtime": 1776715373.4987438,
+    "hash": "c8dd56f7d3b900b7d3396350ee98c1e1"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\app\\docs\\page.tsx": {
+    "mtime": 1776719263.1877434,
+    "hash": "86ac5368d4f3971381e2a29b2a52c057"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\app\\editor\\[projectId]\\page.tsx": {
+    "mtime": 1776717637.0786328,
+    "hash": "175f24f94f1f7299cc0fa75e08820d58"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\app\\features\\page.tsx": {
+    "mtime": 1776719265.4179895,
+    "hash": "536f53828c1a21473147acd6b702b1cd"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\app\\how-it-works\\page.tsx": {
+    "mtime": 1776724008.683991,
+    "hash": "403a17403b099a5d1622bb61bb8b8d9b"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\app\\preview\\[projectId]\\page.tsx": {
+    "mtime": 1776586121.2449646,
+    "hash": "a8f9dead0bb7b96832f91921609ab62d"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\app\\v\\[slug]\\page.tsx": {
+    "mtime": 1776706372.8974621,
+    "hash": "5d55d04febebe871fa7a0f047ba729c8"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\app\\workspace\\page.tsx": {
+    "mtime": 1777843656.2237146,
+    "hash": "eccdfd2a64fe8d5220aa75982ac559ba"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\components\\editor\\AIGenerateModal.tsx": {
+    "mtime": 1778100253.130617,
+    "hash": "e29c6219b272cec0949d87cf9fedab61"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\components\\editor\\AssetPanel.tsx": {
+    "mtime": 1777041066.7205572,
+    "hash": "1a83db0108eab6daa66f628eff8229c4"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\components\\editor\\BreakpointSwitcher.tsx": {
+    "mtime": 1778100271.587595,
+    "hash": "11cc2465222f8614b3a941d6778eabd9"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\components\\editor\\Canvas.tsx": {
+    "mtime": 1778099858.8947113,
+    "hash": "1fe2a096a832aac9b35d7f73474da17c"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\components\\editor\\CanvasContextMenu.tsx": {
+    "mtime": 1776717350.4609954,
+    "hash": "ca7dd17979bb5b3d040716e951bff3b3"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\components\\editor\\CanvasElement.tsx": {
+    "mtime": 1778101390.0783029,
+    "hash": "f249e48acdc49f214fa413f56024d381"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\components\\editor\\KeyboardManager.tsx": {
+    "mtime": 1777041359.0947537,
+    "hash": "1a762d5a9afa262e703750562d544666"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\components\\editor\\LeftSidebar.tsx": {
+    "mtime": 1777040304.0455525,
+    "hash": "7633a4465d9fd2cee48fe0a99a5fd8bc"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\components\\editor\\PageList.tsx": {
+    "mtime": 1776642153.2353334,
+    "hash": "0eb50ac262c34f1398aebb9d1dadfe0e"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\components\\editor\\ProjectSettingsModal.tsx": {
+    "mtime": 1776634148.5674672,
+    "hash": "dba9c322b962f225baf2a019ac4a3e78"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\components\\editor\\PropertiesPanel.tsx": {
+    "mtime": 1778100325.593964,
+    "hash": "3471c7215a449ad7d63d5f1a7254c9ff"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\components\\editor\\PublishModal.tsx": {
+    "mtime": 1776891376.3081207,
+    "hash": "1c714556f7cff7c30e2ef2a404fd817c"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\components\\editor\\Rulers.tsx": {
+    "mtime": 1776518042.5770462,
+    "hash": "4ef0b407056cd32a3ac11ccd247f1979"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\components\\editor\\Toolbar.tsx": {
+    "mtime": 1777040205.015151,
+    "hash": "34bda210140ea312225ab485a8a609f9"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\components\\elements\\AccordionElement.tsx": {
+    "mtime": 1776619838.5519755,
+    "hash": "8ba9352852798b8979a5faa5645ab5d5"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\components\\elements\\ButtonElement.tsx": {
+    "mtime": 1777844937.8792486,
+    "hash": "66720e78359890bb9a73b98ceadef079"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\components\\elements\\ContainerElement.tsx": {
+    "mtime": 1776619781.144903,
+    "hash": "67926e0c70fc2568e1bc491a5a5307af"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\components\\elements\\CountdownElement.tsx": {
+    "mtime": 1778101064.432614,
+    "hash": "f92125694849fe4838273013fb0aa2c8"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\components\\elements\\DividerElement.tsx": {
+    "mtime": 1778099816.356635,
+    "hash": "c725c64e6e4a61cef1ce0a370833da93"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\components\\elements\\DrawingElement.tsx": {
+    "mtime": 1778099891.0516949,
+    "hash": "de541bc48fe06c56223382f5335851d5"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\components\\elements\\ElementRenderer.tsx": {
+    "mtime": 1777040390.4760263,
+    "hash": "dec9cc982a57d4af04c3fe4e674b245b"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\components\\elements\\EmbedElement.tsx": {
+    "mtime": 1778101079.067531,
+    "hash": "3303c18aebb55183c6c73ad837374811"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\components\\elements\\FormElement.tsx": {
+    "mtime": 1776619799.6612084,
+    "hash": "f2678dc3e6d674adc5a545a5e554492d"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\components\\elements\\GalleryElement.tsx": {
+    "mtime": 1778099837.4526722,
+    "hash": "84b3fbf3ccea0ec692b2bb581b30a2ab"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\components\\elements\\IconElement.tsx": {
+    "mtime": 1778099808.149477,
+    "hash": "7f008c01491864289db2678607c28de9"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\components\\elements\\ImageElement.tsx": {
+    "mtime": 1776286355.1750271,
+    "hash": "303c78e0501cfb5857f0b93d3ba19c83"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\components\\elements\\LineElement.tsx": {
+    "mtime": 1778100287.1049342,
+    "hash": "b9bf4466b140bf0c44b00a280c775b4e"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\components\\elements\\MapElement.tsx": {
+    "mtime": 1776619807.9588716,
+    "hash": "9715ac952251396330174264c77d718b"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\components\\elements\\MarqueeElement.tsx": {
+    "mtime": 1776619827.3100216,
+    "hash": "23c61a545447ecbda42221e4af59700d"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\components\\elements\\MusicPlayerElement.tsx": {
+    "mtime": 1778099843.63873,
+    "hash": "1977d7e9c7580701149e1f5cde08ce5a"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\components\\elements\\NavigationElement.tsx": {
+    "mtime": 1776715907.5061872,
+    "hash": "2887526054acbb961fa025dcb4b84acd"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\components\\elements\\ShapeElement.tsx": {
+    "mtime": 1777930297.0679958,
+    "hash": "02731f5079a0a1af55cf5a5ee50d815e"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\components\\elements\\SocialLinkElement.tsx": {
+    "mtime": 1778099851.728616,
+    "hash": "41df254c93bda62542660266bdfbc915"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\components\\elements\\TabsElement.tsx": {
+    "mtime": 1776619847.7447464,
+    "hash": "74bdbfa516ce3539113ab7797848d6c1"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\components\\elements\\TestimonialElement.tsx": {
+    "mtime": 1776619816.0477917,
+    "hash": "d13a02f9d0ba0184fec4ca74501dfeba"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\components\\elements\\TextElement.tsx": {
+    "mtime": 1777844914.4482641,
+    "hash": "3e54cba6e775fff72516917511a38221"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\components\\elements\\TipTapEditor.tsx": {
+    "mtime": 1776953134.8112526,
+    "hash": "63050d8921c66b0087161951a7cf1af3"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\components\\elements\\VideoElement.tsx": {
+    "mtime": 1778099792.9384432,
+    "hash": "8241208ba5c69375c1217ee7bd8414fe"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\components\\marketing\\MarketingNav.tsx": {
+    "mtime": 1776724030.4550767,
+    "hash": "683c47c63b74b82fe9d2c103e8b08352"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\components\\preview\\PreviewRenderer.tsx": {
+    "mtime": 1778101503.4366527,
+    "hash": "d65809928e7569d0f9014ddd82c25854"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\components\\properties\\AccessibilitySection.tsx": {
+    "mtime": 1776520779.0950787,
+    "hash": "6f1d00005efa1de65ec1ca8ca77724bb"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\components\\properties\\AnimationSection.tsx": {
+    "mtime": 1776892465.9482355,
+    "hash": "ef0bd5b5dfbc6f4b2e52953717c0c891"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\components\\properties\\BorderSection.tsx": {
+    "mtime": 1776514460.6444724,
+    "hash": "b58c0e1da648f0292be7a1e915298fba"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\components\\properties\\ContentSection.tsx": {
+    "mtime": 1778100230.3894353,
+    "hash": "4322ded3c46cac8e15692d48f542817f"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\components\\properties\\EffectsSection.tsx": {
+    "mtime": 1777844485.3593316,
+    "hash": "4c4f2b0a5c12bfb0544e9d0c2de8ace6"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\components\\properties\\FillSection.tsx": {
+    "mtime": 1776715875.7664614,
+    "hash": "a9166ef141d9216323743a0a1e89072d"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\components\\properties\\LayoutSection.tsx": {
+    "mtime": 1778099915.4693477,
+    "hash": "2ecbc6359842954e35e9694eeb35cc4e"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\components\\properties\\LinkSection.tsx": {
+    "mtime": 1776514460.643958,
+    "hash": "0649855eb597cd4de8f331bb317a4149"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\components\\properties\\LogicSection.tsx": {
+    "mtime": 1776715340.766399,
+    "hash": "707746e0cd7b970cbe7a97ed37acac06"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\components\\properties\\OverlaysSection.tsx": {
+    "mtime": 1776639361.4817312,
+    "hash": "39e30a8f6464a3970d0c65c035a6493d"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\components\\properties\\PageSection.tsx": {
+    "mtime": 1776634319.3559155,
+    "hash": "23a61567ba099e6f76ceb96f7a66ce6e"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\components\\properties\\PositionSection.tsx": {
+    "mtime": 1776552219.8724267,
+    "hash": "4b4576fa01309f98ad42d9b05170cf83"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\components\\properties\\ScrollSection.tsx": {
+    "mtime": 1776640084.6585824,
+    "hash": "b7cc487c63d446dfd00604d2ef3ca195"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\components\\properties\\SizeSection.tsx": {
+    "mtime": 1776641308.2907226,
+    "hash": "28e60bb3517f9d5d4c0ba66982a135d3"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\components\\properties\\TransformsSection.tsx": {
+    "mtime": 1776520250.236986,
+    "hash": "3a9751817c0893af3f3b4fdd430854c8"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\components\\properties\\TypographySection.tsx": {
+    "mtime": 1777844430.5180907,
+    "hash": "dfbec5e1cbf53238d5a8f316ad0c40c9"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\components\\system\\CommandPalette.tsx": {
+    "mtime": 1778100359.860995,
+    "hash": "cd86ea1c4ea2ccb9677272f1350d21f1"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\components\\system\\GlobalModals.tsx": {
+    "mtime": 1776703429.1548297,
+    "hash": "a805103cb3ff67d05be59bb3542a36c4"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\components\\system\\SettingsModal.tsx": {
+    "mtime": 1777041010.3675203,
+    "hash": "d4d888df14f6ae708ce5638ff074b567"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\components\\system\\SystemDialog.tsx": {
+    "mtime": 1776642188.893576,
+    "hash": "265379bd42240ca6b7ee0be21fab2421"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\components\\system\\ThemeProvider.tsx": {
+    "mtime": 1776587650.2148423,
+    "hash": "aff3479839b4598a57744813fdb0b302"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\components\\system\\ToastStack.tsx": {
+    "mtime": 1776703424.6074657,
+    "hash": "5f5b2c782f0645e01344df318a30c862"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\components\\system\\TutorialOverlay.tsx": {
+    "mtime": 1776716396.5036528,
+    "hash": "e7b0f2aa048f26ca2dd81a11a076062d"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\components\\system\\TweaksPanel.tsx": {
+    "mtime": 1776587694.3713598,
+    "hash": "0c430512ae564b78a81556bd803f9702"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\components\\ui\\OverrideIndicator.tsx": {
+    "mtime": 1776554137.2262492,
+    "hash": "0c1d84bd0f40f166bfd968f23ae24711"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\components\\ui\\Primitives.tsx": {
+    "mtime": 1776715589.1325066,
+    "hash": "37f2cff41755e111ad8c2abf96612eec"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\components\\ui\\ResizablePanel.tsx": {
+    "mtime": 1776717310.0119193,
+    "hash": "6b86b9b1e315a029e0521d95df284f40"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\components\\viewer\\PublicApp.tsx": {
+    "mtime": 1776632872.3866198,
+    "hash": "a777899e6cb930108d0d965bbb498647"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\components\\viewer\\ViewerCanvas.tsx": {
+    "mtime": 1778100393.5108168,
+    "hash": "0a88fac5103f68f3f720850c5981766f"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\components\\workflow\\ElementNode.tsx": {
+    "mtime": 1777041267.068433,
+    "hash": "5d04c3df7a5ebc9fa27c0becf50c387c"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\components\\workflow\\LogicNode.tsx": {
+    "mtime": 1776632892.256705,
+    "hash": "c87153df5ce16a6073265cf55d5350f4"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\components\\workflow\\PageNode.tsx": {
+    "mtime": 1776702914.700117,
+    "hash": "f5545e254df0d2fc9c335f1f3c9043a1"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\components\\workflow\\WorkflowCanvas.tsx": {
+    "mtime": 1777041212.2621505,
+    "hash": "fd5b71dec14364c5b3a9330fe6ac4bc8"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\data\\templates\\starters.ts": {
+    "mtime": 1777843631.2856274,
+    "hash": "cbd15764712c4bff9f441bd745737f3e"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\data\\themes\\registry.ts": {
+    "mtime": 1776535653.655212,
+    "hash": "7626a2794c7aee3bd0fd330d109dbbe3"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\hooks\\useInteractivity.ts": {
+    "mtime": 1777844892.8135097,
+    "hash": "5ceffe64f80cdb52b5624aab91b2bebb"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\hooks\\useParallax.ts": {
+    "mtime": 1778100218.3003345,
+    "hash": "4b3833d3b2f82ff6f25ef28d7a96ea2f"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\hooks\\useProjectPersistence.ts": {
+    "mtime": 1776892676.4240859,
+    "hash": "20483d04424f529ba8ec29e6f70a6a14"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\lib\\ai-providers.ts": {
+    "mtime": 1776890467.1067514,
+    "hash": "db49870729cdd2de915c7227cf14b38c"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\lib\\ai-validation.ts": {
+    "mtime": 1778101050.4527256,
+    "hash": "bac04ff96e4f907765530e3422672df9"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\lib\\animation-engine.ts": {
+    "mtime": 1778101377.072578,
+    "hash": "9be2425363240699da7b314861a89e6b"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\lib\\asset-resolver.ts": {
+    "mtime": 1776717709.9941418,
+    "hash": "71f854cdcf52eee42495cc7658760409"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\lib\\color-utils.ts": {
+    "mtime": 1776284398.840822,
+    "hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\lib\\db.ts": {
+    "mtime": 1776890587.559687,
+    "hash": "57476ed8dd87d842d4d63637a35af908"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\lib\\export-image.ts": {
+    "mtime": 1776619962.988529,
+    "hash": "8aba048386a4f44556915a39f199775a"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\lib\\export-media.ts": {
+    "mtime": 1776714576.4209197,
+    "hash": "d12fa948b279019d68b57d0536d4d83c"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\lib\\export.ts": {
+    "mtime": 1778100299.7999725,
+    "hash": "8939fe38ccb49356e67f0aee33f4c59e"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\lib\\keyboard.ts": {
+    "mtime": 1776284469.45057,
+    "hash": "da5d39a83fcf0a8c0bacfbd8cec3bc9b"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\lib\\oembed.ts": {
+    "mtime": 1776285047.5011785,
+    "hash": "1bb3cab64eb28ed5afe730453cd2ceb5"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\lib\\publish.ts": {
+    "mtime": 1776630588.2994223,
+    "hash": "d1bd9c09df927fef3f49538fa9ce155f"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\lib\\social-detect.ts": {
+    "mtime": 1776285040.6883101,
+    "hash": "5ab6814f3ede6d2db7ab83680271fad9"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\lib\\style-utils.ts": {
+    "mtime": 1776703344.7994843,
+    "hash": "586be78b5c314c693b21950518b657c7"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\lib\\supabase.ts": {
+    "mtime": 1776890055.733997,
+    "hash": "256f39255fcc2b74ac78760f8a4190f6"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\lib\\sync.ts": {
+    "mtime": 1776892616.0096216,
+    "hash": "44c6439a950fa48d8eedf81d402fa216"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\lib\\theme-engine.ts": {
+    "mtime": 1776535466.9813004,
+    "hash": "8e0ef166d249ebaa1d500cbb4ed6d894"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\stores\\editor-store.ts": {
+    "mtime": 1778099783.7223697,
+    "hash": "76a3c346e4db7b7639770cf30a1542e6"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\stores\\project-store.ts": {
+    "mtime": 1778100241.747682,
+    "hash": "db80be4ada68228e527197988e52318b"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\stores\\state-store.ts": {
+    "mtime": 1777844561.6563735,
+    "hash": "0e513a978515676b36714574618a1da6"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\stores\\tutorial-store.ts": {
+    "mtime": 1777041413.9991846,
+    "hash": "e0897922d42e61123984f9a543ef0925"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\stores\\ui-store.ts": {
+    "mtime": 1776703397.6755457,
+    "hash": "8216d3566a2ea26c4a1b0cb893ba66cd"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\types\\animation.ts": {
+    "mtime": 1776639498.9542098,
+    "hash": "5d557315c46e202b307b2aa4f6e11e23"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\types\\assets.ts": {
+    "mtime": 1776553799.8331625,
+    "hash": "607a17da654128a97122b8e9545132ca"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\types\\element.ts": {
+    "mtime": 1777040279.9128885,
+    "hash": "8f64a487fedb8bdd845ae79c9be0fde6"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\types\\project.ts": {
+    "mtime": 1777040936.2220762,
+    "hash": "c7944325aba5ce5b6d5146ba77fad2f9"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\types\\style.ts": {
+    "mtime": 1778101055.4013138,
+    "hash": "d3bab6d6b1fc6ddee7f9963dccab9094"
+  },
+  "C:\\Users\\user\\Desktop\\Stakked v1\\src\\types\\theme.ts": {
+    "mtime": 1776284630.3031032,
+    "hash": "931de88525d778a3f95d16771e65e035"
+  }
+}

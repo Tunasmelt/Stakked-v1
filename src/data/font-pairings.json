@@ -1,0 +1,142 @@
+[
+  {
+    "id": "inter-roboto",
+    "name": "Modern Tech",
+    "heading": { "family": "Inter", "weight": 700 },
+    "body": { "family": "Roboto", "weight": 400 },
+    "preview": "The quick brown fox jumps over the lazy dog."
+  },
+  {
+    "id": "playfair-source",
+    "name": "Editorial",
+    "heading": { "family": "Playfair Display", "weight": 700 },
+    "body": { "family": "Source Sans Pro", "weight": 400 },
+    "preview": "An elegant voice for long-form writing."
+  },
+  {
+    "id": "montserrat-opensans",
+    "name": "Clean & Open",
+    "heading": { "family": "Montserrat", "weight": 800 },
+    "body": { "family": "Open Sans", "weight": 400 },
+    "preview": "Friendly, humanist, always readable."
+  },
+  {
+    "id": "spacegrotesk-inter",
+    "name": "Startup",
+    "heading": { "family": "Space Grotesk", "weight": 700 },
+    "body": { "family": "Inter", "weight": 400 },
+    "preview": "Crisp geometry meets workhorse body."
+  },
+  {
+    "id": "bebasneue-lato",
+    "name": "Bold Magazine",
+    "heading": { "family": "Bebas Neue", "weight": 400 },
+    "body": { "family": "Lato", "weight": 400 },
+    "preview": "All caps headlines, airy body."
+  },
+  {
+    "id": "dmserif-dmsans",
+    "name": "DM Family",
+    "heading": { "family": "DM Serif Display", "weight": 400 },
+    "body": { "family": "DM Sans", "weight": 400 },
+    "preview": "A refined serif with its own sans companion."
+  },
+  {
+    "id": "archivo-archivonarrow",
+    "name": "Sporty Grotesque",
+    "heading": { "family": "Archivo Black", "weight": 900 },
+    "body": { "family": "Archivo Narrow", "weight": 400 },
+    "preview": "Athletic, tight, high-impact."
+  },
+  {
+    "id": "chakra-karla",
+    "name": "Techno Humanist",
+    "heading": { "family": "Chakra Petch", "weight": 700 },
+    "body": { "family": "Karla", "weight": 400 },
+    "preview": "Slightly futuristic, still warm."
+  },
+  {
+    "id": "raleway-merriweather",
+    "name": "Classic Pair",
+    "heading": { "family": "Raleway", "weight": 800 },
+    "body": { "family": "Merriweather", "weight": 400 },
+    "preview": "Timeless tension of sans and serif."
+  },
+  {
+    "id": "oswald-ptserif",
+    "name": "Newsprint",
+    "heading": { "family": "Oswald", "weight": 700 },
+    "body": { "family": "PT Serif", "weight": 400 },
+    "preview": "Condensed headlines on a serif page."
+  },
+  {
+    "id": "rubik-notosans",
+    "name": "Neutral Web",
+    "heading": { "family": "Rubik", "weight": 700 },
+    "body": { "family": "Noto Sans", "weight": 400 },
+    "preview": "A safe, confident, international feel."
+  },
+  {
+    "id": "clash-satoshi",
+    "name": "Boutique",
+    "heading": { "family": "Clash Display", "weight": 600 },
+    "body": { "family": "Satoshi", "weight": 400 },
+    "preview": "High-end portfolio energy."
+  },
+  {
+    "id": "fraunces-manrope",
+    "name": "Editorial Modern",
+    "heading": { "family": "Fraunces", "weight": 700 },
+    "body": { "family": "Manrope", "weight": 400 },
+    "preview": "Expressive serif, geometric body."
+  },
+  {
+    "id": "anton-lato",
+    "name": "Poster",
+    "heading": { "family": "Anton", "weight": 400 },
+    "body": { "family": "Lato", "weight": 400 },
+    "preview": "Big, punchy, undeniable."
+  },
+  {
+    "id": "syne-inter",
+    "name": "Gallery",
+    "heading": { "family": "Syne", "weight": 700 },
+    "body": { "family": "Inter", "weight": 400 },
+    "preview": "Curated, distinctive, design-forward."
+  },
+  {
+    "id": "cormorant-montserrat",
+    "name": "Luxury",
+    "heading": { "family": "Cormorant Garamond", "weight": 500 },
+    "body": { "family": "Montserrat", "weight": 400 },
+    "preview": "Couture elegance, modern counterweight."
+  },
+  {
+    "id": "ibmplexmono-ibmplexsans",
+    "name": "Engineer",
+    "heading": { "family": "IBM Plex Mono", "weight": 600 },
+    "body": { "family": "IBM Plex Sans", "weight": 400 },
+    "preview": "Developer-grade, honest typography."
+  },
+  {
+    "id": "poppins-poppins",
+    "name": "Startup SaaS",
+    "heading": { "family": "Poppins", "weight": 700 },
+    "body": { "family": "Poppins", "weight": 400 },
+    "preview": "One family, two weights, done."
+  },
+  {
+    "id": "spacemono-spacegrotesk",
+    "name": "Mono Landing",
+    "heading": { "family": "Space Mono", "weight": 700 },
+    "body": { "family": "Space Grotesk", "weight": 400 },
+    "preview": "Terminal-flavoured marketing."
+  },
+  {
+    "id": "librebaskerville-librebaskerville",
+    "name": "Essayist",
+    "heading": { "family": "Libre Baskerville", "weight": 700 },
+    "body": { "family": "Libre Baskerville", "weight": 400 },
+    "preview": "Book-like, reflective, serene."
+  }
+]

@@ -1,0 +1,5 @@
+# supabase/config.toml
+# Run `supabase init` to generate the full config.
+# Then `supabase db push` to apply migrations to your remote project.
+[project]
+project_id = "your-project-id-here"

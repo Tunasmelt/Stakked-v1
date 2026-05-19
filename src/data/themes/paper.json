@@ -1,0 +1,99 @@
+{
+  "id": "paper",
+  "name": "Paper",
+  "previewColor": "#2F2F2F",
+  "tokens": {
+    "light": {
+      "colors": {
+        "primary": "#2F2F2F",
+        "secondary": "#8B7D6B",
+        "accent": "#D4A574",
+        "background": "#F5F1E8",
+        "surface": "#EDE5D3",
+        "border": "#D4A574",
+        "text": "#2F2F2F",
+        "textMuted": "#8B7D6B"
+      },
+      "fonts": {
+        "heading": {
+          "family": "Inter, sans-serif",
+          "weight": 700
+        },
+        "body": {
+          "family": "Inter, sans-serif",
+          "weight": 400
+        },
+        "mono": {
+          "family": "Fira Code, monospace",
+          "weight": 400
+        }
+      },
+      "spacing": {
+        "xs": 4,
+        "sm": 8,
+        "md": 16,
+        "lg": 24,
+        "xl": 32,
+        "2xl": 64
+      },
+      "shadows": {
+        "sm": "0 1px 2px rgba(0,0,0,0.05)",
+        "md": "0 4px 6px rgba(0,0,0,0.1)",
+        "lg": "0 10px 15px rgba(0,0,0,0.1)",
+        "glow": "0 0 15px #2F2F2F"
+      },
+      "radius": {
+        "sm": 4,
+        "md": 8,
+        "lg": 16,
+        "full": 9999
+      }
+    },
+    "dark": {
+      "colors": {
+        "primary": "#2F2F2F",
+        "secondary": "#8B7D6B",
+        "accent": "#D4A574",
+        "background": "#2B2822",
+        "surface": "#3D3932",
+        "border": "#D4A574",
+        "text": "#E8E2D0",
+        "textMuted": "#8B7D6B"
+      },
+      "fonts": {
+        "heading": {
+          "family": "Inter, sans-serif",
+          "weight": 700
+        },
+        "body": {
+          "family": "Inter, sans-serif",
+          "weight": 400
+        },
+        "mono": {
+          "family": "Fira Code, monospace",
+          "weight": 400
+        }
+      },
+      "spacing": {
+        "xs": 4,
+        "sm": 8,
+        "md": 16,
+        "lg": 24,
+        "xl": 32,
+        "2xl": 64
+      },
+      "shadows": {
+        "sm": "0 1px 2px rgba(0,0,0,0.3)",
+        "md": "0 4px 6px rgba(0,0,0,0.4)",
+        "lg": "0 10px 15px rgba(0,0,0,0.5)",
+        "glow": "0 0 15px #2F2F2F"
+      },
+      "radius": {
+        "sm": 4,
+        "md": 8,
+        "lg": 16,
+        "full": 9999
+      }
+    }
+  }
+}
