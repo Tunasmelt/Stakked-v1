@@ -109,6 +109,11 @@ export const Canvas: React.FC = memo(() => {
 
   // Marquee (rubber-band) selection state
   const [marquee, setMarquee] = useState<{ x: number; y: number; w: number; h: number } | null>(null);
+  // Mirror of marquee state in a ref so commitMarquee can read it without
+  // calling setMarquee(prev => ...) — state-updater callbacks that trigger
+  // other store setters (setSelection/clearSelection) are treated as
+  // setState-during-render by React 19 and throw a console error.
+  const marqueeRectRef = useRef<{ x: number; y: number; w: number; h: number } | null>(null);
   const marqueeStartRef = useRef<{ canvasX: number; canvasY: number } | null>(null);
   const isMarqueeingRef = useRef(false);
 
@@ -245,12 +250,14 @@ export const Canvas: React.FC = memo(() => {
     const dy = canvasY - start.canvasY;
     if (!isMarqueeingRef.current && Math.abs(dx) < 4 && Math.abs(dy) < 4) return;
     isMarqueeingRef.current = true;
-    setMarquee({
+    const marqueeRect = {
       x: Math.min(canvasX, start.canvasX),
       y: Math.min(canvasY, start.canvasY),
       w: Math.abs(dx),
       h: Math.abs(dy),
-    });
+    };
+    marqueeRectRef.current = marqueeRect;
+    setMarquee(marqueeRect);
   }, []);
 
   const commitMarquee = useCallback(() => {
@@ -262,8 +269,15 @@ export const Canvas: React.FC = memo(() => {
       setMarquee(null);
       return;
     }
-    setMarquee(prev => {
-      if (!prev) return null;
+    // Read current marquee from the ref — never use setMarquee(prev => ...)
+    // to call other store setters, as that is setState-during-render in React 19.
+    const prev = marqueeRectRef.current;
+    marqueeRectRef.current = null;
+    setMarquee(null);
+    marqueeStartRef.current = null;
+    isMarqueeingRef.current = false;
+
+    if (prev) {
       const ids = (elements as StakkedElement[])
         .filter(el => {
           if (!el.visible || el.locked) return false;
@@ -279,10 +293,7 @@ export const Canvas: React.FC = memo(() => {
         .map(el => el.id);
       if (ids.length > 0) setSelection(ids);
       else clearSelection();
-      return null;
-    });
-    marqueeStartRef.current = null;
-    isMarqueeingRef.current = false;
+    }
   }, [elements, setSelection, clearSelection]);
 
   // ── Pan & Zoom input handlers ──
