@@ -598,7 +598,7 @@ export const useProjectStore = create<ProjectState>()(
           title,
           slug: title.toLowerCase().replace(/\s+/g, '-'),
           order: state.project.pages.length,
-          canvas: { ...(state.project.pages[0]?.canvas ?? { width: 1440, height: 900, background: { type: 'color', value: '#09090b' } }) }, // Copy canvas settings from first page
+          canvas: { ...(state.project.pages[0]?.canvas ?? { width: 1440, height: 900, background: { type: 'color', value: '#09090b' }, padding: 0 }) }, // Copy canvas settings from first page
           elements: []
         });
       });

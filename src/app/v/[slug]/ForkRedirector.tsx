@@ -48,7 +48,16 @@ export default function ForkRedirector({ project, sourceSlug }: Props) {
     };
 
     saveProject(forked)
-      .then(() => router.replace('/workspace'))
+      .then(() => {
+        // Increment the source project's fork_count in the background.
+        // Non-blocking — fork still works even if this call fails.
+        fetch('/api/fork', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ slug: sourceSlug }),
+        }).catch(() => { /* best-effort */ });
+        router.replace('/workspace');
+      })
       .catch((err: unknown) => {
         const msg = err instanceof Error ? err.message : 'Unknown error';
         setForkError(msg);
