@@ -139,6 +139,8 @@ export interface StakkedElementStyleBase {
     shadows: BoxShadow[];
     /** Backdrop filter (blur, saturate, etc.) */
     backdropFilter: string;
+    /** CSS mix-blend-mode value */
+    blendMode?: string;
   };
 
   /** Stackable image/color overlays (noise, grain, vignettes) */

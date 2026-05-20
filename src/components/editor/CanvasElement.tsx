@@ -174,6 +174,9 @@ function buildWrapperStyle(
       backdropFilter: effectiveStyle.effects.backdropFilter,
       WebkitBackdropFilter: effectiveStyle.effects.backdropFilter,
     }),
+    ...(effectiveStyle.effects?.blendMode && effectiveStyle.effects.blendMode !== 'normal' && {
+      mixBlendMode: effectiveStyle.effects.blendMode as React.CSSProperties['mixBlendMode'],
+    }),
     ...layoutStyle,
     pointerEvents: 'auto',
   };
