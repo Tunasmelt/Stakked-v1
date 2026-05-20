@@ -14,6 +14,10 @@ import ShapeElement from './ShapeElement';
 import ContainerElement from './ContainerElement';
 import LineElement from './LineElement';
 import DrawingElement from './DrawingElement';
+import TableElement from './TableElement';
+import ProgressElement from './ProgressElement';
+import CountdownElement from './CountdownElement';
+import CodeElement from './CodeElement';
 
 interface RendererProps {
   element: StakkedElement;
@@ -41,6 +45,10 @@ export function ElementRenderer({ element, isSelected, isEditing }: RendererProp
     case 'container': return <ContainerElement {...props} />;
     case 'line': return <LineElement {...props} />;
     case 'drawing': return <DrawingElement {...props} />;
+    case 'table': return <TableElement element={element} isEditing={isEditing} />;
+    case 'progress': return <ProgressElement element={element} isEditing={isEditing} />;
+    case 'countdown': return <CountdownElement element={element} isEditing={isEditing} />;
+    case 'code': return <CodeElement element={element} isEditing={isEditing} />;
     default:
       return (
         <div style={{ padding: '10px', background: '#333', color: '#fff', fontSize: '10px' }}>

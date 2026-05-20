@@ -35,8 +35,12 @@ const ELEMENT_DISPLAY_NAMES: Record<string, string> = {
   embed:        'Embed',
   icon:         'Icon',
   gallery:  'Gallery',
-  divider:  'Divider',
-  drawing:  'Drawing',
+  divider:   'Divider',
+  drawing:   'Drawing',
+  table:     'Table',
+  progress:  'Progress',
+  countdown: 'Countdown',
+  code:      'Code',
 };
 
 /**

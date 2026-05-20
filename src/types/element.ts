@@ -23,7 +23,8 @@ export type ElementType =
   | 'text' | 'image' | 'button'
   | 'video' | 'divider' | 'embed' | 'gallery'
   | 'icon' | 'shape' | 'container'
-  | 'line' | 'drawing';
+  | 'line' | 'drawing'
+  | 'table' | 'progress' | 'countdown' | 'code';
 
 export interface StakkedTextContent { type: 'text'; html: string; plainText: string }
 export interface StakkedImageContent { type: 'image'; src: string; alt: string; objectFit: string }
@@ -69,6 +70,45 @@ export interface StakkedDrawingContent {
   viewBox: string;
 }
 
+export interface StakkedTableContent {
+  type: 'table';
+  rows: number;
+  cols: number;
+  headers: string[];
+  data: string[][];
+  striped: boolean;
+  bordered: boolean;
+}
+
+export interface StakkedProgressContent {
+  type: 'progress';
+  value: number;
+  label: string;
+  showValue: boolean;
+  barColor: string;
+  trackColor: string;
+  rounded: boolean;
+  animated: boolean;
+  style: 'bar' | 'circle';
+}
+
+export interface StakkedCountdownContent {
+  type: 'countdown';
+  targetDate: string;
+  label: string;
+  showLabels: boolean;
+  format: 'dhms' | 'hms' | 'ms';
+}
+
+export interface StakkedCodeContent {
+  type: 'code';
+  code: string;
+  language: string;
+  theme: 'dark' | 'light';
+  showLineNumbers: boolean;
+  showCopyButton: boolean;
+}
+
 /**
  * Discriminated union for element content data.
  */
@@ -84,7 +124,11 @@ export type ElementContent =
   | StakkedShapeContent
   | StakkedContainerContent
   | StakkedLineContent
-  | StakkedDrawingContent;
+  | StakkedDrawingContent
+  | StakkedTableContent
+  | StakkedProgressContent
+  | StakkedCountdownContent
+  | StakkedCodeContent;
 
 /**
  * The core element object stored in the StakkedProject JSON.
@@ -286,6 +330,64 @@ export function defaultElement(type: ElementType): StakkedElement {
       };
       baseStyle.size.width = 400;
       baseStyle.size.height = 300;
+      baseStyle.fills[0].value = 'transparent';
+      break;
+    case 'table':
+      content = {
+        type: 'table',
+        rows: 3,
+        cols: 3,
+        headers: ['Column 1', 'Column 2', 'Column 3'],
+        data: [['', '', ''], ['', '', ''], ['', '', '']],
+        striped: true,
+        bordered: true,
+      };
+      baseStyle.size.width = 480;
+      baseStyle.size.height = 240;
+      baseStyle.fills[0].value = 'transparent';
+      break;
+    case 'progress':
+      content = {
+        type: 'progress',
+        value: 65,
+        label: 'Progress',
+        showValue: true,
+        barColor: '#3b82f6',
+        trackColor: 'rgba(255,255,255,0.1)',
+        rounded: true,
+        animated: true,
+        style: 'bar',
+      };
+      baseStyle.size.width = 280;
+      baseStyle.size.height = 80;
+      baseStyle.fills[0].value = 'transparent';
+      break;
+    case 'countdown': {
+      const thirtyDays = new Date();
+      thirtyDays.setDate(thirtyDays.getDate() + 30);
+      content = {
+        type: 'countdown',
+        targetDate: thirtyDays.toISOString(),
+        label: 'Until Launch',
+        showLabels: true,
+        format: 'dhms',
+      };
+      baseStyle.size.width = 400;
+      baseStyle.size.height = 140;
+      baseStyle.fills[0].value = 'transparent';
+      break;
+    }
+    case 'code':
+      content = {
+        type: 'code',
+        code: '// Hello, World!\nconsole.log("Stakked");',
+        language: 'javascript',
+        theme: 'dark',
+        showLineNumbers: true,
+        showCopyButton: true,
+      };
+      baseStyle.size.width = 480;
+      baseStyle.size.height = 240;
       baseStyle.fills[0].value = 'transparent';
       break;
     default:

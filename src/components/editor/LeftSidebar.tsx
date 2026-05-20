@@ -7,6 +7,7 @@ import {
   Minus, Sparkles, Square, Eye, EyeOff, Lock, Unlock, Trash2,
   Search, Box, LayoutGrid, Globe,
   Minus as LineIcon, PenLine, GripVertical,
+  Table2, BarChart2, Clock, Code2,
 } from 'lucide-react';
 import { useProjectStore } from '@/stores/project-store';
 import { useEditorStore } from '@/stores/editor-store';
@@ -99,6 +100,7 @@ const TRAY_GROUPS: { heading: string; items: TrayItem[] }[] = [
       { type: 'divider',   icon: <Minus size={18} />,        label: 'Divider',   hot: '—' },
       { type: 'line',      icon: <LineIcon size={18} />,     label: 'Line',      hot: '/' },
       { type: 'drawing',   icon: <PenLine size={18} />,      label: 'Drawing',   hot: 'D' },
+      { type: 'table',     icon: <Table2 size={18} />,       label: 'Table',     hot: '#' },
     ],
   },
   {
@@ -123,7 +125,10 @@ const TRAY_GROUPS: { heading: string; items: TrayItem[] }[] = [
   {
     heading: 'Content',
     items: [
-      { type: 'icon', icon: <Sparkles size={18} />, label: 'Icon', hot: 'K' },
+      { type: 'icon',      icon: <Sparkles size={18} />,  label: 'Icon',      hot: 'K' },
+      { type: 'progress',  icon: <BarChart2 size={18} />, label: 'Progress',  hot: 'P' },
+      { type: 'countdown', icon: <Clock size={18} />,     label: 'Countdown', hot: 'C' },
+      { type: 'code',      icon: <Code2 size={18} />,     label: 'Code',      hot: '<>' },
     ],
   },
 ];
@@ -260,6 +265,10 @@ const TYPE_ICONS: Record<string, React.ReactNode> = {
   gallery:   <LayoutGrid size={11} />,
   divider:   <Minus size={11} />,
   drawing:   <PenLine size={11} />,
+  table:     <Table2 size={11} />,
+  progress:  <BarChart2 size={11} />,
+  countdown: <Clock size={11} />,
+  code:      <Code2 size={11} />,
 };
 
 /* ── LayersPanel ───────────────────────────────────────────────────────────── */
