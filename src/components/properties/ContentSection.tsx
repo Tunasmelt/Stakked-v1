@@ -34,19 +34,70 @@ import { Plus, Trash2, GripVertical } from 'lucide-react';
 import styles from '@/styles/PropertiesPanel.module.css';
 
 const SHAPE_VARIANTS = [
-  { label: 'Rectangle',   value: 'rect' },
-  { label: 'Circle',      value: 'circle' },
-  { label: 'Ellipse',     value: 'ellipse' },
-  { label: 'Triangle',    value: 'triangle' },
-  { label: 'Diamond',     value: 'diamond' },
-  { label: 'Star',        value: 'star' },
-  { label: 'Pentagon',    value: 'pentagon' },
-  { label: 'Hexagon',     value: 'hexagon' },
-  { label: 'Arrow Right', value: 'arrow-right' },
-  { label: 'Arrow Left',  value: 'arrow-left' },
-  { label: 'Cross',       value: 'cross' },
-  { label: 'Cloud',       value: 'cloud' },
+  { id: 'rect',          label: 'Rect' },
+  { id: 'circle',        label: 'Circle' },
+  { id: 'ellipse',       label: 'Ellipse' },
+  { id: 'oval',          label: 'Oval' },
+  { id: 'triangle',      label: 'Triangle' },
+  { id: 'diamond',       label: 'Diamond' },
+  { id: 'rhombus',       label: 'Rhombus' },
+  { id: 'trapezoid',     label: 'Trapezoid' },
+  { id: 'parallelogram', label: 'Para...' },
+  { id: 'pentagon',      label: 'Pentagon' },
+  { id: 'hexagon',       label: 'Hexagon' },
+  { id: 'octagon',       label: 'Octagon' },
+  { id: 'star',          label: 'Star' },
+  { id: 'heart',         label: 'Heart' },
+  { id: 'cloud',         label: 'Cloud' },
+  { id: 'lightning',     label: 'Lightning' },
+  { id: 'arrow-right',   label: '→' },
+  { id: 'arrow-left',    label: '←' },
+  { id: 'arrow-up',      label: '↑' },
+  { id: 'arrow-down',    label: '↓' },
+  { id: 'cross',         label: 'Cross' },
+  { id: 'check',         label: 'Check' },
+  { id: 'x-box',         label: 'X-Box' },
+  { id: 'badge',         label: 'Badge' },
 ];
+
+/** Renders a tiny SVG preview for a given shape variant and fill colour. */
+function ShapePreview({ variant, fill }: { variant: string; fill: string }) {
+  const f = fill;
+  const renderInner = () => {
+    switch (variant) {
+      case 'circle':        return <circle cx="50" cy="50" r="50" fill={f} />;
+      case 'triangle':      return <polygon points="50,0 100,100 0,100" fill={f} />;
+      case 'diamond':       return <polygon points="50,0 100,50 50,100 0,50" fill={f} />;
+      case 'star':          return <polygon points="50,2 61.8,33.8 95.6,35.2 69,56.2 78.2,88.8 50,70 21.8,88.8 31,56.2 4.4,35.2 38.2,33.8" fill={f} />;
+      case 'pentagon':      return <polygon points="50,2 95.6,35.2 78.2,88.8 21.8,88.8 4.4,35.2" fill={f} />;
+      case 'hexagon':       return <polygon points="50,2 91.6,26 91.6,74 50,98 8.4,74 8.4,26" fill={f} />;
+      case 'arrow-right':   return <polygon points="0,25 65,25 65,5 100,50 65,95 65,75 0,75" fill={f} />;
+      case 'arrow-left':    return <polygon points="100,25 35,25 35,5 0,50 35,95 35,75 100,75" fill={f} />;
+      case 'cross':         return <polygon points="35,0 65,0 65,35 100,35 100,65 65,65 65,100 35,100 35,65 0,65 0,35 35,35" fill={f} />;
+      case 'cloud':         return <path d="M 25,80 Q 5,80 5,62 Q 5,48 18,45 Q 15,22 35,20 Q 45,5 62,15 Q 78,8 84,24 Q 98,26 96,45 Q 105,48 100,62 Q 100,80 80,80 Z" fill={f} />;
+      case 'ellipse':       return <ellipse cx="50" cy="50" rx="50" ry="30" fill={f} />;
+      case 'oval':          return <ellipse cx="50" cy="50" rx="48" ry="30" fill={f} />;
+      case 'rhombus':       return <polygon points="50,5 95,50 50,95 5,50" fill={f} />;
+      case 'trapezoid':     return <polygon points="20,80 80,80 95,20 5,20" fill={f} />;
+      case 'parallelogram': return <polygon points="25,80 100,80 75,20 0,20" fill={f} />;
+      case 'arrow-up':      return <polygon points="50,5 95,65 70,65 70,95 30,95 30,65 5,65" fill={f} />;
+      case 'arrow-down':    return <polygon points="50,95 5,35 30,35 30,5 70,5 70,35 95,35" fill={f} />;
+      case 'octagon':       return <polygon points="30,5 70,5 95,30 95,70 70,95 30,95 5,70 5,30" fill={f} />;
+      case 'heart':         return <path d="M50,85 C10,60 0,40 0,28 C0,12 12,2 25,2 C35,2 45,8 50,18 C55,8 65,2 75,2 C88,2 100,12 100,28 C100,40 90,60 50,85 Z" fill={f} />;
+      case 'lightning':     return <polygon points="60,2 25,55 48,55 40,98 75,45 52,45" fill={f} />;
+      case 'check':         return <path d="M10,50 L35,78 L90,20" fill="none" stroke={f} strokeWidth="12" strokeLinecap="round" strokeLinejoin="round" />;
+      case 'x-box':         return <><rect width="100" height="100" rx="8" fill={f} /><line x1="22" y1="22" x2="78" y2="78" stroke="white" strokeWidth="12" strokeLinecap="round" /><line x1="78" y1="22" x2="22" y2="78" stroke="white" strokeWidth="12" strokeLinecap="round" /></>;
+      case 'badge':         return <path d="M10,20 Q10,5 25,5 L75,5 Q90,5 90,20 L90,68 Q90,78 80,83 L55,95 Q50,98 45,95 L20,83 Q10,78 10,68 Z" fill={f} />;
+      case 'rect':
+      default:              return <rect width="100" height="100" fill={f} />;
+    }
+  };
+  return (
+    <svg viewBox="0 0 100 100" style={{ width: 28, height: 28, display: 'block', overflow: 'visible' }}>
+      {renderInner()}
+    </svg>
+  );
+}
 
 const GALLERY_LAYOUTS = [
   { label: 'Grid',     value: 'grid' },
@@ -156,12 +207,60 @@ export default function ContentSection({ element, pageIndex }: { element: Stakke
   if (c.type === 'shape') {
     return (
       <div className={styles.sectionInner}>
-        <Select
-          label="Shape"
-          value={c.variant}
-          options={SHAPE_VARIANTS}
-          onChange={v => updateContent({ variant: v } as Partial<StakkedShapeContent>)}
-        />
+        <div className={styles.inputWrapper}>
+          <label className={styles.label}>Shape</label>
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(4, 1fr)',
+            gap: 4,
+          }}>
+            {SHAPE_VARIANTS.map(({ id, label }) => {
+              const isActive = c.variant === id;
+              return (
+                <button
+                  key={id}
+                  title={label}
+                  onClick={() => updateContent({ variant: id } as Partial<StakkedShapeContent>)}
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: 3,
+                    width: '100%',
+                    aspectRatio: '1',
+                    minHeight: 52,
+                    background: isActive
+                      ? 'color-mix(in oklab, var(--accent) 15%, var(--surface))'
+                      : 'var(--surface)',
+                    border: isActive
+                      ? '2px solid var(--accent)'
+                      : '1px solid var(--line)',
+                    borderRadius: 6,
+                    cursor: 'pointer',
+                    padding: 4,
+                    transition: 'border-color 120ms, background 120ms',
+                  }}
+                >
+                  <ShapePreview variant={id} fill={isActive ? 'var(--accent)' : 'var(--text-mute)'} />
+                  <span style={{
+                    fontFamily: 'var(--font-mono)',
+                    fontSize: 8,
+                    color: isActive ? 'var(--accent)' : 'var(--text-mute)',
+                    textAlign: 'center',
+                    lineHeight: 1.1,
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap',
+                    maxWidth: '100%',
+                  }}>
+                    {label}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
         <div className={styles.inputWrapper}>
           <label className={styles.label}>Fill Colour</label>
           <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>

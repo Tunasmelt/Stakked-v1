@@ -36,6 +36,56 @@ export default function ShapeElement({ element }: { element: StakkedElement }) {
         );
       case 'ellipse':
         return <ellipse cx="50" cy="50" rx="50" ry="30" fill={f} />;
+      // ── New variants ────────────────────────────────────────────────────────
+      case 'oval':
+        return <ellipse cx="50" cy="50" rx="48" ry="30" fill={f} />;
+      case 'rhombus':
+        return <polygon points="50,5 95,50 50,95 5,50" fill={f} />;
+      case 'trapezoid':
+        return <polygon points="20,80 80,80 95,20 5,20" fill={f} />;
+      case 'parallelogram':
+        return <polygon points="25,80 100,80 75,20 0,20" fill={f} />;
+      case 'arrow-up':
+        return <polygon points="50,5 95,65 70,65 70,95 30,95 30,65 5,65" fill={f} />;
+      case 'arrow-down':
+        return <polygon points="50,95 5,35 30,35 30,5 70,5 70,35 95,35" fill={f} />;
+      case 'octagon':
+        return <polygon points="30,5 70,5 95,30 95,70 70,95 30,95 5,70 5,30" fill={f} />;
+      case 'heart':
+        return (
+          <path
+            d="M50,85 C10,60 0,40 0,28 C0,12 12,2 25,2 C35,2 45,8 50,18 C55,8 65,2 75,2 C88,2 100,12 100,28 C100,40 90,60 50,85 Z"
+            fill={f}
+          />
+        );
+      case 'lightning':
+        return <polygon points="60,2 25,55 48,55 40,98 75,45 52,45" fill={f} />;
+      case 'check':
+        return (
+          <path
+            d="M10,50 L35,78 L90,20"
+            fill="none"
+            stroke={f}
+            strokeWidth="12"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        );
+      case 'x-box':
+        return (
+          <>
+            <rect width="100" height="100" rx="8" fill={f} />
+            <line x1="22" y1="22" x2="78" y2="78" stroke="white" strokeWidth="12" strokeLinecap="round" />
+            <line x1="78" y1="22" x2="22" y2="78" stroke="white" strokeWidth="12" strokeLinecap="round" />
+          </>
+        );
+      case 'badge':
+        return (
+          <path
+            d="M10,20 Q10,5 25,5 L75,5 Q90,5 90,20 L90,68 Q90,78 80,83 L55,95 Q50,98 45,95 L20,83 Q10,78 10,68 Z"
+            fill={f}
+          />
+        );
       case 'rect':
       default:
         return <rect width="100" height="100" fill={f} />;
@@ -43,8 +93,8 @@ export default function ShapeElement({ element }: { element: StakkedElement }) {
   };
 
   return (
-    <svg 
-      viewBox="0 0 100 100" 
+    <svg
+      viewBox="0 0 100 100"
       preserveAspectRatio="none"
       style={{ width: '100%', height: '100%', display: 'block' }}
     >
