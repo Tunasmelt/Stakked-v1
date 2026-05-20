@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { useProjectStore } from '@/stores/project-store';
-import { StakkedElement, ElementContent, StakkedGalleryContent, StakkedShapeContent, StakkedLineContent, StakkedDrawingContent, StakkedVideoContent } from '@/types/element';
+import { StakkedElement, ElementContent, StakkedGalleryContent, StakkedShapeContent, StakkedLineContent, StakkedDrawingContent, StakkedVideoContent, StakkedTableContent, StakkedProgressContent, StakkedCountdownContent, StakkedCodeContent } from '@/types/element';
 
 /** Convert a video page URL + platform into an embed iframe HTML string. */
 function urlToEmbedHtml(platform: string, url: string, autoplay: boolean, loop: boolean): string {
@@ -29,7 +29,7 @@ function urlToEmbedHtml(platform: string, url: string, autoplay: boolean, loop: 
   } catch { /* ignore */ }
   return '';
 }
-import { Select, NumberInput } from '@/components/ui/Primitives';
+import { Select, NumberInput, Slider, Toggle, ColorPicker } from '@/components/ui/Primitives';
 import { Plus, Trash2, GripVertical } from 'lucide-react';
 import styles from '@/styles/PropertiesPanel.module.css';
 
@@ -519,6 +519,229 @@ export default function ContentSection({ element, pageIndex }: { element: Stakke
           </div>
         </div>
         <NumberInput label="Size (px)" value={c.size} min={12} max={256} onChange={v => updateContent({ size: v })} />
+      </div>
+    );
+  }
+
+  // ── Table ───────────────────────────────────────────────────────────────────
+  if (c.type === 'table') {
+    return (
+      <div className={styles.sectionInner}>
+        <div className={styles.grid2}>
+          <NumberInput
+            label="Rows"
+            value={c.rows}
+            min={1}
+            max={20}
+            onChange={v => {
+              const newData = Array.from({ length: v }, (_, ri) =>
+                Array.from({ length: c.cols }, (__, ci) => c.data[ri]?.[ci] ?? '')
+              );
+              updateContent({ rows: v, data: newData } as Partial<StakkedTableContent>);
+            }}
+          />
+          <NumberInput
+            label="Cols"
+            value={c.cols}
+            min={1}
+            max={10}
+            onChange={v => {
+              const newHeaders = Array.from({ length: v }, (_, i) => c.headers[i] ?? `Col ${i + 1}`);
+              const newData = c.data.map(row =>
+                Array.from({ length: v }, (_, i) => row[i] ?? '')
+              );
+              updateContent({ cols: v, headers: newHeaders, data: newData } as Partial<StakkedTableContent>);
+            }}
+          />
+        </div>
+        <div className={styles.inputWrapper}>
+          <label className={styles.label}>Column Headers</label>
+          {c.headers.map((h, i) => (
+            <div key={i} className={styles.numberInput} style={{ marginBottom: 2 }}>
+              <input
+                type="text"
+                value={h}
+                placeholder={`Header ${i + 1}`}
+                onChange={e => {
+                  const next = [...c.headers];
+                  next[i] = e.target.value;
+                  updateContent({ headers: next } as Partial<StakkedTableContent>);
+                }}
+              />
+            </div>
+          ))}
+        </div>
+        <div className={styles.grid2}>
+          <Toggle
+            label="Striped"
+            checked={c.striped}
+            onChange={v => updateContent({ striped: v } as Partial<StakkedTableContent>)}
+          />
+          <Toggle
+            label="Bordered"
+            checked={c.bordered}
+            onChange={v => updateContent({ bordered: v } as Partial<StakkedTableContent>)}
+          />
+        </div>
+      </div>
+    );
+  }
+
+  // ── Progress ─────────────────────────────────────────────────────────────────
+  if (c.type === 'progress') {
+    return (
+      <div className={styles.sectionInner}>
+        <Slider
+          label="Value"
+          value={c.value}
+          min={0}
+          max={100}
+          step={1}
+          formatValue={v => `${Math.round(v)}%`}
+          onChange={v => updateContent({ value: v } as Partial<StakkedProgressContent>)}
+        />
+        <div className={styles.inputWrapper}>
+          <label className={styles.label}>Label</label>
+          <div className={styles.numberInput}>
+            <input
+              type="text"
+              value={c.label}
+              placeholder="Progress"
+              onChange={e => updateContent({ label: e.target.value } as Partial<StakkedProgressContent>)}
+            />
+          </div>
+        </div>
+        <Select
+          label="Style"
+          value={c.style}
+          options={[
+            { label: 'Bar',    value: 'bar' },
+            { label: 'Circle', value: 'circle' },
+          ]}
+          onChange={v => updateContent({ style: v as 'bar' | 'circle' } as Partial<StakkedProgressContent>)}
+        />
+        <ColorPicker
+          label="Bar Color"
+          value={c.barColor}
+          onChange={v => updateContent({ barColor: v } as Partial<StakkedProgressContent>)}
+        />
+        <ColorPicker
+          label="Track Color"
+          value={c.trackColor}
+          onChange={v => updateContent({ trackColor: v } as Partial<StakkedProgressContent>)}
+        />
+        <div className={styles.grid2}>
+          <Toggle
+            label="Show Value"
+            checked={c.showValue}
+            onChange={v => updateContent({ showValue: v } as Partial<StakkedProgressContent>)}
+          />
+          <Toggle
+            label="Animated"
+            checked={c.animated}
+            onChange={v => updateContent({ animated: v } as Partial<StakkedProgressContent>)}
+          />
+        </div>
+        <Toggle
+          label="Rounded"
+          checked={c.rounded}
+          onChange={v => updateContent({ rounded: v } as Partial<StakkedProgressContent>)}
+        />
+      </div>
+    );
+  }
+
+  // ── Countdown ────────────────────────────────────────────────────────────────
+  if (c.type === 'countdown') {
+    return (
+      <div className={styles.sectionInner}>
+        <div className={styles.inputWrapper}>
+          <label className={styles.label}>Target Date</label>
+          <div className={styles.numberInput}>
+            <input
+              type="datetime-local"
+              value={c.targetDate ? c.targetDate.slice(0, 16) : ''}
+              onChange={e => updateContent({ targetDate: new Date(e.target.value).toISOString() } as Partial<StakkedCountdownContent>)}
+              style={{ colorScheme: 'dark' }}
+            />
+          </div>
+        </div>
+        <div className={styles.inputWrapper}>
+          <label className={styles.label}>Label</label>
+          <div className={styles.numberInput}>
+            <input
+              type="text"
+              value={c.label}
+              placeholder="Until Launch"
+              onChange={e => updateContent({ label: e.target.value } as Partial<StakkedCountdownContent>)}
+            />
+          </div>
+        </div>
+        <Select
+          label="Format"
+          value={c.format}
+          options={[
+            { label: 'Days · Hours · Mins · Secs', value: 'dhms' },
+            { label: 'Hours · Mins · Secs',        value: 'hms' },
+            { label: 'Mins · Secs',                value: 'ms' },
+          ]}
+          onChange={v => updateContent({ format: v as 'dhms' | 'hms' | 'ms' } as Partial<StakkedCountdownContent>)}
+        />
+        <Toggle
+          label="Show Labels"
+          checked={c.showLabels}
+          onChange={v => updateContent({ showLabels: v } as Partial<StakkedCountdownContent>)}
+        />
+      </div>
+    );
+  }
+
+  // ── Code ─────────────────────────────────────────────────────────────────────
+  if (c.type === 'code') {
+    const LANGUAGES = [
+      'javascript','typescript','jsx','tsx','html','css','scss',
+      'python','rust','go','java','c','cpp','csharp','php','ruby',
+      'swift','kotlin','bash','json','yaml','sql','graphql','markdown',
+    ];
+    return (
+      <div className={styles.sectionInner}>
+        <div className={styles.inputWrapper}>
+          <label className={styles.label}>Code</label>
+          <textarea
+            className={styles.input}
+            style={{ height: 120, resize: 'vertical', width: '100%', fontFamily: 'var(--font-mono)', fontSize: 10 }}
+            value={c.code}
+            onChange={e => updateContent({ code: e.target.value } as Partial<StakkedCodeContent>)}
+            spellCheck={false}
+          />
+        </div>
+        <Select
+          label="Language"
+          value={c.language}
+          options={LANGUAGES.map(l => ({ label: l, value: l }))}
+          onChange={v => updateContent({ language: v } as Partial<StakkedCodeContent>)}
+        />
+        <Select
+          label="Theme"
+          value={c.theme}
+          options={[
+            { label: 'Dark',  value: 'dark' },
+            { label: 'Light', value: 'light' },
+          ]}
+          onChange={v => updateContent({ theme: v as 'dark' | 'light' } as Partial<StakkedCodeContent>)}
+        />
+        <div className={styles.grid2}>
+          <Toggle
+            label="Line Nums"
+            checked={c.showLineNumbers}
+            onChange={v => updateContent({ showLineNumbers: v } as Partial<StakkedCodeContent>)}
+          />
+          <Toggle
+            label="Copy Btn"
+            checked={c.showCopyButton}
+            onChange={v => updateContent({ showCopyButton: v } as Partial<StakkedCodeContent>)}
+          />
+        </div>
       </div>
     );
   }
