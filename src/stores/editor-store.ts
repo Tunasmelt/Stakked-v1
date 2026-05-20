@@ -66,10 +66,11 @@ export const useEditorStore = create<EditorState>((set) => ({
   
   setSelection: (selectedElementIds) => set({ selectedElementIds }),
   
-  addToSelection: (id) => set((state) => ({ 
-    selectedElementIds: state.selectedElementIds.includes(id) 
-      ? state.selectedElementIds 
-      : [...state.selectedElementIds, id] 
+  // Toggle: shift-clicking an already-selected element removes it from the selection.
+  addToSelection: (id) => set((state) => ({
+    selectedElementIds: state.selectedElementIds.includes(id)
+      ? state.selectedElementIds.filter(sid => sid !== id)
+      : [...state.selectedElementIds, id],
   })),
   
   clearSelection: () => set({ selectedElementIds: [], isEditingText: false }),

@@ -189,7 +189,7 @@ export const KeyboardManager: React.FC = () => {
           e.preventDefault();
           const page = project?.pages[activePageIndex];
           if (page) {
-            setSelection(page.elements.map(el => el.id));
+            setSelection(page.elements.filter(el => !el.locked).map(el => el.id));
           }
         }
         break;

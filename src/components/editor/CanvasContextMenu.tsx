@@ -162,7 +162,7 @@ export const CanvasContextMenu: React.FC<Props> = ({ menu, onClose }) => {
           label="Select All"
           icon={<Rows3 size={13} />}
           shortcut="⌘A"
-          onClick={() => run(() => setSelection(elements.map((e) => e.id)))}
+          onClick={() => run(() => setSelection(elements.filter(e => !e.locked).map(e => e.id)))}
         />
 
         {hasSelection && (

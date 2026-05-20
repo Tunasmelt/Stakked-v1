@@ -432,9 +432,15 @@ export const Canvas: React.FC = memo(() => {
     const type = e.dataTransfer.getData('stakked/element-type') as ElementType;
     if (type) {
       const el = defaultElement(type);
-      el.position = { x, y };
-      el.style.position.x = x;
-      el.style.position.y = y;
+      // Center the new element under the drop cursor rather than placing
+      // its top-left corner at the cursor position.
+      const elW = typeof el.size.width  === 'number' ? el.size.width  : 120;
+      const elH = typeof el.size.height === 'number' ? el.size.height : 60;
+      const dropX = Math.round(x - elW / 2);
+      const dropY = Math.round(y - elH / 2);
+      el.position = { x: dropX, y: dropY };
+      el.style.position.x = dropX;
+      el.style.position.y = dropY;
       addElement(activePageIndex, el);
       setSelection([el.id]);
       return;
@@ -442,9 +448,13 @@ export const Canvas: React.FC = memo(() => {
     const assetUrl = e.dataTransfer.getData('stakked/asset-url');
     if (assetUrl) {
       const el = defaultElement('image');
-      el.position = { x, y };
-      el.style.position.x = x;
-      el.style.position.y = y;
+      const elW = typeof el.size.width  === 'number' ? el.size.width  : 200;
+      const elH = typeof el.size.height === 'number' ? el.size.height : 150;
+      const dropX = Math.round(x - elW / 2);
+      const dropY = Math.round(y - elH / 2);
+      el.position = { x: dropX, y: dropY };
+      el.style.position.x = dropX;
+      el.style.position.y = dropY;
       if (el.content.type === 'image') el.content.src = assetUrl;
       addElement(activePageIndex, el);
       setSelection([el.id]);
@@ -548,7 +558,7 @@ export const Canvas: React.FC = memo(() => {
 
   const elementGuidelines = useMemo(() =>
     elements
-      .filter(e => !selectedElementIds.includes(e.id))
+      .filter(e => !selectedElementIds.includes(e.id) && e.visible)
       .map(e => selectorOf(e.id)),
     [elements, selectedElementIds]);
 
@@ -826,6 +836,8 @@ export const Canvas: React.FC = memo(() => {
                       restoreTransform(t as HTMLElement, id);
                     }
                     if (!isDrag) return;
+                    // Read fresh page index from store — avoids stale closure
+                    // when the user switches pages during a long drag gesture.
                     const { project: _pg, activePageIndex: _aig } = useProjectStore.getState();
                     for (const t of targets) {
                       const id = elementIdFromDom(t as HTMLElement);
@@ -834,7 +846,7 @@ export const Canvas: React.FC = memo(() => {
                         const ctn = childToContainer.get(id);
                         const ox = ctn?.position.x ?? 0;
                         const oy = ctn?.position.y ?? 0;
-                        commitElementMove(activePageIndex, el.id, moveRef.current[id], {
+                        commitElementMove(_aig, el.id, moveRef.current[id], {
                           x: parsePx((t as HTMLElement).style.left, el.position.x - ox) + ox,
                           y: parsePx((t as HTMLElement).style.top,  el.position.y - oy) + oy,
                         });
@@ -881,7 +893,7 @@ export const Canvas: React.FC = memo(() => {
                       restoreTransform(t as HTMLElement, id);
                       const el = _pr?.pages[_air].elements.find(e => e.id === id);
                       if (el) {
-                        commitElementResize(activePageIndex, el.id, sizeRef.current[id], {
+                        commitElementResize(_air, el.id, sizeRef.current[id], {
                           width:  parsePx((t as HTMLElement).style.width,  el.size.width as number),
                           height: parsePx((t as HTMLElement).style.height, el.size.height as number),
                         });
@@ -911,7 +923,7 @@ export const Canvas: React.FC = memo(() => {
                       const prev  = rotationRef.current[id] ?? 0;
                       const match = (t as HTMLElement).style.transform.match(/rotate\(([\d.-]+)deg\)/);
                       const next  = match ? parseFloat(match[1]) : prev;
-                      if (el) commitElementRotation(activePageIndex, el.id, prev, next);
+                      if (el) commitElementRotation(_airot, el.id, prev, next);
                     }
                   }}
                 />
