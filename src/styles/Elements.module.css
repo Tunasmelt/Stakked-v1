@@ -35,9 +35,11 @@
   text-decoration: none;
 }
 
-.button.filled { background-color: var(--accent); color: var(--accent-ink, #fff); }
-.button.outline { border: 2px solid var(--accent); color: var(--accent); }
-.button.ghost { background: transparent; color: var(--accent); }
+.button.filled   { background-color: var(--btn-bg, var(--accent)); color: var(--btn-fg, var(--accent-ink, #fff)); border: none; }
+.button.outlined { background: transparent; border: 2px solid var(--btn-border, var(--accent)); color: var(--btn-fg, var(--accent)); }
+.button.outline  { background: transparent; border: 2px solid var(--btn-border, var(--accent)); color: var(--btn-fg, var(--accent)); }
+.button.ghost    { background: transparent; border: none; color: var(--btn-fg, var(--accent)); }
+.button.link     { background: transparent; border: none; color: var(--btn-fg, var(--accent)); text-decoration: underline; padding: 0; }
 
 .iframeWrapper {
   width: 100%;

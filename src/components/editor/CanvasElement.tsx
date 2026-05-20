@@ -124,6 +124,10 @@ function buildWrapperStyle(
         start: 'flex-start', center: 'center', end: 'flex-end',
         stretch: 'stretch', baseline: 'baseline',
       };
+      const pd = layout.padding;
+      const paddingCss = pd
+        ? `${pd.top ?? 0}px ${pd.right ?? 0}px ${pd.bottom ?? 0}px ${pd.left ?? 0}px`
+        : undefined;
       layoutStyle = {
         display: 'flex',
         flexDirection: (layout.direction as React.CSSProperties['flexDirection']) || 'row',
@@ -131,11 +135,19 @@ function buildWrapperStyle(
         justifyContent: justifyMap[layout.distribution] ?? 'flex-start',
         alignItems: alignMap[layout.align] ?? 'flex-start',
         gap: layout.gap != null ? `${layout.gap}px` : undefined,
+        ...(paddingCss && { padding: paddingCss }),
       };
     } else if (layout.type === 'grid') {
+      const cols = layout.columns ?? 2;
+      const pd = layout.padding;
+      const paddingCss = pd
+        ? `${pd.top ?? 0}px ${pd.right ?? 0}px ${pd.bottom ?? 0}px ${pd.left ?? 0}px`
+        : undefined;
       layoutStyle = {
         display: 'grid',
+        gridTemplateColumns: `repeat(${cols}, 1fr)`,
         gap: layout.gap != null ? `${layout.gap}px` : undefined,
+        ...(paddingCss && { padding: paddingCss }),
       };
     }
   }
@@ -216,7 +228,7 @@ export const CanvasElement = memo(({ id, isPublic, containerPos }: CanvasElement
 
   const handleDoubleClick = (e: React.MouseEvent) => {
     if (isPublic || previewMode || element.locked) return;
-    if (element.type === 'text') {
+    if (element.type === 'text' || element.type === 'drawing') {
       e.stopPropagation();
       setSelection([id]);
       setEditingText(true);

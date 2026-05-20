@@ -130,35 +130,45 @@ export const PropertiesPanel: React.FC = () => {
         <ContentSection element={element} pageIndex={activePageIndex} />
       </CollapsibleSection>
 
-      <CollapsibleSection title="Layout" defaultOpen={false}>
-        <LayoutSection element={element} pageIndex={activePageIndex} />
-      </CollapsibleSection>
+      {element.type === 'container' && (
+        <CollapsibleSection title="Layout" defaultOpen={false}>
+          <LayoutSection element={element} pageIndex={activePageIndex} />
+        </CollapsibleSection>
+      )}
 
-      {(['text', 'button', 'icon'] as string[]).includes(element.type) && (
+      {(['text', 'button'] as string[]).includes(element.type) && (
         <CollapsibleSection title="Typography">
           <TypographySection element={element} pageIndex={activePageIndex} />
         </CollapsibleSection>
       )}
 
-      <CollapsibleSection title="Link" defaultOpen={false}>
-        <LinkSection element={element} pageIndex={activePageIndex} />
-      </CollapsibleSection>
+      {!(['line', 'divider'] as string[]).includes(element.type) && (
+        <CollapsibleSection title="Link" defaultOpen={false}>
+          <LinkSection element={element} pageIndex={activePageIndex} />
+        </CollapsibleSection>
+      )}
 
-      <CollapsibleSection title="Fill" defaultOpen={false}>
-        <FillSection element={element} pageIndex={activePageIndex} />
-      </CollapsibleSection>
+      {!(['line', 'divider', 'shape'] as string[]).includes(element.type) && (
+        <CollapsibleSection title="Fill" defaultOpen={false}>
+          <FillSection element={element} pageIndex={activePageIndex} />
+        </CollapsibleSection>
+      )}
 
-      <CollapsibleSection title="Border" defaultOpen={false}>
-        <BorderSection element={element} pageIndex={activePageIndex} />
-      </CollapsibleSection>
+      {!(['line', 'divider'] as string[]).includes(element.type) && (
+        <CollapsibleSection title="Border" defaultOpen={false}>
+          <BorderSection element={element} pageIndex={activePageIndex} />
+        </CollapsibleSection>
+      )}
 
       <CollapsibleSection title="Effects" defaultOpen={false}>
         <EffectsSection element={element} pageIndex={activePageIndex} />
       </CollapsibleSection>
 
-      <CollapsibleSection title="Overlays" defaultOpen={false}>
-        <OverlaysSection element={element} pageIndex={activePageIndex} />
-      </CollapsibleSection>
+      {!(['line', 'divider'] as string[]).includes(element.type) && (
+        <CollapsibleSection title="Overlays" defaultOpen={false}>
+          <OverlaysSection element={element} pageIndex={activePageIndex} />
+        </CollapsibleSection>
+      )}
 
       <CollapsibleSection title="Transformers" defaultOpen={false}>
         <TransformsSection element={element} pageIndex={activePageIndex} />

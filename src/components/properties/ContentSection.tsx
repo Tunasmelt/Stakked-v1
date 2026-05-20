@@ -2,7 +2,33 @@
 
 import React from 'react';
 import { useProjectStore } from '@/stores/project-store';
-import { StakkedElement, ElementContent, StakkedGalleryContent, StakkedShapeContent, StakkedLineContent, StakkedDrawingContent } from '@/types/element';
+import { StakkedElement, ElementContent, StakkedGalleryContent, StakkedShapeContent, StakkedLineContent, StakkedDrawingContent, StakkedVideoContent } from '@/types/element';
+
+/** Convert a video page URL + platform into an embed iframe HTML string. */
+function urlToEmbedHtml(platform: string, url: string, autoplay: boolean, loop: boolean): string {
+  if (!url) return '';
+  try {
+    const ap = autoplay ? '&autoplay=1&mute=1' : '';
+    const lp = loop ? '&loop=1' : '';
+    if (platform === 'youtube') {
+      const m = url.match(/(?:v=|youtu\.be\/|embed\/|shorts\/)([a-zA-Z0-9_-]{11})/);
+      if (m) return `<iframe src="https://www.youtube.com/embed/${m[1]}?rel=0${ap}${lp}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="width:100%;height:100%;display:block;"></iframe>`;
+    }
+    if (platform === 'vimeo') {
+      const m = url.match(/vimeo\.com\/(?:video\/)?(\d+)/);
+      if (m) return `<iframe src="https://player.vimeo.com/video/${m[1]}?${autoplay ? 'autoplay=1&muted=1&' : ''}${loop ? 'loop=1&' : ''}" frameborder="0" allowfullscreen style="width:100%;height:100%;display:block;"></iframe>`;
+    }
+    if (platform === 'loom') {
+      const m = url.match(/loom\.com\/(?:share|embed)\/([a-zA-Z0-9]+)/);
+      if (m) return `<iframe src="https://www.loom.com/embed/${m[1]}" frameborder="0" allowfullscreen style="width:100%;height:100%;display:block;"></iframe>`;
+    }
+    if (platform === 'wistia') {
+      const m = url.match(/wistia\.com\/(?:medias|embed\/iframe)\/([a-zA-Z0-9]+)/);
+      if (m) return `<iframe src="https://fast.wistia.net/embed/iframe/${m[1]}" frameborder="0" allowfullscreen style="width:100%;height:100%;display:block;"></iframe>`;
+    }
+  } catch { /* ignore */ }
+  return '';
+}
 import { Select, NumberInput } from '@/components/ui/Primitives';
 import { Plus, Trash2, GripVertical } from 'lucide-react';
 import styles from '@/styles/PropertiesPanel.module.css';
@@ -218,6 +244,16 @@ export default function ContentSection({ element, pageIndex }: { element: Stakke
 
   // ── Video ────────────────────────────────────────────────────────────────────
   if (c.type === 'video') {
+    const updateVideo = (patch: Partial<StakkedVideoContent>) => {
+      const next = { ...c, ...patch };
+      // Auto-generate embed HTML whenever platform, url, autoplay, or loop changes
+      if (next.platform !== 'direct') {
+        const html = urlToEmbedHtml(next.platform, next.url, next.autoplay, next.loop);
+        if (html) next.embedHtml = html;
+      }
+      updateContent(next as Partial<ElementContent>);
+    };
+
     return (
       <div className={styles.sectionInner}>
         <Select
@@ -230,12 +266,17 @@ export default function ContentSection({ element, pageIndex }: { element: Stakke
             { label: 'Wistia',   value: 'wistia' },
             { label: 'Direct',   value: 'direct' },
           ]}
-          onChange={v => updateContent({ platform: v })}
+          onChange={v => updateVideo({ platform: v })}
         />
         <div className={styles.inputWrapper}>
           <label className={styles.label}>Video URL</label>
           <div className={styles.numberInput}>
-            <input type="url" value={c.url} placeholder="https://youtube.com/watch?v=..." onChange={e => updateContent({ url: e.target.value })} />
+            <input
+              type="url"
+              value={c.url}
+              placeholder={c.platform === 'direct' ? 'https://example.com/video.mp4' : 'https://youtube.com/watch?v=...'}
+              onChange={e => updateVideo({ url: e.target.value })}
+            />
           </div>
         </div>
         <div className={styles.grid2}>
@@ -243,15 +284,25 @@ export default function ContentSection({ element, pageIndex }: { element: Stakke
             label="Autoplay"
             value={c.autoplay ? 'yes' : 'no'}
             options={[{ label: 'Yes (Muted)', value: 'yes' }, { label: 'No', value: 'no' }]}
-            onChange={v => updateContent({ autoplay: v === 'yes' })}
+            onChange={v => updateVideo({ autoplay: v === 'yes' })}
           />
           <Select
             label="Loop"
             value={c.loop ? 'yes' : 'no'}
             options={[{ label: 'Yes', value: 'yes' }, { label: 'No', value: 'no' }]}
-            onChange={v => updateContent({ loop: v === 'yes' })}
+            onChange={v => updateVideo({ loop: v === 'yes' })}
           />
         </div>
+        {c.embedHtml && (
+          <p style={{ fontSize: 10, color: 'var(--ok, #22c55e)', margin: '4px 0 0', fontFamily: 'var(--font-mono)' }}>
+            ✓ embed ready
+          </p>
+        )}
+        {!c.embedHtml && c.url && c.platform !== 'direct' && (
+          <p style={{ fontSize: 10, color: 'var(--warn, #f59e0b)', margin: '4px 0 0', fontFamily: 'var(--font-mono)' }}>
+            URL not recognized — check format
+          </p>
+        )}
       </div>
     );
   }
