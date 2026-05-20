@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { FlipHorizontal2, FlipVertical2 } from 'lucide-react';
 import { useProjectStore } from '@/stores/project-store';
 import { StakkedElement } from '@/types/element';
 import { NumberInput, Slider, Select } from '@/components/ui/Primitives';
@@ -9,8 +10,23 @@ import styles from '@/styles/PropertiesPanel.module.css';
 export default function TransformsSection({ element, pageIndex }: { element: StakkedElement, pageIndex: number }) {
   const updateElement      = useProjectStore((s) => s.updateElement);
   const updateElementStyle = useProjectStore((s) => s.updateElementStyle);
-  
+
   const tr = element.style.transform;
+
+  const isFlippedH = (tr?.scaleX ?? 1) < 0;
+  const isFlippedV = (tr?.scaleY ?? 1) < 0;
+
+  const handleFlipH = () => {
+    updateElementStyle(pageIndex, element.id, {
+      transform: { ...tr, scaleX: isFlippedH ? 1 : -1 },
+    });
+  };
+
+  const handleFlipV = () => {
+    updateElementStyle(pageIndex, element.id, {
+      transform: { ...tr, scaleY: isFlippedV ? 1 : -1 },
+    });
+  };
 
   return (
     <div className={styles.sectionInner}>
@@ -49,6 +65,28 @@ export default function TransformsSection({ element, pageIndex }: { element: Sta
         />
       </div>
 
+      {/* Flip H / V toggle buttons */}
+      <div style={{ display: 'flex', gap: 6, marginBottom: 4 }}>
+        <button
+          type="button"
+          className={styles.iconBtn}
+          onClick={handleFlipH}
+          title="Flip Horizontal"
+          style={isFlippedH ? { background: 'var(--accent)', color: '#fff' } : undefined}
+        >
+          <FlipHorizontal2 size={14} />
+        </button>
+        <button
+          type="button"
+          className={styles.iconBtn}
+          onClick={handleFlipV}
+          title="Flip Vertical"
+          style={isFlippedV ? { background: 'var(--accent)', color: '#fff' } : undefined}
+        >
+          <FlipVertical2 size={14} />
+        </button>
+      </div>
+
       <div className={styles.grid2}>
         <Slider
           label="Scale X"
@@ -56,7 +94,7 @@ export default function TransformsSection({ element, pageIndex }: { element: Sta
           onChange={(v) => updateElementStyle(pageIndex, element.id, {
             transform: { ...tr, scaleX: v }
           })}
-          min={0}
+          min={-5}
           max={5}
           step={0.01}
           formatValue={(v) => `${v.toFixed(2)}×`}
@@ -67,7 +105,7 @@ export default function TransformsSection({ element, pageIndex }: { element: Sta
           onChange={(v) => updateElementStyle(pageIndex, element.id, {
             transform: { ...tr, scaleY: v }
           })}
-          min={0}
+          min={-5}
           max={5}
           step={0.01}
           formatValue={(v) => `${v.toFixed(2)}×`}

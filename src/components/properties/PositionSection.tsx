@@ -32,16 +32,16 @@ export default function PositionSection({ element, pageIndex }: { element: Stakk
       <div className={styles.grid2}>
         <NumberInput
           label="X"
-          value={element.position.x}
+          value={Math.round(element.position.x)}
           onChange={(x) =>
-            updateElement(pageIndex, element.id, { position: { ...element.position, x } })
+            updateElement(pageIndex, element.id, { position: { ...element.position, x: Math.round(x) } })
           }
         />
         <NumberInput
           label="Y"
-          value={element.position.y}
+          value={Math.round(element.position.y)}
           onChange={(y) =>
-            updateElement(pageIndex, element.id, { position: { ...element.position, y } })
+            updateElement(pageIndex, element.id, { position: { ...element.position, y: Math.round(y) } })
           }
         />
       </div>

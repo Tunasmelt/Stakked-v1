@@ -16,12 +16,14 @@ export const KeyboardManager: React.FC = () => {
   const redo                  = useProjectStore(s => s.redo);
   const activePageIndex       = useProjectStore(s => s.activePageIndex);
   const project               = useProjectStore(s => s.project);
-  const removeElement         = useProjectStore(s => s.removeElement);
-  const duplicateSelection    = useProjectStore(s => s.duplicateSelection);
-  const pasteElements         = useProjectStore(s => s.pasteElements);
-  const nudgeElements         = useProjectStore(s => s.nudgeElements);
-  const groupElements         = useProjectStore(s => s.groupElements);
-  const ungroupElements       = useProjectStore(s => s.ungroupElements);
+  const removeElement            = useProjectStore(s => s.removeElement);
+  const duplicateSelection       = useProjectStore(s => s.duplicateSelection);
+  const pasteElements            = useProjectStore(s => s.pasteElements);
+  const nudgeElements            = useProjectStore(s => s.nudgeElements);
+  const groupElements            = useProjectStore(s => s.groupElements);
+  const ungroupElements          = useProjectStore(s => s.ungroupElements);
+  const toggleElementLock        = useProjectStore(s => s.toggleElementLock);
+  const toggleElementVisibility  = useProjectStore(s => s.toggleElementVisibility);
   const moveElementForward    = useProjectStore(s => s.moveElementForward);
   const moveElementBackward   = useProjectStore(s => s.moveElementBackward);
   const moveElementToFront    = useProjectStore(s => s.moveElementToFront);
@@ -135,9 +137,20 @@ export const KeyboardManager: React.FC = () => {
         }
         break;
 
-      // Zoom to selection
+      // Zoom shortcuts (Shift+1 → 100%, Shift+2 → 50%)
+      case '1':
+        if (!cmdCtrl && shift) {
+          e.preventDefault();
+          window.dispatchEvent(new CustomEvent('stakked-zoom-to', { detail: { zoom: 1 } }));
+        }
+        break;
+
+      // Zoom to 50% (Shift+2) or zoom to selection (Ctrl/Cmd+Shift+2)
       case '2':
-        if (cmdCtrl && shift && selectedElementIds.length > 0) {
+        if (!cmdCtrl && shift) {
+          e.preventDefault();
+          window.dispatchEvent(new CustomEvent('stakked-zoom-to', { detail: { zoom: 0.5 } }));
+        } else if (cmdCtrl && shift && selectedElementIds.length > 0) {
           e.preventDefault();
           const page = project?.pages[activePageIndex];
           if (page) {
@@ -160,10 +173,30 @@ export const KeyboardManager: React.FC = () => {
         }
         break;
 
-      // Tool Switching
-      case 'h':
-        if (!cmdCtrl) setTool('hand');
+      // Lock / Unlock selected elements
+      case 'l': {
+        const tag = document.activeElement?.tagName.toLowerCase();
+        if (!cmdCtrl && tag !== 'input' && tag !== 'textarea') {
+          e.preventDefault();
+          selectedElementIds.forEach(id => toggleElementLock(activePageIndex, id));
+        }
         break;
+      }
+
+      // Tool Switching (hand) / Hide-show (Ctrl+Shift+H)
+      case 'h': {
+        if (cmdCtrl && shift) {
+          // Ctrl/Cmd+Shift+H — hide/show selected elements
+          e.preventDefault();
+          selectedElementIds.forEach(id => toggleElementVisibility(activePageIndex, id));
+        } else if (!cmdCtrl) {
+          const tag = document.activeElement?.tagName.toLowerCase();
+          if (tag !== 'input' && tag !== 'textarea') {
+            setTool('hand');
+          }
+        }
+        break;
+      }
 
       // Help / Tutorial
       case '?':
@@ -174,11 +207,10 @@ export const KeyboardManager: React.FC = () => {
         }
         break;
 
-      // Navigation / Zoom
+      // Navigation / Zoom — Ctrl+0 or Shift+0 → fit to page
       case '0':
-        if (cmdCtrl) {
+        if (cmdCtrl || shift) {
           e.preventDefault();
-          // Delegate to Canvas.centerPage via the fit-page event
           window.dispatchEvent(new CustomEvent('stakked-fit-page'));
         }
         break;
@@ -245,6 +277,8 @@ export const KeyboardManager: React.FC = () => {
     moveElementToBack,
     groupElements,
     ungroupElements,
+    toggleElementLock,
+    toggleElementVisibility,
   ]);
 
   useEffect(() => {
