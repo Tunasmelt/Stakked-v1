@@ -117,7 +117,6 @@ export default function AIGenerateModal({ open, onClose }: Props) {
         visible: el.visible ?? true,
         locked: el.locked ?? false,
         content: el.content,
-        animations: Array.isArray(el.animations) ? el.animations : scaffold.animations,
       } as StakkedElement;
     });
 

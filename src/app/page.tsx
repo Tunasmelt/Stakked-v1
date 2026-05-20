@@ -5,11 +5,10 @@
 import React from 'react';
 import Link from 'next/link';
 import {
-  ArrowRight, Boxes, Layers3, Sparkles, MousePointer2,
-  Wand2, Share2, Rocket, Play, Zap, Globe, Download,
-  Type, Image as ImageIcon, Music, Video, FileText as TimerIcon, Square,
-  List, MapPin, Star, ChevronRight, Minus, Navigation, LayoutGrid,
-  Quote, AlignLeft, PenLine, Box,
+  ArrowRight, Rocket, Zap, Download, Globe,
+  Type, Image as ImageIcon, Square, Minus, PenLine, Box,
+  MousePointer2, Star, Video, AlignLeft, LayoutGrid,
+  Sparkles, Layers3, Share2,
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import MarketingNav from '@/components/marketing/MarketingNav';
@@ -24,26 +23,16 @@ const fade = (delay = 0) => ({
 const ELEMENT_TYPES = [
   { Icon: Type,          label: 'Text' },
   { Icon: ImageIcon,     label: 'Image' },
-  { Icon: MousePointer2, label: 'Button' },
-  { Icon: Music,         label: 'Music' },
-  { Icon: Video,         label: 'Video' },
-  { Icon: TimerIcon,     label: 'Countdown' },
-  { Icon: MapPin,        label: 'Map' },
-  { Icon: List,          label: 'Form' },
-  { Icon: LayoutGrid,    label: 'Gallery' },
   { Icon: Square,        label: 'Shape' },
-  { Icon: Star,          label: 'Icon' },
-  { Icon: ChevronRight,  label: 'Accordion' },
-  { Icon: LayoutGrid,    label: 'Tabs' },
-  { Icon: Minus,         label: 'Divider' },
-  { Icon: AlignLeft,     label: 'Marquee' },
-  { Icon: Share2,        label: 'Social' },
-  { Icon: Quote,         label: 'Testimonial' },
-  { Icon: Navigation,    label: 'Navigation' },
-  { Icon: Globe,         label: 'Embed' },
-  { Icon: Box,           label: 'Container' },
-  { Icon: PenLine,       label: 'Drawing' },
   { Icon: Minus,         label: 'Line' },
+  { Icon: PenLine,       label: 'Drawing' },
+  { Icon: Box,           label: 'Container' },
+  { Icon: AlignLeft,     label: 'Divider' },
+  { Icon: MousePointer2, label: 'Button' },
+  { Icon: Star,          label: 'Icon' },
+  { Icon: Video,         label: 'Video' },
+  { Icon: Globe,         label: 'Embed' },
+  { Icon: LayoutGrid,    label: 'Gallery' },
 ];
 
 export default function LandingPage() {
@@ -60,12 +49,12 @@ export default function LandingPage() {
       >
         <div className={styles.sysLeft}>
           <span className={styles.dot} aria-hidden />
-          <span>stakked · creative os</span>
+          <span>stakked · creative canvas</span>
           <span className={styles.sysSep}>·</span>
-          <span>v0.3.0 · phase 5</span>
+          <span>v1.0</span>
         </div>
         <div className={styles.sysRight}>
-          <span>{'// 22 element types · 15 animation presets · 5 themes'}</span>
+          <span>{'// 12 elements · drag & drop · publish instantly'}</span>
         </div>
       </motion.div>
 
@@ -73,35 +62,35 @@ export default function LandingPage() {
       <section className={styles.brief}>
         <div className={styles.briefInner}>
           <motion.span className={styles.tag} {...fade(0.1)}>
-            {'// visual builder · for digital artists'}
+            {'// canvas for creators'}
           </motion.span>
 
           <motion.h1 className={styles.headline} {...fade(0.2)}>
-            22 elements. Animate anything.
-            <br /><em>Ship in one click.</em>
+            Make anything visual.
+            <br /><em>Ship it in one click.</em>
           </motion.h1>
 
           <motion.p className={styles.lede} {...fade(0.3)}>
-            Stakked is a drag-and-drop canvas for musicians, designers, and photographers.
-            Drop elements, wire up scroll animations, generate layouts with AI, then publish
-            to a CDN URL — no code, no config, no hosting bill.
+            Stakked is a drag-and-drop canvas for artists, designers, and photographers.
+            Build graphics, webpages, and digital art — then publish to a live URL
+            or export as HTML. No code. No config. Just create.
           </motion.p>
 
           <motion.div className={styles.ctaRow} {...fade(0.4)}>
             <Link href="/workspace" className={styles.cta}>
-              <Rocket size={13} /> Open workspace
+              <Rocket size={13} /> Start creating free
             </Link>
             <Link href="/how-it-works" className={styles.ctaGhost}>
-              <Play size={13} />
+              <ArrowRight size={13} />
               How it works
             </Link>
           </motion.div>
 
           <motion.dl className={styles.meta} {...fade(0.55)}>
-            <div><dt>Elements</dt><dd>22 native types</dd></div>
-            <div><dt>Animations</dt><dd>15 presets + parallax</dd></div>
+            <div><dt>Elements</dt><dd>12 native types</dd></div>
             <div><dt>Themes</dt><dd>5 palettes · live swap</dd></div>
-            <div><dt>Export</dt><dd>HTML · PNG · PDF · GIF</dd></div>
+            <div><dt>Export</dt><dd>HTML · PNG · PDF</dd></div>
+            <div><dt>Publish</dt><dd>CDN URL · one click</dd></div>
           </motion.dl>
         </div>
       </section>
@@ -114,8 +103,8 @@ export default function LandingPage() {
         viewport={{ once: true, margin: '-80px' }}
       >
         <span className={styles.sectionIdx}>01 / elements</span>
-        <h2>Every building block you need, built in.</h2>
-        <p>No embeds, no iframes. Each element renders natively and exports to clean HTML.</p>
+        <h2>Everything you need to build, built in.</h2>
+        <p>12 native element types — no embeds, no plugins, no overhead. Each one exports to clean HTML.</p>
       </motion.div>
 
       <div className={styles.sectionBody} style={{ paddingBottom: 40 }}>
@@ -143,8 +132,8 @@ export default function LandingPage() {
         viewport={{ once: true, margin: '-80px' }}
       >
         <span className={styles.sectionIdx}>02 / capabilities</span>
-        <h2>A canvas that thinks and ships.</h2>
-        <p>From first element to live URL — everything in one tool.</p>
+        <h2>A canvas built for makers.</h2>
+        <p>From blank canvas to live URL — everything in one focused tool.</p>
       </motion.div>
 
       <div className={styles.sectionBody}>
@@ -159,32 +148,32 @@ export default function LandingPage() {
             {
               Icon: MousePointer2,
               title: 'Drag, resize, layer',
-              body: 'Moveable handles for every element. Multi-select, group, lock, and reorder via the Layers panel. Right-click for context actions.',
+              body: 'Pixel-perfect handles on every element. Multi-select, group, lock, align, and reorder via the Layers panel. Right-click for context actions.',
             },
             {
               Icon: Layers3,
-              title: '15 animation presets',
-              body: 'fadeIn, slideUp, zoomIn, typewriter, elastic, bounce — triggered on scroll, click, or hover. Parallax and snap-scroll sections included.',
+              title: 'Full style control',
+              body: 'Colors, gradients, borders, shadows, typography, opacity — all exposed in the Properties panel. What you see is exactly what exports.',
             },
             {
               Icon: Sparkles,
               title: 'AI layout generator',
-              body: 'Describe your project and Gemini or Groq generates a full page layout — copy, colors, and positions — injected directly onto your canvas.',
+              body: 'Describe your project and the AI generates a full page layout — copy, colors, and positions — injected directly onto your canvas.',
             },
             {
-              Icon: Boxes,
+              Icon: Share2,
               title: 'Responsive breakpoints',
-              body: 'Desktop, tablet, and mobile views with per-breakpoint style overrides. Switch with one click; changes never bleed across breakpoints.',
+              body: 'Desktop, tablet, and mobile views with per-breakpoint overrides. Switch with one click; changes never bleed across breakpoints.',
             },
             {
-              Icon: Wand2,
-              title: 'Workflow node editor',
-              body: 'Connect pages with visual trigger nodes. Set conditions, fire custom events, and orchestrate multi-page transitions without writing JavaScript.',
+              Icon: Globe,
+              title: 'Publish anywhere',
+              body: 'Hit Publish and get a live CDN-backed URL instantly. Share it, embed it, or point your custom domain to it.',
             },
             {
               Icon: Download,
               title: 'Export everything',
-              body: 'Publish to a CDN URL or download standalone HTML. Also export as high-res PNG, JPEG, PDF, or animated GIF from the Export menu.',
+              body: 'Download standalone HTML with all interactivity intact. Also export as high-res PNG, JPEG, or PDF from the Export menu.',
             },
           ].map(({ Icon, title, body }) => (
             <motion.div
@@ -213,7 +202,7 @@ export default function LandingPage() {
         whileInView={{ opacity: 1 }}
         viewport={{ once: true, margin: '-80px' }}
       >
-        <span className={styles.sectionIdx}>03 / workflow</span>
+        <span className={styles.sectionIdx}>03 / process</span>
         <h2>Canvas to live URL. No build step.</h2>
         <p>Open the editor and ship. No config files, no terminal required.</p>
       </motion.div>
@@ -226,7 +215,7 @@ export default function LandingPage() {
           transition={{ duration: 0.8 }}
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(5, 1fr)',
+            gridTemplateColumns: 'repeat(4, 1fr)',
             border: '1px solid var(--line)',
             borderRadius: 'var(--r-md)',
             overflow: 'hidden',
@@ -234,11 +223,10 @@ export default function LandingPage() {
           }}
         >
           {[
-            { num: '01', label: 'Drag elements',    sub: '22 types from the left tray' },
-            { num: '02', label: 'Generate with AI', sub: 'Prompt Gemini or Groq' },
-            { num: '03', label: 'Add motion',       sub: 'Scroll triggers, parallax, springs' },
-            { num: '04', label: 'Preview live',     sub: 'Real tab, real breakpoints' },
-            { num: '05', label: 'Publish',          sub: 'CDN URL or download HTML' },
+            { num: '01', label: 'Drop elements',   sub: '12 types from the left panel' },
+            { num: '02', label: 'Style freely',     sub: 'Colors, fonts, shapes, layers' },
+            { num: '03', label: 'Preview live',     sub: 'Real tab, real breakpoints' },
+            { num: '04', label: 'Publish',          sub: 'CDN URL or download HTML' },
           ].map((step, i, arr) => (
             <div
               key={step.num}
@@ -295,12 +283,12 @@ export default function LandingPage() {
           The canvas is always open.
         </h2>
         <p style={{ fontSize: 15, color: 'var(--text-mute)', lineHeight: 1.6, maxWidth: 560, margin: 0 }}>
-          No sign-up required to start. Your work saves locally via IndexedDB.
+          No sign-up required to start. Your work saves locally in your browser.
           Create a free account any time to sync to the cloud and publish to a shareable URL.
         </p>
         <div className={styles.ctaRow}>
           <Link href="/workspace" className={styles.cta}>
-            <Zap size={13} /> Open workspace free
+            <Zap size={13} /> Open canvas free
           </Link>
           <Link href="/auth/signup" className={styles.ctaGhost}>
             Create account <ArrowRight size={12} />
@@ -317,7 +305,7 @@ export default function LandingPage() {
       >
         <div className={styles.leftFoot}>
           <span>{'// stakked'}</span>
-          <span>v0.3.0</span>
+          <span>v1.0</span>
         </div>
         <div className={styles.rightFoot}>
           <Link href="/features"     style={{ color: 'var(--text-dim)', textDecoration: 'none', fontFamily: 'var(--font-mono)', fontSize: 10 }}>Features</Link>

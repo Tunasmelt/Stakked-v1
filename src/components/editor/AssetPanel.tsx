@@ -267,14 +267,12 @@ export const AssetPanel: React.FC = () => {
           el.style.fills = [{ id: uuidv4(), type: 'color', value: '#3b82f6', opacity: 1, blendMode: 'normal' }];
           el.style.borderRadius = { topLeft: 999, topRight: 999, bottomRight: 999, bottomLeft: 999, unit: 'px', linked: true };
           el.style.effects.shadows = [{ id: uuidv4(), type: 'drop', x: 0, y: 0, blur: 40, spread: 8, color: '#3b82f6' }];
-          el.animations = [{ id: uuidv4(), type: 'pulse', trigger: 'onLoad', duration: 2000, delay: 0, easing: 'ease-in-out', repeat: 0 }];
         } else if (id === 'floating-img') {
           el.size = { width: 280, height: 200 };
           el.style.size.width = 280;
           el.style.size.height = 200;
           el.style.borderRadius = { topLeft: 16, topRight: 16, bottomRight: 16, bottomLeft: 16, unit: 'px', linked: true };
           el.style.effects.shadows = [{ id: uuidv4(), type: 'drop', x: 0, y: 24, blur: 48, spread: -8, color: 'rgba(0,0,0,0.5)' }];
-          el.animations = [{ id: uuidv4(), type: 'slideIn', trigger: 'whileInView', duration: 800, delay: 0, easing: 'ease-out', repeat: 0 }];
         } else if (id === 'glass-btn') {
           el.size = { width: 180, height: 52 };
           el.style.size.width = 180;

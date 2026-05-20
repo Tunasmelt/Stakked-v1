@@ -17,7 +17,6 @@ import EffectsSection from '@/components/properties/EffectsSection';
 import LayoutSection from '@/components/properties/LayoutSection';
 import OverlaysSection from '@/components/properties/OverlaysSection';
 import TransformsSection from '@/components/properties/TransformsSection';
-import AnimationSection from '@/components/properties/AnimationSection';
 import LogicSection from '@/components/properties/LogicSection';
 import ScrollSection from '@/components/properties/ScrollSection';
 import AccessibilitySection from '@/components/properties/AccessibilitySection';
@@ -35,19 +34,9 @@ const ELEMENT_DISPLAY_NAMES: Record<string, string> = {
   video:        'Video',
   embed:        'Embed',
   icon:         'Icon',
-  form:         'Form',
-  navigation:   'Navigation',
-  gallery:      'Gallery',
-  testimonial:  'Testimonial',
-  countdown:    'Countdown',
-  marquee:      'Marquee',
-  divider:      'Divider',
-  map:          'Map',
-  accordion:    'Accordion',
-  tabs:         'Tabs',
-  'social-link':'Social Link',
-  'music-player':'Music Player',
-  drawing:      'Drawing',
+  gallery:  'Gallery',
+  divider:  'Divider',
+  drawing:  'Drawing',
 };
 
 /**
@@ -145,7 +134,7 @@ export const PropertiesPanel: React.FC = () => {
         <LayoutSection element={element} pageIndex={activePageIndex} />
       </CollapsibleSection>
 
-      {(['text', 'button', 'navigation', 'testimonial', 'countdown', 'marquee', 'form', 'tabs', 'accordion', 'icon'] as string[]).includes(element.type) && (
+      {(['text', 'button', 'icon'] as string[]).includes(element.type) && (
         <CollapsibleSection title="Typography">
           <TypographySection element={element} pageIndex={activePageIndex} />
         </CollapsibleSection>
@@ -173,10 +162,6 @@ export const PropertiesPanel: React.FC = () => {
 
       <CollapsibleSection title="Transformers" defaultOpen={false}>
         <TransformsSection element={element} pageIndex={activePageIndex} />
-      </CollapsibleSection>
-
-      <CollapsibleSection title="Animation" defaultOpen={false}>
-        <AnimationSection element={element} pageIndex={activePageIndex} />
       </CollapsibleSection>
 
       <CollapsibleSection title="Logic & Interaction" defaultOpen={false}>

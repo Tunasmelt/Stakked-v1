@@ -62,23 +62,13 @@ const contentSchema = z.discriminatedUnion('type', [
   z.object({ type: z.literal('text'), html: z.string(), plainText: z.string() }),
   z.object({ type: z.literal('image'), src: z.string(), alt: z.string().default(''), objectFit: z.string().default('cover') }),
   z.object({ type: z.literal('button'), label: z.string(), url: z.string().default('#'), variant: z.string().default('primary') }),
-  z.object({ type: z.literal('social-link'), platform: z.string(), url: z.string(), displayMode: z.string().default('icon') }),
-  z.object({ type: z.literal('music-player'), platform: z.string(), url: z.string(), embedHtml: z.string().default(''), displayMode: z.string().default('embed') }),
   z.object({ type: z.literal('video'), platform: z.string(), url: z.string(), embedHtml: z.string().default(''), autoplay: z.boolean().default(false), loop: z.boolean().default(false) }),
   z.object({ type: z.literal('divider'), variant: z.string().default('solid'), color: z.string().default('#ccc') }),
   z.object({ type: z.literal('embed'), html: z.string() }),
   z.object({ type: z.literal('gallery'), images: z.array(z.object({ src: z.string(), alt: z.string() })), layout: z.string().default('grid'), columns: z.number().default(3) }),
-  z.object({ type: z.literal('countdown'), targetDate: z.string(), label: z.string().default(''), format: z.string().default('DHMS') }),
   z.object({ type: z.literal('icon'), name: z.string(), set: z.string().default('lucide'), color: z.string().default('#000'), size: z.number().default(24) }),
   z.object({ type: z.literal('shape'), variant: z.string(), fill: z.string().default('#3b82f6'), svg: z.string().optional() }),
   z.object({ type: z.literal('container'), children: z.array(z.string()).default([]), layoutType: z.string().default('free') }),
-  z.object({ type: z.literal('navigation'), links: z.array(z.object({ label: z.string(), href: z.string() })), navStyle: z.string().default('horizontal') }),
-  z.object({ type: z.literal('form'), fields: z.array(z.object({ label: z.string(), fieldType: z.string(), required: z.boolean() })), action: z.string().default('') }),
-  z.object({ type: z.literal('map'), lat: z.number(), lng: z.number(), zoom: z.number().default(14), provider: z.string().default('google') }),
-  z.object({ type: z.literal('testimonial'), quote: z.string(), author: z.string(), role: z.string().default(''), avatar: z.string().optional() }),
-  z.object({ type: z.literal('marquee'), items: z.array(z.string()), speed: z.number().default(40), direction: z.enum(['left', 'right']).default('left') }),
-  z.object({ type: z.literal('accordion'), sections: z.array(z.object({ title: z.string(), content: z.string() })) }),
-  z.object({ type: z.literal('tabs'), tabs: z.array(z.object({ label: z.string(), content: z.string() })) }),
 ]);
 
 /* --------------------------------- element --------------------------------- */
@@ -86,10 +76,9 @@ const contentSchema = z.discriminatedUnion('type', [
 export const aiElementSchema = z.object({
   id: z.string().optional(),
   type: z.enum([
-    'text', 'image', 'button', 'social-link', 'music-player',
-    'video', 'divider', 'embed', 'gallery', 'countdown',
-    'icon', 'shape', 'container', 'navigation', 'form',
-    'map', 'testimonial', 'marquee', 'accordion', 'tabs',
+    'text', 'image', 'button',
+    'video', 'divider', 'embed', 'gallery',
+    'icon', 'shape', 'container',
   ]),
   name: nonEmpty.default('Element'),
   position: positionSchema,

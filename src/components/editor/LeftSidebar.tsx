@@ -3,10 +3,10 @@
 import React, { useMemo, useState, useRef, useCallback, useEffect } from 'react';
 import {
   Plus, Layers, FileText, Image as ImageIcon,
-  Type, MousePointer2, Music, Video, Link as LinkIcon,
+  Type, MousePointer2, Video,
   Minus, Sparkles, Square, Eye, EyeOff, Lock, Unlock, Trash2,
-  Search, Box, LayoutGrid, Navigation, Globe, List, MapPin, Quote, AlignLeft,
-  Minus as LineIcon, PenLine, ChevronRight, GripVertical,
+  Search, Box, LayoutGrid, Globe,
+  Minus as LineIcon, PenLine, GripVertical,
 } from 'lucide-react';
 import { useProjectStore } from '@/stores/project-store';
 import { useEditorStore } from '@/stores/editor-store';
@@ -104,36 +104,26 @@ const TRAY_GROUPS: { heading: string; items: TrayItem[] }[] = [
   {
     heading: 'Interactive',
     items: [
-      { type: 'button',     icon: <MousePointer2 size={18} />, label: 'Button',  hot: 'B' },
-      { type: 'navigation', icon: <Navigation size={18} />,    label: 'Nav',     hot: 'N' },
-      { type: 'form',       icon: <List size={18} />,          label: 'Form',    hot: 'O' },
+      { type: 'button', icon: <MousePointer2 size={18} />, label: 'Button', hot: 'B' },
     ],
   },
   {
     heading: 'Media',
     items: [
-      { type: 'music-player', icon: <Music size={18} />,      label: 'Music',   hot: 'M' },
-      { type: 'video',        icon: <Video size={18} />,       label: 'Video',   hot: 'V' },
-      { type: 'gallery',      icon: <LayoutGrid size={18} />,  label: 'Gallery', hot: 'G' },
+      { type: 'video',   icon: <Video size={18} />,      label: 'Video',   hot: 'V' },
+      { type: 'gallery', icon: <LayoutGrid size={18} />, label: 'Gallery', hot: 'G' },
     ],
   },
   {
     heading: 'Embed',
     items: [
-      { type: 'social-link', icon: <LinkIcon size={18} />,   label: 'Social',   hot: 'L' },
-      { type: 'embed',       icon: <Globe size={18} />,      label: 'Embed',    hot: 'E' },
-      { type: 'map',         icon: <MapPin size={18} />,     label: 'Map',      hot: '.' },
+      { type: 'embed', icon: <Globe size={18} />, label: 'Embed', hot: 'E' },
     ],
   },
   {
     heading: 'Content',
     items: [
-      { type: 'icon',        icon: <Sparkles size={18} />,    label: 'Icon',        hot: 'K' },
-      { type: 'testimonial', icon: <Quote size={18} />,       label: 'Testimonial', hot: 'Q' },
-      { type: 'marquee',     icon: <AlignLeft size={18} />,   label: 'Marquee',     hot: '~' },
-      { type: 'accordion',   icon: <ChevronRight size={18} />, label: 'Accordion',  hot: 'A' },
-      { type: 'tabs',        icon: <LayoutGrid size={18} />,   label: 'Tabs',       hot: 'J' },
-      { type: 'countdown',   icon: <FileText size={18} />,     label: 'Countdown',  hot: 'U' },
+      { type: 'icon', icon: <Sparkles size={18} />, label: 'Icon', hot: 'K' },
     ],
   },
 ];
@@ -258,28 +248,18 @@ function TrayItem({ item, onDragStart, onClick }: {
 /* ── Type icons for the layers panel ──────────────────────────────────────── */
 
 const TYPE_ICONS: Record<string, React.ReactNode> = {
-  text:         <Type size={11} />,
-  image:        <ImageIcon size={11} />,
-  button:       <MousePointer2 size={11} />,
-  shape:        <Square size={11} />,
-  line:         <LineIcon size={11} />,
-  container:    <Box size={11} />,
-  video:        <Video size={11} />,
-  embed:        <Globe size={11} />,
-  icon:         <Sparkles size={11} />,
-  form:         <List size={11} />,
-  navigation:   <Navigation size={11} />,
-  gallery:      <LayoutGrid size={11} />,
-  testimonial:  <Quote size={11} />,
-  countdown:    <FileText size={11} />,
-  marquee:      <AlignLeft size={11} />,
-  divider:      <Minus size={11} />,
-  map:          <MapPin size={11} />,
-  'social-link':<LinkIcon size={11} />,
-  'music-player':<Music size={11} />,
-  drawing:      <PenLine size={11} />,
-  accordion:    <ChevronRight size={11} />,
-  tabs:         <LayoutGrid size={11} />,
+  text:      <Type size={11} />,
+  image:     <ImageIcon size={11} />,
+  button:    <MousePointer2 size={11} />,
+  shape:     <Square size={11} />,
+  line:      <LineIcon size={11} />,
+  container: <Box size={11} />,
+  video:     <Video size={11} />,
+  embed:     <Globe size={11} />,
+  icon:      <Sparkles size={11} />,
+  gallery:   <LayoutGrid size={11} />,
+  divider:   <Minus size={11} />,
+  drawing:   <PenLine size={11} />,
 };
 
 /* ── LayersPanel ───────────────────────────────────────────────────────────── */

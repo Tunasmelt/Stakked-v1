@@ -9,7 +9,6 @@ import { PropertiesPanel } from '@/components/editor/PropertiesPanel';
 import { LeftSidebar } from '@/components/editor/LeftSidebar';
 import { Toolbar } from '@/components/editor/Toolbar';
 import { KeyboardManager } from '@/components/editor/KeyboardManager';
-import { WorkflowCanvas } from '@/components/workflow/WorkflowCanvas';
 import { TweaksPanel } from '@/components/system/TweaksPanel';
 import { TutorialOverlay } from '@/components/system/TutorialOverlay';
 import ProjectSettingsModal from '@/components/editor/ProjectSettingsModal';
@@ -43,7 +42,6 @@ export default function EditorPage() {
   const zoom = useEditorStore((state) => state.zoom);
   const selectedIds = useEditorStore((state) => state.selectedElementIds);
   const breakpoint = useEditorStore((state) => state.breakpoint);
-  const viewMode = useUIStore((state) => state.viewMode);
   const leftPanelOpen = useUIStore((state) => state.leftPanelOpen);
   const rightPanelOpen = useUIStore((state) => state.rightPanelOpen);
   const { startTour } = useTutorialStore();
@@ -84,7 +82,7 @@ export default function EditorPage() {
 
         {/* Main canvas area */}
         <main className={styles.canvasArea} data-tour="canvas">
-          {viewMode === 'canvas' ? <Canvas /> : <WorkflowCanvas />}
+          <Canvas />
         </main>
 
         {/* Right panel (Properties) */}

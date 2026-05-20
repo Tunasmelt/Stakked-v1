@@ -1,14 +1,13 @@
 'use client';
 /**
  * /how-it-works — Stakked marketing page
- * Step-by-step explainer: canvas → animate → publish
  */
 import React from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import {
   MousePointer2, Sparkles, Layers3, Rocket,
-  MonitorSmartphone, Wand2, ArrowRight,
+  MonitorSmartphone, Palette, ArrowRight,
 } from 'lucide-react';
 import MarketingNav from '@/components/marketing/MarketingNav';
 import styles from '@/styles/Marketing.module.css';
@@ -18,35 +17,35 @@ const STEPS = [
     num: '01',
     icon: MousePointer2,
     title: 'Open the canvas',
-    body: 'Your workspace starts blank. Drag any of the 22 element types from the left tray — text, images, music players, countdowns, maps, forms, shapes, galleries — and arrange them on the canvas. Resize with handles, reorder in the Layers panel.',
+    body: 'Your workspace starts blank. Drag any of the 12 element types from the left panel — text, images, shapes, drawings, buttons, videos, embeds, galleries — and arrange them freely. Resize with handles, reorder in the Layers panel.',
     tag: '// start',
   },
   {
     num: '02',
-    icon: Sparkles,
-    title: 'Generate with AI',
-    body: 'Open the AI modal, describe your project ("neon DJ portfolio with a show schedule"), and Gemini or Groq generates a full layout with positioned elements, copy, and colors. Everything lands on your canvas as editable elements — nothing is locked.',
-    tag: '// generate',
+    icon: Palette,
+    title: 'Style everything',
+    body: 'Select any element and adjust colors, gradients, borders, shadows, typography, and opacity in the Properties panel. Apply a theme to instantly transform the whole canvas — choose from 5 built-in palettes or define your own.',
+    tag: '// style',
   },
   {
     num: '03',
-    icon: Wand2,
-    title: 'Add motion & interactions',
-    body: 'Select any element and open the Animation panel. Pick from 15 presets — fadeIn, slideUp, typewriter, elastic bounce — and choose a trigger: scroll into view, click, or hover. Add parallax scroll factors for depth. Chain pages with the Workflow node editor.',
-    tag: '// animate',
+    icon: Sparkles,
+    title: 'Generate with AI',
+    body: 'Open the AI modal, describe your project — "minimal photographer portfolio with a dark grid gallery" — and the AI generates a full layout with positioned elements, copy, and colors. Everything lands on your canvas as editable elements.',
+    tag: '// generate',
   },
   {
     num: '04',
     icon: Layers3,
     title: 'Preview in real-time',
-    body: 'Click Preview to open your exact published output in a new tab — animations firing, forms interactive, multi-page navigation working. Switch between desktop, tablet, and mobile to verify your responsive breakpoint overrides.',
+    body: 'Click Preview to open your exact published output in a new tab — forms interactive, multi-page navigation working. Switch between desktop, tablet, and mobile to verify your responsive breakpoint overrides.',
     tag: '// preview',
   },
   {
     num: '05',
     icon: MonitorSmartphone,
     title: 'Publish or export',
-    body: 'Hit Publish to compile every page to standalone HTML and deploy to a CDN URL at /v/your-slug. Or use the Export menu to download HTML, PNG, JPEG, PDF, or an animated GIF — all client-side, no server round-trip needed.',
+    body: 'Hit Publish to compile every page to standalone HTML and deploy to a CDN URL at /v/your-slug. Or use the Export menu to download HTML, PNG, JPEG, or PDF — all client-side, no server round-trip needed.',
     tag: '// ship',
   },
 ];
@@ -66,7 +65,7 @@ const FAQS = [
   },
   {
     q: 'How does multi-page work?',
-    a: 'Add pages from the bottom page bar. Each page compiles to its own HTML file (index.html, page-1.html, …). Navigation elements and Workflow node links resolve across pages automatically on publish.',
+    a: 'Add pages from the bottom page bar. Each page compiles to its own HTML file. Navigation elements and page links resolve across pages automatically on publish.',
   },
   {
     q: 'Can I use my own domain?',
@@ -94,13 +93,13 @@ export default function HowItWorksPage() {
         <motion.h1 className={styles.headline}
           initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1, duration: 0.8 }}>
-          From canvas<br />to <em>live URL</em> in five steps.
+          From canvas<br />to <em>live URL</em>.
         </motion.h1>
         <motion.p className={styles.lede}
           initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.7 }}>
-          Stakked is a visual builder for digital artists. Here&apos;s exactly how a project
-          goes from idea to published page.
+          Stakked is a visual canvas for creators. Here&apos;s exactly how a project
+          goes from blank to published page.
         </motion.p>
       </section>
 
@@ -174,25 +173,19 @@ export default function HowItWorksPage() {
         </div>
       </section>
 
-      <MarketingFooter />
+      <footer className={styles.footer}>
+        <div className={styles.footerInner}>
+          <span className={styles.footerBrand}>{'// stakked · creative canvas'}</span>
+          <nav className={styles.footerNav}>
+            <Link href="/features" className={styles.footerLink}>Features</Link>
+            <Link href="/how-it-works" className={styles.footerLink}>How it works</Link>
+            <Link href="/docs" className={styles.footerLink}>Docs</Link>
+            <Link href="/changelog" className={styles.footerLink}>Changelog</Link>
+            <Link href="/community" className={styles.footerLink}>Community</Link>
+          </nav>
+          <span className={styles.footerRight}>v1.0</span>
+        </div>
+      </footer>
     </main>
-  );
-}
-
-function MarketingFooter() {
-  return (
-    <footer className={styles.footer}>
-      <div className={styles.footerInner}>
-        <span className={styles.footerBrand}>{'// stakked · creative os'}</span>
-        <nav className={styles.footerNav}>
-          <Link href="/features" className={styles.footerLink}>Features</Link>
-          <Link href="/how-it-works" className={styles.footerLink}>How it works</Link>
-          <Link href="/docs" className={styles.footerLink}>Docs</Link>
-          <Link href="/changelog" className={styles.footerLink}>Changelog</Link>
-          <Link href="/community" className={styles.footerLink}>Community</Link>
-        </nav>
-        <span className={styles.footerRight}>v0.3.0 · phase 5</span>
-      </div>
-    </footer>
   );
 }

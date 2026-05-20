@@ -1,5 +1,4 @@
 import { StakkedElementFullStyle } from './style';
-import { Animation } from './animation';
 import { v4 as uuidv4 } from 'uuid';
 
 /**
@@ -21,32 +20,21 @@ export interface ElementBehavior {
  * All possible element types in the Stakked ecosystem.
  */
 export type ElementType =
-  | 'text' | 'image' | 'button' | 'social-link' | 'music-player'
-  | 'video' | 'divider' | 'embed' | 'gallery' | 'countdown'
-  | 'icon' | 'shape' | 'container' | 'navigation' | 'form'
-  | 'map' | 'testimonial' | 'marquee' | 'accordion' | 'tabs'
+  | 'text' | 'image' | 'button'
+  | 'video' | 'divider' | 'embed' | 'gallery'
+  | 'icon' | 'shape' | 'container'
   | 'line' | 'drawing';
 
 export interface StakkedTextContent { type: 'text'; html: string; plainText: string }
 export interface StakkedImageContent { type: 'image'; src: string; alt: string; objectFit: string }
 export interface StakkedButtonContent { type: 'button'; label: string; url: string; variant: string }
-export interface StakkedSocialContent { type: 'social-link'; platform: string; url: string; displayMode: string }
-export interface StakkedMusicContent { type: 'music-player'; platform: string; url: string; embedHtml: string; displayMode: string }
 export interface StakkedVideoContent { type: 'video'; platform: string; url: string; embedHtml: string; autoplay: boolean; loop: boolean }
 export interface StakkedDividerContent { type: 'divider'; variant: string; color: string }
 export interface StakkedEmbedContent { type: 'embed'; html: string }
 export interface StakkedGalleryContent { type: 'gallery'; images: { src: string; alt: string }[]; layout: string; columns: number }
-export interface StakkedCountdownContent { type: 'countdown'; targetDate: string; label: string; format: string }
 export interface StakkedIconContent { type: 'icon'; name: string; set: string; color: string; size: number }
 export interface StakkedShapeContent { type: 'shape'; variant: string; fill: string; svg?: string }
 export interface StakkedContainerContent { type: 'container'; children: string[]; layoutType: string }
-export interface StakkedNavContent { type: 'navigation'; links: { label: string; href: string }[]; navStyle: string }
-export interface StakkedFormContent { type: 'form'; fields: { label: string; fieldType: string; required: boolean }[]; action: string }
-export interface StakkedMapContent { type: 'map'; lat: number; lng: number; zoom: number; provider: string }
-export interface StakkedTestimonialContent { type: 'testimonial'; quote: string; author: string; role: string; avatar?: string }
-export interface StakkedMarqueeContent { type: 'marquee'; items: string[]; speed: number; direction: 'left' | 'right' }
-export interface StakkedAccordionContent { type: 'accordion'; sections: { title: string; content: string }[] }
-export interface StakkedTabsContent { type: 'tabs'; tabs: { label: string; content: string }[] }
 
 export interface StakkedLineContent {
   type: 'line';
@@ -88,23 +76,13 @@ export type ElementContent =
   | StakkedTextContent
   | StakkedImageContent
   | StakkedButtonContent
-  | StakkedSocialContent
-  | StakkedMusicContent
   | StakkedVideoContent
   | StakkedDividerContent
   | StakkedEmbedContent
   | StakkedGalleryContent
-  | StakkedCountdownContent
   | StakkedIconContent
   | StakkedShapeContent
   | StakkedContainerContent
-  | StakkedNavContent
-  | StakkedFormContent
-  | StakkedMapContent
-  | StakkedTestimonialContent
-  | StakkedMarqueeContent
-  | StakkedAccordionContent
-  | StakkedTabsContent
   | StakkedLineContent
   | StakkedDrawingContent;
 
@@ -129,7 +107,6 @@ export interface StakkedElement {
   layoutTransition?: boolean;
   content: ElementContent;
   style: StakkedElementFullStyle;
-  animations: Animation[];
   behaviors: ElementBehavior[];
 }
 
@@ -214,49 +191,6 @@ export function defaultElement(type: ElementType): StakkedElement {
         maxLines: 1
       };
       break;
-    case 'social-link':
-      content = {
-        type: 'social-link',
-        platform: 'instagram',
-        url: 'https://instagram.com/stakked',
-        displayMode: 'icon+text'
-      };
-      baseStyle.size.width = 220;
-      baseStyle.size.height = 56;
-      baseStyle.fills[0].value = '#18181b';
-      baseStyle.border.top.width = 1;
-      baseStyle.border.right.width = 1;
-      baseStyle.border.bottom.width = 1;
-      baseStyle.border.left.width = 1;
-      baseStyle.border.top.color = '#27272a';
-      baseStyle.border.right.color = '#27272a';
-      baseStyle.border.bottom.color = '#27272a';
-      baseStyle.border.left.color = '#27272a';
-      baseStyle.border.top.style = 'solid';
-      baseStyle.border.right.style = 'solid';
-      baseStyle.border.bottom.style = 'solid';
-      baseStyle.border.left.style = 'solid';
-      baseStyle.borderRadius.topLeft = 14;
-      baseStyle.borderRadius.topRight = 14;
-      baseStyle.borderRadius.bottomRight = 14;
-      baseStyle.borderRadius.bottomLeft = 14;
-      break;
-    case 'music-player':
-      content = {
-        type: 'music-player',
-        platform: 'spotify',
-        url: '',
-        embedHtml: '',
-        displayMode: 'full'
-      };
-      baseStyle.size.width = 320;
-      baseStyle.size.height = 180;
-      baseStyle.fills[0].value = '#111827';
-      baseStyle.borderRadius.topLeft = 16;
-      baseStyle.borderRadius.topRight = 16;
-      baseStyle.borderRadius.bottomRight = 16;
-      baseStyle.borderRadius.bottomLeft = 16;
-      break;
     case 'video':
       content = {
         type: 'video',
@@ -309,16 +243,6 @@ export function defaultElement(type: ElementType): StakkedElement {
       baseStyle.borderRadius.bottomRight = 16;
       baseStyle.borderRadius.bottomLeft = 16;
       break;
-    case 'countdown':
-      content = {
-        type: 'countdown',
-        targetDate: new Date(Date.now() + 1000 * 60 * 60 * 24 * 14).toISOString(),
-        label: 'Launch',
-        format: 'dd:hh:mm:ss'
-      };
-      baseStyle.size.width = 320;
-      baseStyle.size.height = 96;
-      break;
     case 'icon':
       content = { type: 'icon', name: 'Star', set: 'lucide', color: '#ffffff', size: 48 };
       baseStyle.size.width = 96;
@@ -340,163 +264,6 @@ export function defaultElement(type: ElementType): StakkedElement {
       baseStyle.borderRadius.topRight = 12;
       baseStyle.borderRadius.bottomRight = 12;
       baseStyle.borderRadius.bottomLeft = 12;
-      break;
-    case 'navigation':
-      content = {
-        type: 'navigation',
-        links: [
-          { label: 'Home', href: '#' },
-          { label: 'Work', href: '#' },
-          { label: 'About', href: '#' },
-          { label: 'Contact', href: '#' },
-        ],
-        navStyle: 'horizontal',
-      };
-      baseStyle.size.width = 640;
-      baseStyle.size.height = 56;
-      baseStyle.fills[0].value = 'rgba(17, 24, 39, 0.8)';
-      baseStyle.typography = {
-        fontFamily: 'Inter, sans-serif',
-        fontSize: 14,
-        fontWeight: 500,
-        fontStyle: 'normal',
-        color: '#ffffff',
-        textAlign: 'left',
-        textDecoration: 'none',
-        textTransform: 'none',
-        lineHeight: 1.2,
-        letterSpacing: 0,
-        wordSpacing: 0,
-        textShadow: 'none',
-        truncate: false,
-        maxLines: 1,
-      };
-      break;
-    case 'form':
-      content = {
-        type: 'form',
-        fields: [
-          { label: 'Name', fieldType: 'text', required: true },
-          { label: 'Email', fieldType: 'email', required: true },
-          { label: 'Message', fieldType: 'textarea', required: false },
-        ],
-        action: '',
-      };
-      baseStyle.size.width = 360;
-      baseStyle.size.height = 320;
-      baseStyle.fills[0].value = 'rgba(24, 24, 27, 0.95)';
-      baseStyle.borderRadius.topLeft = 12;
-      baseStyle.borderRadius.topRight = 12;
-      baseStyle.borderRadius.bottomRight = 12;
-      baseStyle.borderRadius.bottomLeft = 12;
-      break;
-    case 'map':
-      content = {
-        type: 'map',
-        lat: 40.7128,
-        lng: -74.006,
-        zoom: 12,
-        provider: 'google',
-      };
-      baseStyle.size.width = 360;
-      baseStyle.size.height = 240;
-      baseStyle.borderRadius.topLeft = 12;
-      baseStyle.borderRadius.topRight = 12;
-      baseStyle.borderRadius.bottomRight = 12;
-      baseStyle.borderRadius.bottomLeft = 12;
-      baseStyle.effects.overflow = 'hidden';
-      break;
-    case 'testimonial':
-      content = {
-        type: 'testimonial',
-        quote: 'Stakked let me ship my portfolio in a weekend.',
-        author: 'Jane Doe',
-        role: 'Photographer',
-      };
-      baseStyle.size.width = 360;
-      baseStyle.size.height = 180;
-      baseStyle.fills[0].value = 'rgba(24, 24, 27, 0.9)';
-      baseStyle.borderRadius.topLeft = 12;
-      baseStyle.borderRadius.topRight = 12;
-      baseStyle.borderRadius.bottomRight = 12;
-      baseStyle.borderRadius.bottomLeft = 12;
-      baseStyle.typography = {
-        fontFamily: 'Inter, sans-serif',
-        fontSize: 16,
-        fontWeight: 400,
-        fontStyle: 'normal',
-        color: '#ffffff',
-        textAlign: 'left',
-        textDecoration: 'none',
-        textTransform: 'none',
-        lineHeight: 1.4,
-        letterSpacing: 0,
-        wordSpacing: 0,
-        textShadow: 'none',
-        truncate: false,
-        maxLines: 0,
-      };
-      break;
-    case 'marquee':
-      content = {
-        type: 'marquee',
-        items: ['NEW ALBUM OUT NOW', 'TOUR 2026', 'LIMITED MERCH DROP'],
-        speed: 40,
-        direction: 'left',
-      };
-      baseStyle.size.width = 640;
-      baseStyle.size.height = 48;
-      baseStyle.fills[0].value = '#000000';
-      baseStyle.typography = {
-        fontFamily: 'Inter, sans-serif',
-        fontSize: 16,
-        fontWeight: 700,
-        fontStyle: 'normal',
-        color: '#ffffff',
-        textAlign: 'left',
-        textDecoration: 'none',
-        textTransform: 'uppercase',
-        lineHeight: 1,
-        letterSpacing: 1,
-        wordSpacing: 0,
-        textShadow: 'none',
-        truncate: false,
-        maxLines: 1,
-      };
-      break;
-    case 'accordion':
-      content = {
-        type: 'accordion',
-        sections: [
-          { title: 'What is Stakked?', content: 'A drag-and-drop visual OS for creators.' },
-          { title: 'How do I get started?', content: 'Pick a template and drop in your links, images, and music.' },
-          { title: 'Can I export?', content: 'Yes — PNG, PDF, HTML, and more.' },
-        ],
-      };
-      baseStyle.size.width = 420;
-      baseStyle.size.height = 260;
-      baseStyle.fills[0].value = 'rgba(24, 24, 27, 0.9)';
-      baseStyle.borderRadius.topLeft = 12;
-      baseStyle.borderRadius.topRight = 12;
-      baseStyle.borderRadius.bottomRight = 12;
-      baseStyle.borderRadius.bottomLeft = 12;
-      break;
-    case 'tabs':
-      content = {
-        type: 'tabs',
-        tabs: [
-          { label: 'Overview', content: 'Welcome to Stakked.' },
-          { label: 'Details', content: 'Details go here.' },
-          { label: 'FAQ', content: 'Frequently asked questions.' },
-        ],
-      };
-      baseStyle.size.width = 420;
-      baseStyle.size.height = 220;
-      baseStyle.fills[0].value = 'rgba(24, 24, 27, 0.9)';
-      baseStyle.borderRadius.topLeft = 10;
-      baseStyle.borderRadius.topRight = 10;
-      baseStyle.borderRadius.bottomRight = 10;
-      baseStyle.borderRadius.bottomLeft = 10;
       break;
     case 'line':
       content = {
@@ -538,7 +305,6 @@ export function defaultElement(type: ElementType): StakkedElement {
     locked: false,
     content,
     style: baseStyle,
-    animations: [],
     behaviors: [],
   };
 }

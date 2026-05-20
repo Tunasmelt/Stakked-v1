@@ -5,8 +5,8 @@ import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import {
   MousePointer2, Hand, Undo2, Redo2, Eye,
-  Maximize, Rocket, Sparkles, Wand2, FileText, SlidersHorizontal, Download, Search, Settings,
-  Play, Square, LayoutDashboard, Workflow, WifiOff, LogIn, LogOut, User, ZoomIn, ZoomOut,
+  Maximize, Rocket, Sparkles, FileText, SlidersHorizontal, Download, Search, Settings,
+  Play, Square, WifiOff, LogIn, LogOut, User, ZoomIn, ZoomOut,
   Image as ImageIcon, Film
 } from 'lucide-react';
 import { useProjectStore } from '@/stores/project-store';
@@ -16,7 +16,6 @@ import { supabase, isSupabaseConfigured } from '@/lib/supabase';
 import { BreakpointSwitcher } from './BreakpointSwitcher';
 import AIGenerateModal from './AIGenerateModal';
 import PublishModal from './PublishModal';
-import { defaultAnimation } from '@/lib/animation-engine';
 import { exportMedia, ExportFormat } from '@/lib/export-media';
 import { downloadBlob } from '@/lib/export-image';
 import { compileProjectToHtml } from '@/lib/export';
@@ -56,9 +55,6 @@ export const Toolbar: React.FC = () => {
   const setPreviewMode       = useUIStore(state => state.setPreviewMode);
   const setCommandPaletteOpen = useUIStore(state => state.setCommandPaletteOpen);
   const setSettingsModalOpen = useUIStore(state => state.setSettingsModalOpen);
-  const viewMode             = useUIStore(state => state.viewMode);
-  const setViewMode          = useUIStore(state => state.setViewMode);
-
   const [isOnline, setIsOnline] = useState(() =>
     typeof navigator !== 'undefined' ? navigator.onLine : true
   );
@@ -179,29 +175,9 @@ export const Toolbar: React.FC = () => {
   }, []);
 
   /**
-   * Auto Animate: sort visible elements by Y and cascade a fadeIn with a
-   * 100ms stagger under a single undo checkpoint.
+   * Placeholder to keep the section boundary (auto-animate removed with animations)
+   * (auto-animate removed — animations feature removed from this build)
    */
-  const handleAutoAnimate = () => {
-    if (!project) return;
-    const page = project.pages[activePageIndex];
-    if (!page || page.elements.length === 0) return;
-
-    const sorted = [...page.elements]
-      .filter((el) => el.visible !== false)
-      .sort((a, b) => a.position.y - b.position.y);
-
-    commit(); // single undo checkpoint for the whole batch
-    sorted.forEach((el, i) => {
-      const anim = defaultAnimation('fadeIn');
-      anim.trigger = 'whileInView';
-      anim.delay = i * 100;
-      anim.duration = 600;
-      anim.easing = 'ease-out';
-      // skipCommit=true — commit() above already created the checkpoint
-      updateElement(activePageIndex, el.id, { animations: [anim] }, true);
-    });
-  };
 
   const handleExport = async (format: ExportFormat | 'html') => {
     if (!project) return;
@@ -252,31 +228,6 @@ export const Toolbar: React.FC = () => {
         >
           <Hand size={14} />
         </button>
-      </div>
-
-      <div className={styles.divider} />
-
-      {/* View Mode Toggle */}
-      <div className={styles.group}>
-        <div className={styles.segmentedControl}>
-          <button
-            className={`${styles.segment} ${viewMode === 'canvas' ? styles.active : ''}`}
-            onClick={() => setViewMode('canvas')}
-            title="Design Canvas (Esc)"
-          >
-            <LayoutDashboard size={13} />
-            <span>Design</span>
-          </button>
-          <button
-            className={`${styles.segment} ${viewMode === 'workflow' ? styles.active : ''}`}
-            onClick={() => setViewMode('workflow')}
-            title="Logic Workflow (W)"
-            data-tour="toolbar-workflow"
-          >
-            <Workflow size={13} />
-            <span>Workflow</span>
-          </button>
-        </div>
       </div>
 
       <div className={styles.divider} />
@@ -379,14 +330,6 @@ export const Toolbar: React.FC = () => {
         >
           <Sparkles size={13} />
           <span>AI</span>
-        </button>
-        <button
-          className={styles.ghostBtn}
-          onClick={handleAutoAnimate}
-          title="Auto-animate visible elements"
-        >
-          <Wand2 size={13} />
-          <span>Auto</span>
         </button>
         <button
           className={styles.iconbtn}

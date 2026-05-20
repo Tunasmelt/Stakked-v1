@@ -1,11 +1,9 @@
 'use client';
 
-import React, { CSSProperties, createContext, useContext, useEffect, useState } from 'react';
+import React, { CSSProperties, createContext, useContext } from 'react';
 import { motion, useScroll, useTransform, useMotionValue } from 'framer-motion';
 import { StakkedProject, StakkedPage } from '@/types/project';
-import { StakkedElement, StakkedFormContent } from '@/types/element';
-import { Animation } from '@/types/animation';
-import { getMotionTriggerProps } from '@/lib/animation-engine';
+import { StakkedElement } from '@/types/element';
 import { sanitizeHtml, sanitizeEmbedHtml, sanitizeSvg } from '@/lib/sanitize';
 
 /**
@@ -20,13 +18,6 @@ import { sanitizeHtml, sanitizeEmbedHtml, sanitizeSvg } from '@/lib/sanitize';
  * Intentionally avoids any zustand or editor imports so it can be reused
  * in static page rendering and mobile previews.
  */
-
-/** Carries project identity into deeply nested components (e.g. PreviewForm) */
-interface ProjectMeta {
-  projectId: string;
-  ownerId: string | undefined;
-}
-const ProjectMetaContext = createContext<ProjectMeta>({ projectId: '', ownerId: undefined });
 
 /** Full element map threaded down so container cases can look up children. */
 const ElementMapContext = createContext<Map<string, StakkedElement>>(new Map());
@@ -63,7 +54,6 @@ export default function PreviewRenderer({ project, pageIndex = 0 }: Props) {
   }
 
   return (
-    <ProjectMetaContext.Provider value={{ projectId: project.id, ownerId: project.userId }}>
     <ElementMapContext.Provider value={elementMap}>
     <div
       style={{
@@ -93,7 +83,6 @@ export default function PreviewRenderer({ project, pageIndex = 0 }: Props) {
       </div>
     </div>
     </ElementMapContext.Provider>
-    </ProjectMetaContext.Provider>
   );
 }
 
@@ -114,9 +103,6 @@ function PreviewElement({ element }: { element: StakkedElement }) {
   const xOffset = useTransform(scrollY, (v) =>
     parallaxEnabled && parallaxDirection === 'horizontal' ? -v * parallaxSpeed : 0,
   );
-
-  const anim: Animation | undefined = element.animations?.[0];
-  const [animTriggered, setAnimTriggered] = useState(false);
 
   const snap = element.style.scrollSection?.enabled
     ? {
@@ -166,10 +152,6 @@ function PreviewElement({ element }: { element: StakkedElement }) {
     ...buildStaticStyle(element),
   };
 
-  const motionProps = anim
-    ? getMotionTriggerProps(anim, anim.trigger === 'onClick' ? animTriggered : false)
-    : {};
-
   return (
     <motion.div
       style={{
@@ -177,8 +159,6 @@ function PreviewElement({ element }: { element: StakkedElement }) {
         y: parallaxEnabled && parallaxDirection === 'vertical' ? yOffset : staticY,
         x: parallaxEnabled && parallaxDirection === 'horizontal' ? xOffset : 0,
       }}
-      {...motionProps}
-      onClick={anim?.trigger === 'onClick' ? () => setAnimTriggered(v => !v) : undefined}
     >
       <ContentRenderer element={element} />
     </motion.div>
@@ -268,12 +248,6 @@ function ContentRenderer({ element }: { element: StakkedElement }) {
         />
       );
     }
-    case 'music-player':
-      return content.embedHtml ? (
-        <div style={{ width: '100%', height: '100%' }} dangerouslySetInnerHTML={{ __html: sanitizeEmbedHtml(content.embedHtml) }} />
-      ) : (
-        <Placeholder label={`${content.platform} player`} />
-      );
     case 'icon': {
       // Render via Iconify CDN web component. Cast to any to satisfy TS for custom element attrs.
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -342,63 +316,6 @@ function ContentRenderer({ element }: { element: StakkedElement }) {
         </div>
       );
     }
-    case 'social-link':
-      return (
-        <a
-          href={content.url}
-          style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%', color: '#fff', textTransform: 'capitalize', textDecoration: 'none' }}
-        >
-          {content.platform}
-        </a>
-      );
-    case 'marquee':
-      return <MarqueeRenderer items={content.items} speed={content.speed} direction={content.direction} />;
-    case 'countdown':
-      return <CountdownRenderer targetDate={content.targetDate} label={content.label} />;
-    case 'testimonial':
-      return (
-        <blockquote style={{ padding: 16, margin: 0, color: '#fff' }}>
-          <p style={{ fontStyle: 'italic', margin: 0 }}>&ldquo;{content.quote}&rdquo;</p>
-          <footer style={{ marginTop: 8, fontSize: 12, opacity: 0.7 }}>
-            — {content.author}
-            {content.role && `, ${content.role}`}
-          </footer>
-        </blockquote>
-      );
-    case 'navigation':
-      return (
-        <nav style={{ display: 'flex', gap: 12, alignItems: 'center', width: '100%', height: '100%' }}>
-          {content.links.map((l, i) => (
-            <a key={`${l.href}-${i}`} href={l.href} style={{ color: '#fff', textDecoration: 'none' }}>
-              {l.label}
-            </a>
-          ))}
-        </nav>
-      );
-    case 'form':
-      return <PreviewForm content={content} elementId={element.id} />;
-
-    case 'map':
-      return (
-        <iframe
-          title="map"
-          src={`https://maps.google.com/maps?q=${content.lat},${content.lng}&z=${content.zoom}&output=embed`}
-          style={{ width: '100%', height: '100%', border: 0 }}
-        />
-      );
-    case 'accordion':
-      return (
-        <div style={{ width: '100%', height: '100%' }}>
-          {content.sections.map((s, i) => (
-            <details key={`${s.title}-${i}`} style={{ padding: 6 }}>
-              <summary>{s.title}</summary>
-              <div>{s.content}</div>
-            </details>
-          ))}
-        </div>
-      );
-    case 'tabs':
-      return <TabsRenderer tabs={content.tabs} />;
     case 'line': {
       const thickness = content.thickness ?? 2;
       const halfHt = thickness / 2 + 1;
@@ -541,192 +458,6 @@ function ShapeRenderer({ variant, fill, svg }: { variant: string; fill: string; 
     default:
       return <div style={{ width: '100%', height: '100%', background: fill }} />;
   }
-}
-
-// Inject marquee keyframes once per document — not once per component instance
-let marqueeStyleInjected = false;
-function ensureMarqueeStyles() {
-  if (marqueeStyleInjected || typeof document === 'undefined') return;
-  marqueeStyleInjected = true;
-  const el = document.createElement('style');
-  el.id = 'stakked-marquee-keyframes';
-  el.textContent = `
-    @keyframes stakked-marquee-left  { from { transform: translateX(0);    } to { transform: translateX(-50%); } }
-    @keyframes stakked-marquee-right { from { transform: translateX(-50%); } to { transform: translateX(0);    } }
-  `;
-  document.head.appendChild(el);
-}
-
-function MarqueeRenderer({ items, speed, direction }: { items: string[]; speed: number; direction: 'left' | 'right' }) {
-  useEffect(() => { ensureMarqueeStyles(); }, []);
-  const duration = Math.max(6, 60 / Math.max(speed, 1));
-  const loop = [...items, ...items];
-  return (
-    <div style={{ overflow: 'hidden', width: '100%', height: '100%', display: 'flex', alignItems: 'center' }}>
-      <div
-        style={{
-          display: 'inline-flex',
-          gap: 24,
-          whiteSpace: 'nowrap',
-          animation: `stakked-marquee-${direction} ${duration}s linear infinite`,
-        }}
-      >
-        {loop.map((item, i) => (
-          <span key={`${item}-${i}`} style={{ fontSize: 14, color: '#fff' }}>{item}</span>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function CountdownRenderer({ targetDate, label }: { targetDate: string; label: string }) {
-  const [now, setNow] = useState(() => Date.now());
-  useEffect(() => {
-    const t = setInterval(() => setNow(Date.now()), 1000);
-    return () => clearInterval(t);
-  }, []);
-
-  const diff = Math.max(0, new Date(targetDate).getTime() - now);
-  const d = Math.floor(diff / 86_400_000);
-  const h = Math.floor((diff % 86_400_000) / 3_600_000);
-  const m = Math.floor((diff % 3_600_000) / 60_000);
-  const s = Math.floor((diff % 60_000) / 1000);
-
-  return (
-    <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100%', color: '#fff' }}>
-      <div style={{ fontSize: 11, opacity: 0.7, marginBottom: 4 }}>{label}</div>
-      <div style={{ fontVariantNumeric: 'tabular-nums', fontSize: 22, fontWeight: 700 }}>
-        {d}d {pad(h)}:{pad(m)}:{pad(s)}
-      </div>
-    </div>
-  );
-}
-
-function pad(n: number) {
-  return n.toString().padStart(2, '0');
-}
-
-function TabsRenderer({ tabs }: { tabs: { label: string; content: string }[] }) {
-  const [i, setI] = useState(0);
-  const safe = i < tabs.length ? i : 0;
-  return (
-    <div style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column' }}>
-      <div style={{ display: 'flex', gap: 6, borderBottom: '1px solid rgba(255,255,255,0.15)', marginBottom: 6 }}>
-        {tabs.map((t, idx) => (
-          <button
-            key={`${t.label}-${idx}`}
-            onClick={() => setI(idx)}
-            style={{
-              padding: '6px 10px',
-              border: 'none',
-              background: 'transparent',
-              color: idx === safe ? '#fff' : 'rgba(255,255,255,0.5)',
-              borderBottom: idx === safe ? '2px solid #3b82f6' : '2px solid transparent',
-              cursor: 'pointer',
-            }}
-          >
-            {t.label}
-          </button>
-        ))}
-      </div>
-      <div style={{ color: '#fff', fontSize: 12 }}>{tabs[safe]?.content}</div>
-    </div>
-  );
-}
-
-/* ----------------------------- PreviewForm -------------------------------- */
-
-function PreviewForm({ content, elementId }: { content: StakkedFormContent; elementId: string }) {
-  const { projectId, ownerId } = useContext(ProjectMetaContext);
-  const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
-  const [values, setValues] = useState<Record<string, string>>(() =>
-    Object.fromEntries(content.fields.map((f) => [f.label, ''])),
-  );
-  // Re-sync when field definitions change (e.g. project hot-reload in preview)
-  useEffect(() => {
-    setValues(Object.fromEntries(content.fields.map((f) => [f.label, ''])));
-  }, [content.fields]);
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    // If a custom action URL is set, fall back to native browser form POST
-    if (content.action && content.action.startsWith('http')) {
-      (e.target as HTMLFormElement).submit();
-      return;
-    }
-    setStatus('sending');
-    try {
-      const { supabase } = await import('@/lib/supabase');
-      if (!supabase) throw new Error('Supabase not configured');
-      const { error } = await supabase.from('form_submissions').insert({
-        element_id: elementId,
-        project_id: projectId || null,
-        owner_id:   ownerId   || null,
-        data: values,
-        submitted_at: new Date().toISOString(),
-      });
-      if (error) throw error;
-      setStatus('success');
-    } catch {
-      setStatus('error');
-    }
-  };
-
-  if (status === 'success') {
-    return (
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%', color: '#4ade80', fontWeight: 600 }}>
-        ✓ Submitted!
-      </div>
-    );
-  }
-
-  return (
-    <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 8, width: '100%', height: '100%', padding: 8, boxSizing: 'border-box' }}>
-      {content.fields.map((f, i) => (
-        <label key={`${f.label}-${i}`} style={{ display: 'flex', flexDirection: 'column', fontSize: 12, gap: 3 }}>
-          <span>
-            {f.label}
-            {f.required && <span style={{ color: '#f87171', marginLeft: 2 }}>*</span>}
-          </span>
-          {f.fieldType === 'textarea' ? (
-            <textarea
-              name={f.label}
-              required={f.required}
-              rows={3}
-              value={values[f.label] ?? ''}
-              onChange={(e) => setValues((v) => ({ ...v, [f.label]: e.target.value }))}
-              style={{ padding: 6, borderRadius: 6, border: '1px solid rgba(255,255,255,0.2)', background: 'rgba(255,255,255,0.06)', color: 'inherit', resize: 'vertical' }}
-            />
-          ) : f.fieldType === 'checkbox' ? (
-            <input
-              type="checkbox"
-              name={f.label}
-              required={f.required}
-              checked={values[f.label] === 'true'}
-              onChange={(e) => setValues((v) => ({ ...v, [f.label]: String(e.target.checked) }))}
-            />
-          ) : (
-            <input
-              type={f.fieldType}
-              name={f.label}
-              required={f.required}
-              value={values[f.label] ?? ''}
-              onChange={(e) => setValues((v) => ({ ...v, [f.label]: e.target.value }))}
-              style={{ padding: 6, borderRadius: 6, border: '1px solid rgba(255,255,255,0.2)', background: 'rgba(255,255,255,0.06)', color: 'inherit' }}
-            />
-          )}
-        </label>
-      ))}
-      {status === 'error' && <p style={{ color: '#f87171', fontSize: 11, margin: 0 }}>Submission failed. Please try again.</p>}
-      <button
-        type="submit"
-        disabled={status === 'sending'}
-        style={{ marginTop: 'auto', padding: '8px 16px', borderRadius: 8, border: 'none', background: '#3b82f6', color: '#fff', fontWeight: 600, cursor: 'pointer', opacity: status === 'sending' ? 0.6 : 1 }}
-      >
-        {status === 'sending' ? 'Sending…' : 'Submit'}
-      </button>
-    </form>
-  );
 }
 
 /* ---------------------- video embed URL resolver --------------------------- */

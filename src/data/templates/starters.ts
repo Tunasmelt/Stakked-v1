@@ -96,7 +96,6 @@ export const STARTER_TEMPLATES: Record<string, Partial<StakkedProject>> = {
               overlays: [],
               transform: { rotation: 0, scaleX: 1, scaleY: 1, skewX: 0, skewY: 0, translateX: 0, translateY: 0, origin: 'center', perspective: 1000, rotateX: 0, rotateY: 0 }
             },
-            animations: [],
             behaviors: []
           },
           {
@@ -147,7 +146,6 @@ export const STARTER_TEMPLATES: Record<string, Partial<StakkedProject>> = {
                 maxLines: 0
               }
             },
-            animations: [],
             behaviors: []
           },
           {
@@ -198,7 +196,6 @@ export const STARTER_TEMPLATES: Record<string, Partial<StakkedProject>> = {
                 maxLines: 0
               }
             },
-            animations: [],
             behaviors: []
           },
           {
@@ -238,81 +235,8 @@ export const STARTER_TEMPLATES: Record<string, Partial<StakkedProject>> = {
               overlays: [],
               transform: { rotation: 0, scaleX: 1, scaleY: 1, skewX: 0, skewY: 0, translateX: 0, translateY: 0, origin: 'center', perspective: 1000, rotateX: 0, rotateY: 0 }
             },
-            animations: [],
             behaviors: []
           },
-          {
-            id: 'pp-social-instagram',
-            type: 'social-link',
-            name: 'Instagram Link',
-            position: { x: 80, y: 1020 },
-            size: { width: 200, height: 52 },
-            rotation: 0,
-            zIndex: 1,
-            visible: true,
-            locked: false,
-            content: {
-              type: 'social-link',
-              platform: 'instagram',
-              url: 'https://instagram.com/',
-              displayMode: 'icon+text'
-            },
-            style: {
-              responsive: {},
-              position: { type: 'absolute', x: 80, y: 1020 },
-              size: { width: 200, height: 52, widthMode: 'px', heightMode: 'px' },
-              fills: [{ id: 'pp-si-fill', type: 'color', value: '#18181b', opacity: 1, blendMode: 'normal' }],
-              border: {
-                top: { width: 1, color: '#3f3f46', style: 'solid' },
-                right: { width: 1, color: '#3f3f46', style: 'solid' },
-                bottom: { width: 1, color: '#3f3f46', style: 'solid' },
-                left: { width: 1, color: '#3f3f46', style: 'solid' },
-                linked: true
-              },
-              borderRadius: { topLeft: 12, topRight: 12, bottomRight: 12, bottomLeft: 12, unit: 'px', linked: true },
-              effects: { opacity: 1, visible: true, overflow: 'visible', cursor: 'pointer', shadows: [], backdropFilter: 'none' },
-              overlays: [],
-              transform: { rotation: 0, scaleX: 1, scaleY: 1, skewX: 0, skewY: 0, translateX: 0, translateY: 0, origin: 'center', perspective: 1000, rotateX: 0, rotateY: 0 }
-            },
-            animations: [],
-            behaviors: []
-          },
-          {
-            id: 'pp-social-twitter',
-            type: 'social-link',
-            name: 'Twitter Link',
-            position: { x: 296, y: 1020 },
-            size: { width: 200, height: 52 },
-            rotation: 0,
-            zIndex: 1,
-            visible: true,
-            locked: false,
-            content: {
-              type: 'social-link',
-              platform: 'twitter',
-              url: 'https://twitter.com/',
-              displayMode: 'icon+text'
-            },
-            style: {
-              responsive: {},
-              position: { type: 'absolute', x: 296, y: 1020 },
-              size: { width: 200, height: 52, widthMode: 'px', heightMode: 'px' },
-              fills: [{ id: 'pp-st2-fill', type: 'color', value: '#18181b', opacity: 1, blendMode: 'normal' }],
-              border: {
-                top: { width: 1, color: '#3f3f46', style: 'solid' },
-                right: { width: 1, color: '#3f3f46', style: 'solid' },
-                bottom: { width: 1, color: '#3f3f46', style: 'solid' },
-                left: { width: 1, color: '#3f3f46', style: 'solid' },
-                linked: true
-              },
-              borderRadius: { topLeft: 12, topRight: 12, bottomRight: 12, bottomLeft: 12, unit: 'px', linked: true },
-              effects: { opacity: 1, visible: true, overflow: 'visible', cursor: 'pointer', shadows: [], backdropFilter: 'none' },
-              overlays: [],
-              transform: { rotation: 0, scaleX: 1, scaleY: 1, skewX: 0, skewY: 0, translateX: 0, translateY: 0, origin: 'center', perspective: 1000, rotateX: 0, rotateY: 0 }
-            },
-            animations: [],
-            behaviors: []
-          }
         ]
       }
     ],
@@ -369,7 +293,6 @@ export const STARTER_TEMPLATES: Record<string, Partial<StakkedProject>> = {
               overlays: [],
               transform: { rotation: 0, scaleX: 1, scaleY: 1, skewX: 0, skewY: 0, translateX: 0, translateY: 0, origin: 'center', perspective: 1000, rotateX: 0, rotateY: 0 }
             },
-            animations: [],
             behaviors: []
           },
           {
@@ -420,7 +343,6 @@ export const STARTER_TEMPLATES: Record<string, Partial<StakkedProject>> = {
                 maxLines: 0
               }
             },
-            animations: [],
             behaviors: []
           },
           {
@@ -471,43 +393,6 @@ export const STARTER_TEMPLATES: Record<string, Partial<StakkedProject>> = {
                 maxLines: 0
               }
             },
-            animations: [],
-            behaviors: []
-          },
-          {
-            id: 'el-countdown',
-            type: 'countdown',
-            name: 'Event Countdown',
-            position: { x: 420, y: 380 },
-            size: { width: 600, height: 200 },
-            rotation: 0,
-            zIndex: 1,
-            visible: true,
-            locked: false,
-            content: {
-              type: 'countdown',
-              targetDate: '2026-08-14T20:00:00.000Z',
-              label: 'Until Showtime',
-              format: 'dd:hh:mm:ss'
-            },
-            style: {
-              responsive: {},
-              position: { type: 'absolute', x: 420, y: 380 },
-              size: { width: 600, height: 200, widthMode: 'px', heightMode: 'px' },
-              fills: [{ id: 'el-cd-fill', type: 'color', value: 'rgba(80,0,120,0.5)', opacity: 1, blendMode: 'normal' }],
-              border: {
-                top: { width: 1, color: '#7c3aed', style: 'solid' },
-                right: { width: 1, color: '#7c3aed', style: 'solid' },
-                bottom: { width: 1, color: '#7c3aed', style: 'solid' },
-                left: { width: 1, color: '#7c3aed', style: 'solid' },
-                linked: true
-              },
-              borderRadius: { topLeft: 20, topRight: 20, bottomRight: 20, bottomLeft: 20, unit: 'px', linked: true },
-              effects: { opacity: 1, visible: true, overflow: 'visible', cursor: 'default', shadows: [], backdropFilter: 'blur(10px)' },
-              overlays: [],
-              transform: { rotation: 0, scaleX: 1, scaleY: 1, skewX: 0, skewY: 0, translateX: 0, translateY: 0, origin: 'center', perspective: 1000, rotateX: 0, rotateY: 0 }
-            },
-            animations: [],
             behaviors: []
           },
           {
@@ -559,7 +444,6 @@ export const STARTER_TEMPLATES: Record<string, Partial<StakkedProject>> = {
                 maxLines: 1
               }
             },
-            animations: [],
             behaviors: []
           }
         ]
@@ -634,7 +518,6 @@ export const STARTER_TEMPLATES: Record<string, Partial<StakkedProject>> = {
                 maxLines: 0
               }
             },
-            animations: [],
             behaviors: []
           },
           {
@@ -685,44 +568,6 @@ export const STARTER_TEMPLATES: Record<string, Partial<StakkedProject>> = {
                 maxLines: 0
               }
             },
-            animations: [],
-            behaviors: []
-          },
-          {
-            id: 'ph-player',
-            type: 'music-player',
-            name: 'Spotify Player',
-            position: { x: 360, y: 340 },
-            size: { width: 720, height: 232 },
-            rotation: 0,
-            zIndex: 1,
-            visible: true,
-            locked: false,
-            content: {
-              type: 'music-player',
-              platform: 'spotify',
-              url: 'https://open.spotify.com/show/example',
-              embedHtml: '',
-              displayMode: 'full'
-            },
-            style: {
-              responsive: {},
-              position: { type: 'absolute', x: 360, y: 340 },
-              size: { width: 720, height: 232, widthMode: 'px', heightMode: 'px' },
-              fills: [{ id: 'ph-pl-fill', type: 'color', value: '#1c1917', opacity: 1, blendMode: 'normal' }],
-              border: {
-                top: { width: 0, color: '#000000', style: 'none' },
-                right: { width: 0, color: '#000000', style: 'none' },
-                bottom: { width: 0, color: '#000000', style: 'none' },
-                left: { width: 0, color: '#000000', style: 'none' },
-                linked: true
-              },
-              borderRadius: { topLeft: 16, topRight: 16, bottomRight: 16, bottomLeft: 16, unit: 'px', linked: true },
-              effects: { opacity: 1, visible: true, overflow: 'hidden', cursor: 'default', shadows: [{ id: 'ph-pl-shadow', type: 'drop', x: 0, y: 8, blur: 32, spread: 0, color: 'rgba(0,0,0,0.15)' }], backdropFilter: 'none' },
-              overlays: [],
-              transform: { rotation: 0, scaleX: 1, scaleY: 1, skewX: 0, skewY: 0, translateX: 0, translateY: 0, origin: 'center', perspective: 1000, rotateX: 0, rotateY: 0 }
-            },
-            animations: [],
             behaviors: []
           },
           {
@@ -774,81 +619,8 @@ export const STARTER_TEMPLATES: Record<string, Partial<StakkedProject>> = {
                 maxLines: 1
               }
             },
-            animations: [],
             behaviors: []
           },
-          {
-            id: 'ph-social-spotify',
-            type: 'social-link',
-            name: 'Spotify Social',
-            position: { x: 480, y: 740 },
-            size: { width: 200, height: 52 },
-            rotation: 0,
-            zIndex: 1,
-            visible: true,
-            locked: false,
-            content: {
-              type: 'social-link',
-              platform: 'spotify',
-              url: 'https://open.spotify.com/',
-              displayMode: 'icon+text'
-            },
-            style: {
-              responsive: {},
-              position: { type: 'absolute', x: 480, y: 740 },
-              size: { width: 200, height: 52, widthMode: 'px', heightMode: 'px' },
-              fills: [{ id: 'ph-sp-fill', type: 'color', value: '#f5f5f4', opacity: 1, blendMode: 'normal' }],
-              border: {
-                top: { width: 1, color: '#d6d3d1', style: 'solid' },
-                right: { width: 1, color: '#d6d3d1', style: 'solid' },
-                bottom: { width: 1, color: '#d6d3d1', style: 'solid' },
-                left: { width: 1, color: '#d6d3d1', style: 'solid' },
-                linked: true
-              },
-              borderRadius: { topLeft: 12, topRight: 12, bottomRight: 12, bottomLeft: 12, unit: 'px', linked: true },
-              effects: { opacity: 1, visible: true, overflow: 'visible', cursor: 'pointer', shadows: [], backdropFilter: 'none' },
-              overlays: [],
-              transform: { rotation: 0, scaleX: 1, scaleY: 1, skewX: 0, skewY: 0, translateX: 0, translateY: 0, origin: 'center', perspective: 1000, rotateX: 0, rotateY: 0 }
-            },
-            animations: [],
-            behaviors: []
-          },
-          {
-            id: 'ph-social-apple',
-            type: 'social-link',
-            name: 'Apple Podcasts Social',
-            position: { x: 696, y: 740 },
-            size: { width: 200, height: 52 },
-            rotation: 0,
-            zIndex: 1,
-            visible: true,
-            locked: false,
-            content: {
-              type: 'social-link',
-              platform: 'apple',
-              url: 'https://podcasts.apple.com/',
-              displayMode: 'icon+text'
-            },
-            style: {
-              responsive: {},
-              position: { type: 'absolute', x: 696, y: 740 },
-              size: { width: 200, height: 52, widthMode: 'px', heightMode: 'px' },
-              fills: [{ id: 'ph-ap-fill', type: 'color', value: '#f5f5f4', opacity: 1, blendMode: 'normal' }],
-              border: {
-                top: { width: 1, color: '#d6d3d1', style: 'solid' },
-                right: { width: 1, color: '#d6d3d1', style: 'solid' },
-                bottom: { width: 1, color: '#d6d3d1', style: 'solid' },
-                left: { width: 1, color: '#d6d3d1', style: 'solid' },
-                linked: true
-              },
-              borderRadius: { topLeft: 12, topRight: 12, bottomRight: 12, bottomLeft: 12, unit: 'px', linked: true },
-              effects: { opacity: 1, visible: true, overflow: 'visible', cursor: 'pointer', shadows: [], backdropFilter: 'none' },
-              overlays: [],
-              transform: { rotation: 0, scaleX: 1, scaleY: 1, skewX: 0, skewY: 0, translateX: 0, translateY: 0, origin: 'center', perspective: 1000, rotateX: 0, rotateY: 0 }
-            },
-            animations: [],
-            behaviors: []
-          }
         ]
       }
     ],
@@ -906,7 +678,6 @@ export const STARTER_TEMPLATES: Record<string, Partial<StakkedProject>> = {
               overlays: [],
               transform: { rotation: 0, scaleX: 1, scaleY: 1, skewX: 0, skewY: 0, translateX: 0, translateY: 0, origin: 'center', perspective: 1000, rotateX: 0, rotateY: 0 }
             },
-            animations: [],
             behaviors: []
           },
           {
@@ -957,7 +728,6 @@ export const STARTER_TEMPLATES: Record<string, Partial<StakkedProject>> = {
                 maxLines: 0
               }
             },
-            animations: [],
             behaviors: []
           },
           {
@@ -1008,7 +778,6 @@ export const STARTER_TEMPLATES: Record<string, Partial<StakkedProject>> = {
                 maxLines: 0
               }
             },
-            animations: [],
             behaviors: []
           },
           {
@@ -1040,7 +809,6 @@ export const STARTER_TEMPLATES: Record<string, Partial<StakkedProject>> = {
               transform: { rotation: 0, scaleX: 1, scaleY: 1, skewX: 0, skewY: 0, translateX: 0, translateY: 0, origin: 'center', perspective: 1000, rotateX: 0, rotateY: 0 },
               typography: { fontFamily: 'Inter, sans-serif', fontSize: 18, fontWeight: 600, fontStyle: 'normal', color: '#fafafa', textAlign: 'center', textDecoration: 'none', textTransform: 'none', lineHeight: 1.2, letterSpacing: 0, wordSpacing: 0, textShadow: 'none', truncate: false, maxLines: 1 }
             },
-            animations: [],
             behaviors: []
           },
           {
@@ -1072,7 +840,6 @@ export const STARTER_TEMPLATES: Record<string, Partial<StakkedProject>> = {
               transform: { rotation: 0, scaleX: 1, scaleY: 1, skewX: 0, skewY: 0, translateX: 0, translateY: 0, origin: 'center', perspective: 1000, rotateX: 0, rotateY: 0 },
               typography: { fontFamily: 'Inter, sans-serif', fontSize: 18, fontWeight: 600, fontStyle: 'normal', color: '#fafafa', textAlign: 'center', textDecoration: 'none', textTransform: 'none', lineHeight: 1.2, letterSpacing: 0, wordSpacing: 0, textShadow: 'none', truncate: false, maxLines: 1 }
             },
-            animations: [],
             behaviors: []
           },
           {
@@ -1104,7 +871,6 @@ export const STARTER_TEMPLATES: Record<string, Partial<StakkedProject>> = {
               transform: { rotation: 0, scaleX: 1, scaleY: 1, skewX: 0, skewY: 0, translateX: 0, translateY: 0, origin: 'center', perspective: 1000, rotateX: 0, rotateY: 0 },
               typography: { fontFamily: 'Inter, sans-serif', fontSize: 18, fontWeight: 600, fontStyle: 'normal', color: '#fafafa', textAlign: 'center', textDecoration: 'none', textTransform: 'none', lineHeight: 1.2, letterSpacing: 0, wordSpacing: 0, textShadow: 'none', truncate: false, maxLines: 1 }
             },
-            animations: [],
             behaviors: []
           },
           {
@@ -1136,45 +902,8 @@ export const STARTER_TEMPLATES: Record<string, Partial<StakkedProject>> = {
               transform: { rotation: 0, scaleX: 1, scaleY: 1, skewX: 0, skewY: 0, translateX: 0, translateY: 0, origin: 'center', perspective: 1000, rotateX: 0, rotateY: 0 },
               typography: { fontFamily: 'Inter, sans-serif', fontSize: 18, fontWeight: 600, fontStyle: 'normal', color: '#fafafa', textAlign: 'center', textDecoration: 'none', textTransform: 'none', lineHeight: 1.2, letterSpacing: 0, wordSpacing: 0, textShadow: 'none', truncate: false, maxLines: 1 }
             },
-            animations: [],
             behaviors: []
           },
-          {
-            id: 'lib-social-row',
-            type: 'social-link',
-            name: 'Instagram',
-            position: { x: 620, y: 800 },
-            size: { width: 200, height: 52 },
-            rotation: 0,
-            zIndex: 1,
-            visible: true,
-            locked: false,
-            content: {
-              type: 'social-link',
-              platform: 'instagram',
-              url: 'https://instagram.com/',
-              displayMode: 'icon'
-            },
-            style: {
-              responsive: {},
-              position: { type: 'absolute', x: 620, y: 800 },
-              size: { width: 200, height: 52, widthMode: 'px', heightMode: 'px' },
-              fills: [{ id: 'lib-sr-fill', type: 'color', value: 'transparent', opacity: 1, blendMode: 'normal' }],
-              border: {
-                top: { width: 0, color: '#000000', style: 'none' },
-                right: { width: 0, color: '#000000', style: 'none' },
-                bottom: { width: 0, color: '#000000', style: 'none' },
-                left: { width: 0, color: '#000000', style: 'none' },
-                linked: true
-              },
-              borderRadius: { topLeft: 0, topRight: 0, bottomRight: 0, bottomLeft: 0, unit: 'px', linked: true },
-              effects: { opacity: 1, visible: true, overflow: 'visible', cursor: 'pointer', shadows: [], backdropFilter: 'none' },
-              overlays: [],
-              transform: { rotation: 0, scaleX: 1, scaleY: 1, skewX: 0, skewY: 0, translateX: 0, translateY: 0, origin: 'center', perspective: 1000, rotateX: 0, rotateY: 0 }
-            },
-            animations: [],
-            behaviors: []
-          }
         ]
       }
     ],
@@ -1232,7 +961,6 @@ export const STARTER_TEMPLATES: Record<string, Partial<StakkedProject>> = {
               overlays: [],
               transform: { rotation: 0, scaleX: 1, scaleY: 1, skewX: 0, skewY: 0, translateX: 0, translateY: 0, origin: 'center', perspective: 1000, rotateX: 0, rotateY: 0 }
             },
-            animations: [],
             behaviors: []
           },
           {
@@ -1283,7 +1011,6 @@ export const STARTER_TEMPLATES: Record<string, Partial<StakkedProject>> = {
                 maxLines: 0
               }
             },
-            animations: [],
             behaviors: []
           },
           {
@@ -1334,7 +1061,6 @@ export const STARTER_TEMPLATES: Record<string, Partial<StakkedProject>> = {
                 maxLines: 0
               }
             },
-            animations: [],
             behaviors: []
           },
           {
@@ -1385,7 +1111,6 @@ export const STARTER_TEMPLATES: Record<string, Partial<StakkedProject>> = {
                 maxLines: 0
               }
             },
-            animations: [],
             behaviors: []
           },
           {
@@ -1437,7 +1162,6 @@ export const STARTER_TEMPLATES: Record<string, Partial<StakkedProject>> = {
                 maxLines: 1
               }
             },
-            animations: [],
             behaviors: []
           },
           {
@@ -1488,7 +1212,6 @@ export const STARTER_TEMPLATES: Record<string, Partial<StakkedProject>> = {
                 maxLines: 0
               }
             },
-            animations: [],
             behaviors: []
           }
         ]
@@ -1563,43 +1286,6 @@ export const STARTER_TEMPLATES: Record<string, Partial<StakkedProject>> = {
                 maxLines: 0
               }
             },
-            animations: [],
-            behaviors: []
-          },
-          {
-            id: 'cs-countdown',
-            type: 'countdown',
-            name: 'Launch Countdown',
-            position: { x: 420, y: 320 },
-            size: { width: 600, height: 160 },
-            rotation: 0,
-            zIndex: 1,
-            visible: true,
-            locked: false,
-            content: {
-              type: 'countdown',
-              targetDate: '2026-09-01T00:00:00.000Z',
-              label: 'Until Launch',
-              format: 'dd:hh:mm:ss'
-            },
-            style: {
-              responsive: {},
-              position: { type: 'absolute', x: 420, y: 320 },
-              size: { width: 600, height: 160, widthMode: 'px', heightMode: 'px' },
-              fills: [{ id: 'cs-cd-fill', type: 'color', value: '#e2eaf2', opacity: 1, blendMode: 'normal' }],
-              border: {
-                top: { width: 1, color: '#cbd5e1', style: 'solid' },
-                right: { width: 1, color: '#cbd5e1', style: 'solid' },
-                bottom: { width: 1, color: '#cbd5e1', style: 'solid' },
-                left: { width: 1, color: '#cbd5e1', style: 'solid' },
-                linked: true
-              },
-              borderRadius: { topLeft: 20, topRight: 20, bottomRight: 20, bottomLeft: 20, unit: 'px', linked: true },
-              effects: { opacity: 1, visible: true, overflow: 'visible', cursor: 'default', shadows: [], backdropFilter: 'none' },
-              overlays: [],
-              transform: { rotation: 0, scaleX: 1, scaleY: 1, skewX: 0, skewY: 0, translateX: 0, translateY: 0, origin: 'center', perspective: 1000, rotateX: 0, rotateY: 0 }
-            },
-            animations: [],
             behaviors: []
           },
           {
@@ -1650,118 +1336,8 @@ export const STARTER_TEMPLATES: Record<string, Partial<StakkedProject>> = {
                 maxLines: 0
               }
             },
-            animations: [],
             behaviors: []
           },
-          {
-            id: 'cs-email-form',
-            type: 'form',
-            name: 'Email Capture Form',
-            position: { x: 470, y: 590 },
-            size: { width: 500, height: 180 },
-            rotation: 0,
-            zIndex: 1,
-            visible: true,
-            locked: false,
-            content: {
-              type: 'form',
-              fields: [
-                { label: 'Email Address', fieldType: 'email', required: true }
-              ],
-              action: ''
-            },
-            style: {
-              responsive: {},
-              position: { type: 'absolute', x: 470, y: 590 },
-              size: { width: 500, height: 180, widthMode: 'px', heightMode: 'px' },
-              fills: [{ id: 'cs-ef-fill', type: 'color', value: 'transparent', opacity: 1, blendMode: 'normal' }],
-              border: {
-                top: { width: 0, color: '#000000', style: 'none' },
-                right: { width: 0, color: '#000000', style: 'none' },
-                bottom: { width: 0, color: '#000000', style: 'none' },
-                left: { width: 0, color: '#000000', style: 'none' },
-                linked: true
-              },
-              borderRadius: { topLeft: 12, topRight: 12, bottomRight: 12, bottomLeft: 12, unit: 'px', linked: true },
-              effects: { opacity: 1, visible: true, overflow: 'visible', cursor: 'default', shadows: [], backdropFilter: 'none' },
-              overlays: [],
-              transform: { rotation: 0, scaleX: 1, scaleY: 1, skewX: 0, skewY: 0, translateX: 0, translateY: 0, origin: 'center', perspective: 1000, rotateX: 0, rotateY: 0 }
-            },
-            animations: [],
-            behaviors: []
-          },
-          {
-            id: 'cs-social-twitter',
-            type: 'social-link',
-            name: 'Twitter',
-            position: { x: 580, y: 820 },
-            size: { width: 200, height: 52 },
-            rotation: 0,
-            zIndex: 1,
-            visible: true,
-            locked: false,
-            content: {
-              type: 'social-link',
-              platform: 'twitter',
-              url: 'https://twitter.com/',
-              displayMode: 'icon+text'
-            },
-            style: {
-              responsive: {},
-              position: { type: 'absolute', x: 580, y: 820 },
-              size: { width: 200, height: 52, widthMode: 'px', heightMode: 'px' },
-              fills: [{ id: 'cs-soc-fill', type: 'color', value: '#e2eaf2', opacity: 1, blendMode: 'normal' }],
-              border: {
-                top: { width: 1, color: '#cbd5e1', style: 'solid' },
-                right: { width: 1, color: '#cbd5e1', style: 'solid' },
-                bottom: { width: 1, color: '#cbd5e1', style: 'solid' },
-                left: { width: 1, color: '#cbd5e1', style: 'solid' },
-                linked: true
-              },
-              borderRadius: { topLeft: 12, topRight: 12, bottomRight: 12, bottomLeft: 12, unit: 'px', linked: true },
-              effects: { opacity: 1, visible: true, overflow: 'visible', cursor: 'pointer', shadows: [], backdropFilter: 'none' },
-              overlays: [],
-              transform: { rotation: 0, scaleX: 1, scaleY: 1, skewX: 0, skewY: 0, translateX: 0, translateY: 0, origin: 'center', perspective: 1000, rotateX: 0, rotateY: 0 }
-            },
-            animations: [],
-            behaviors: []
-          },
-          {
-            id: 'cs-social-instagram',
-            type: 'social-link',
-            name: 'Instagram',
-            position: { x: 796, y: 820 },
-            size: { width: 200, height: 52 },
-            rotation: 0,
-            zIndex: 1,
-            visible: true,
-            locked: false,
-            content: {
-              type: 'social-link',
-              platform: 'instagram',
-              url: 'https://instagram.com/',
-              displayMode: 'icon+text'
-            },
-            style: {
-              responsive: {},
-              position: { type: 'absolute', x: 796, y: 820 },
-              size: { width: 200, height: 52, widthMode: 'px', heightMode: 'px' },
-              fills: [{ id: 'cs-soci-fill', type: 'color', value: '#e2eaf2', opacity: 1, blendMode: 'normal' }],
-              border: {
-                top: { width: 1, color: '#cbd5e1', style: 'solid' },
-                right: { width: 1, color: '#cbd5e1', style: 'solid' },
-                bottom: { width: 1, color: '#cbd5e1', style: 'solid' },
-                left: { width: 1, color: '#cbd5e1', style: 'solid' },
-                linked: true
-              },
-              borderRadius: { topLeft: 12, topRight: 12, bottomRight: 12, bottomLeft: 12, unit: 'px', linked: true },
-              effects: { opacity: 1, visible: true, overflow: 'visible', cursor: 'pointer', shadows: [], backdropFilter: 'none' },
-              overlays: [],
-              transform: { rotation: 0, scaleX: 1, scaleY: 1, skewX: 0, skewY: 0, translateX: 0, translateY: 0, origin: 'center', perspective: 1000, rotateX: 0, rotateY: 0 }
-            },
-            animations: [],
-            behaviors: []
-          }
         ]
       }
     ],

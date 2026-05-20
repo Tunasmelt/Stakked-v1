@@ -1,6 +1,4 @@
 import { StakkedElement } from './element';
-import { Animation } from './animation';
-import type { Node, Edge } from 'reactflow';
 
 /**
  * The top-level project object that represents a complete user creation.
@@ -35,11 +33,6 @@ export interface StakkedProject {
   pages: StakkedPage[];
   /** Global project settings */
   settings: ProjectSettings;
-  /** Workflow node graph (Phase 5) */
-  workflow?: {
-    nodes: Node[];
-    edges: Edge[];
-  }
 }
 
 /**
@@ -58,8 +51,6 @@ export interface StakkedPage {
   canvas: CanvasSettings;
   /** Flat list of elements on this page */
   elements: StakkedElement[];
-  /** Entry transition for this page */
-  transition?: Animation['type'];
 }
 
 /**

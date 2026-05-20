@@ -3,7 +3,6 @@ import { immer } from 'zustand/middleware/immer';
 import { StakkedProject } from '@/types/project';
 import { StakkedElement } from '@/types/element';
 import { StakkedElementFullStyle } from '@/types/style';
-import type { Node, Edge } from 'reactflow';
 import { v4 as uuidv4 } from 'uuid';
 import { useEditorStore } from './editor-store';
 import { getCurrentUserId } from '@/lib/supabase';
@@ -106,9 +105,6 @@ interface ProjectState {
   /** Rename an element's display name in the layers panel. */
   renameElement: (pageIndex: number, elementId: string, name: string) => void;
 
-  // Workflow Logic
-  updateWorkflowNodes: (nodes: Node[]) => void;
-  updateWorkflowEdges: (edges: Edge[]) => void;
 }
 
 const HISTORY_LIMIT = 50;
@@ -794,32 +790,6 @@ export const useProjectStore = create<ProjectState>()(
       });
     },
 
-    updateWorkflowNodes: (nodes) => {
-      set((state) => {
-        if (!state.project) return;
-        if (!state.project.workflow) {
-          state.project.workflow = { nodes: [], edges: [] };
-        }
-        // Strip non-serializable data (functions) before saving
-        state.project.workflow.nodes = nodes.map(n => ({
-          ...n,
-          data: JSON.parse(JSON.stringify(n.data))
-        }));
-        state.isDirty = true;
-      });
-    },
-
-    updateWorkflowEdges: (edges) => {
-      set((state) => {
-        if (!state.project) return;
-        if (!state.project.workflow) {
-          state.project.workflow = { nodes: [], edges: [] };
-        }
-        state.project.workflow.edges = edges;
-        state.isDirty = true;
-      });
-    },
-
     groupElements: (pageIndex, elementIds) => {
       if (elementIds.length < 2) return null;
       const { project } = get();
@@ -871,7 +841,6 @@ export const useProjectStore = create<ProjectState>()(
           overlays: [],
           transform: { rotation: 0, scaleX: 1, scaleY: 1, skewX: 0, skewY: 0, translateX: 0, translateY: 0, origin: 'center', perspective: 1000, rotateX: 0, rotateY: 0 },
         },
-        animations: [],
         behaviors: [],
       };
 

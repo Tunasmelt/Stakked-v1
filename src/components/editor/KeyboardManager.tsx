@@ -35,8 +35,6 @@ export const KeyboardManager: React.FC = () => {
   const clipboard             = useEditorStore(s => s.clipboard);
   const setSelection          = useEditorStore(s => s.setSelection);
 
-  const viewMode              = useUIStore(s => s.viewMode);
-  const setViewMode           = useUIStore(s => s.setViewMode);
   const { startTour } = useTutorialStore();
 
   const handleKeyDown = useCallback((e: KeyboardEvent) => {
@@ -198,19 +196,8 @@ export const KeyboardManager: React.FC = () => {
 
       case 'escape':
         e.preventDefault();
-        if (viewMode === 'workflow') {
-          setViewMode('canvas');
-        } else {
-          clearSelection();
-          useEditorStore.getState().setEditingText(false);
-        }
-        break;
-
-      case 'w':
-        if (!cmdCtrl && !isEditingText) {
-          e.preventDefault();
-          setViewMode('workflow');
-        }
+        clearSelection();
+        useEditorStore.getState().setEditingText(false);
         break;
 
       // Nudging
@@ -240,7 +227,6 @@ export const KeyboardManager: React.FC = () => {
     activePageIndex,
     selectedElementIds,
     isEditingText,
-    viewMode,
     clipboard,
     undo,
     redo,
@@ -252,7 +238,6 @@ export const KeyboardManager: React.FC = () => {
     setSelection,
     setTool,
     clearSelection,
-    setViewMode,
     startTour,
     moveElementForward,
     moveElementBackward,

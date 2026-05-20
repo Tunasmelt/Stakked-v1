@@ -31,7 +31,7 @@ The user will provide a prompt describing their project (e.g., "Cyberpunk DJ por
   "reasoning": "Explain your design concept (tokens, layout, vibe).",
   "elements": [
     {
-      "type": "string (text|image|button|social-link|music-player|video|divider|gallery|icon|shape)",
+      "type": "string (text|image|button|video|divider|embed|gallery|icon|shape|container)",
       "name": "string",
       "position": { "x": number, "y": number },
       "size": { "width": number, "height": number },
@@ -42,8 +42,11 @@ The user will provide a prompt describing their project (e.g., "Cyberpunk DJ por
 }
 
 ### CONTENT EXAMPLES
-- social-link: { "type": "social-link", "platform": "instagram|twitter|github|spotify", "url": "...", "displayMode": "icon+text" }
-- music-player: { "type": "music-player", "platform": "spotify|soundcloud", "url": "...", "displayMode": "full" }
+- button: { "type": "button", "label": "Click Me", "url": "#", "variant": "primary" }
+- video: { "type": "video", "platform": "youtube", "url": "https://youtu.be/...", "autoplay": false, "loop": false }
+- embed: { "type": "embed", "html": "<iframe ...></iframe>" }
+- gallery: { "type": "gallery", "images": [{ "src": "https://picsum.photos/seed/g1/400/300", "alt": "" }], "layout": "grid", "columns": 3 }
+- icon: { "type": "icon", "name": "star", "set": "lucide", "color": "#000", "size": 24 }
 `;
 
 export async function POST(req: Request) {

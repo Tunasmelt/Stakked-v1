@@ -5,7 +5,6 @@ import { useEffect, useMemo, useCallback, useRef } from 'react';
 import { StakkedElement, ElementBehavior } from '@/types/element';
 import { useProjectStore } from '@/stores/project-store';
 import { useGlobalState } from '@/stores/state-store';
-import { injectAnimationStyle } from '@/lib/animation-engine';
 
 /**
  * useInteractivity
@@ -18,8 +17,6 @@ import { injectAnimationStyle } from '@/lib/animation-engine';
  *                 editor doesn't jump away on accidental clicks.
  */
 export function useInteractivity(element: StakkedElement | undefined, isPublic = false) {
-  const globalValues = useGlobalState((s) => s.values);
-
   const resolveAndNavigate = useCallback((initialTargetId: string) => {
     const project = useProjectStore.getState().project;
     if (!project) return;
@@ -35,23 +32,12 @@ export function useInteractivity(element: StakkedElement | undefined, isPublic =
         if (index !== -1) useProjectStore.getState().setActivePageIndex(index);
         return;
       }
-      if (current.startsWith('logic-')) {
-        const node = project.workflow?.nodes.find(n => n.id === current);
-        if (!node) return;
-        const { variable, value: expected } = node.data;
-        const actual = globalValues[variable];
-        const result = String(actual) === String(expected);
-        const edge = project.workflow?.edges.find(
-          e => e.source === current && e.sourceHandle === (result ? 'true' : 'false')
-        );
-        if (edge) { current = edge.target; continue; }
-        return;
-      }
+      // Bare page ID
       const index = project.pages.findIndex(p => p.id === current);
       if (index !== -1) useProjectStore.getState().setActivePageIndex(index);
       return;
     }
-  }, [globalValues]);
+  }, []);
 
   const executeAction = useCallback((behavior: ElementBehavior) => {
     if (!element) return;
@@ -104,16 +90,7 @@ export function useInteractivity(element: StakkedElement | undefined, isPublic =
       }
 
       case 'animate': {
-        const anim = element.animations?.[0];
-        if (anim) {
-          const className = injectAnimationStyle(anim);
-          const domEl = document.getElementById(`el-${element.id}`);
-          if (domEl) {
-            domEl.classList.remove(className);
-            void domEl.offsetWidth;
-            domEl.classList.add(className);
-          }
-        }
+        // Animation system removed — this action is a no-op
         break;
       }
 

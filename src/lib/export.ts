@@ -17,20 +17,7 @@
 
 import { StakkedProject, StakkedPage, Background } from '@/types/project';
 import { StakkedElement } from '@/types/element';
-import { Animation } from '@/types/animation';
-import { getAnimationCSS } from './animation-engine';
-import socialPlatformsRaw from '@/data/social-platforms.json';
 
-interface SocialPlatform { name: string; domain: string; brandColor: string; iconName: string }
-const SOCIAL_PLATFORMS: SocialPlatform[] = socialPlatformsRaw as SocialPlatform[];
-
-/** Look up a social platform by its lowercase name or domain. */
-function resolveSocialPlatform(platform: string): SocialPlatform | undefined {
-  const needle = platform.toLowerCase();
-  return SOCIAL_PLATFORMS.find(
-    (p) => p.name.toLowerCase() === needle || p.iconName.toLowerCase() === needle,
-  );
-}
 
 export interface CompileOptions {
   /** Page to render. Default 0. */
@@ -165,46 +152,6 @@ function runtimeScripts(pageUrlMap?: Record<string, string>): string {
     var el=e.target&&e.target.closest('[data-stakked-navigate]');
     if(el)window.__stakkedNavigate(el.getAttribute('data-stakked-navigate'));
   });
-
-  /* ── Countdown rehydration ────────────────────────────────────── */
-  function pad(n){return String(n).padStart(2,'0');}
-  function tickCountdowns(){
-    document.querySelectorAll('[data-stakked-countdown]').forEach(function(el){
-      var target=new Date(el.getAttribute('data-stakked-countdown')).getTime();
-      var now=Date.now();
-      var diff=target-now;
-      var display=el.querySelector('.stakked-countdown-value');
-      if(!display)return;
-      if(diff<=0){display.textContent='00:00:00:00';return;}
-      var days=Math.floor(diff/86400000);
-      var hrs=Math.floor((diff%86400000)/3600000);
-      var mins=Math.floor((diff%3600000)/60000);
-      var secs=Math.floor((diff%60000)/1000);
-      display.textContent=pad(days)+':'+pad(hrs)+':'+pad(mins)+':'+pad(secs);
-    });
-  }
-  if(document.querySelector('[data-stakked-countdown]')){
-    tickCountdowns();
-    var _cdTimer=setInterval(function(){
-      tickCountdowns();
-      if(!document.querySelector('[data-stakked-countdown]'))clearInterval(_cdTimer);
-    },1000);
-    window.addEventListener('beforeunload',function(){clearInterval(_cdTimer);});
-  }
-
-  /* ── Tabs switcher ───────────────────────────────────────────── */
-  window.stakkedSwitchTab=function(btn,containerId){
-    var container=document.getElementById(containerId);
-    if(!container)return;
-    var panelId=btn.getAttribute('data-tab-target');
-    container.querySelectorAll('[id^="'+containerId+'-panel-"]').forEach(function(p){p.hidden=true;});
-    container.querySelectorAll('button[data-tab-target]').forEach(function(b){
-      b.style.background='transparent';
-    });
-    var panel=document.getElementById(panelId);
-    if(panel)panel.hidden=false;
-    btn.style.background='var(--accent,#3b82f6)';
-  };
 })();
 </script>`;
 }
@@ -268,9 +215,6 @@ function renderElement(el: StakkedElement, elementMap: Map<string, StakkedElemen
     .filter(Boolean)
     .join(';');
 
-  const anim = el.animations?.[0];
-  const animClass = anim ? getAnimationCSS(anim).className : '';
-
   const roleAttr = a11y?.role ? ` role="${escapeAttr(a11y.role)}"` : '';
   const ariaAttr = a11y?.ariaLabel ? ` aria-label="${escapeAttr(a11y.ariaLabel)}"` : '';
   const tabAttr = a11y?.tabIndex != null ? ` tabindex="${a11y.tabIndex}"` : '';
@@ -281,7 +225,7 @@ function renderElement(el: StakkedElement, elementMap: Map<string, StakkedElemen
   // Wrap inner content in a link if the element has a style-level link
   const innerHtml = wrapWithLink(renderContent(el, elementMap), el);
 
-  return `  <${semanticTag}${idAttr} class="${animClass}"${roleAttr}${ariaAttr}${tabAttr} style="${outerStyle}">${innerHtml}</${semanticTag}>`;
+  return `  <${semanticTag}${idAttr}${roleAttr}${ariaAttr}${tabAttr} style="${outerStyle}">${innerHtml}</${semanticTag}>`;
 }
 
 /** Wraps element inner HTML in an <a> if the element has a style.link defined. */
@@ -334,20 +278,6 @@ function renderContent(el: StakkedElement, elementMap: Map<string, StakkedElemen
       return content.url
         ? `<video src="${escapeAttr(content.url)}"${content.autoplay ? ' autoplay muted playsinline' : ''}${content.loop ? ' loop' : ''} controls style="width:100%;height:100%;object-fit:cover;"></video>`
         : `<div style="width:100%;height:100%;background:#111;"></div>`;
-    case 'music-player':
-      return content.embedHtml
-        ? `<div style="width:100%;height:100%;">${content.embedHtml}</div>`
-        : `<div style="width:100%;height:100%;background:#111;color:#fff;display:flex;align-items:center;justify-content:center;">${escapeHtml(content.platform)}</div>`;
-    case 'social-link': {
-      const sp = resolveSocialPlatform(content.platform);
-      const iconSrc = sp
-        ? `https://api.iconify.design/simple-icons/${sp.iconName}.svg?color=${encodeURIComponent(sp.brandColor)}`
-        : null;
-      const iconHtml = iconSrc
-        ? `<img src="${escapeAttr(iconSrc)}" alt="${escapeAttr(content.platform)}" width="24" height="24" style="display:block;">`
-        : `<span style="font-size:12px;text-transform:capitalize;">${escapeHtml(content.platform)}</span>`;
-      return `<a href="${escapeAttr(content.url)}" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:center;justify-content:center;width:100%;height:100%;text-decoration:none;" aria-label="${escapeAttr(content.platform)}">${iconHtml}</a>`;
-    }
     case 'icon': {
       // Resolve icon set: default to 'lucide' when set is generic/undefined
       const iconSet = content.set && content.set !== 'lucide' ? content.set : 'lucide';
@@ -380,68 +310,6 @@ function renderContent(el: StakkedElement, elementMap: Map<string, StakkedElemen
           `<img src="${escapeAttr(img.src)}" alt="${escapeAttr(img.alt || '')}" loading="lazy" style="width:100%;margin-bottom:8px;display:block;">`).join('')}</div>`;
       }
       return `<div style="display:grid;grid-template-columns:repeat(${gCols}, 1fr);gap:8px;width:100%;height:100%;">${gImgs}</div>`;
-    }
-    case 'countdown':
-      return `<div style="display:flex;flex-direction:column;justify-content:center;align-items:center;width:100%;height:100%;color:#fff;" data-stakked-countdown="${escapeAttr(content.targetDate)}">
-        <div style="opacity:.7;font-size:11px;margin-bottom:4px;">${escapeHtml(content.label)}</div>
-        <div class="stakked-countdown-value" style="font-variant-numeric:tabular-nums;font-size:22px;font-weight:700;letter-spacing:0.04em;">00:00:00:00</div>
-      </div>`;
-    case 'marquee':
-      return renderMarqueeHtml(content.items, content.speed, content.direction);
-    case 'testimonial':
-      return `<blockquote style="margin:0;padding:16px;color:#fff;">
-        <p style="font-style:italic;margin:0;">&ldquo;${escapeHtml(content.quote)}&rdquo;</p>
-        <footer style="margin-top:8px;font-size:12px;opacity:.7;">— ${escapeHtml(content.author)}${content.role ? `, ${escapeHtml(content.role)}` : ''}</footer>
-      </blockquote>`;
-    case 'navigation':
-      return `<nav style="display:flex;gap:16px;align-items:center;width:100%;height:100%;padding:0 16px;">
-        ${content.links.map((l) => `<a href="${escapeAttr(l.href)}" style="color:inherit;text-decoration:none;">${escapeHtml(l.label)}</a>`).join('')}
-      </nav>`;
-    case 'form': {
-      // Validate action URL — must be an absolute URL or server-relative path
-      const rawAction = content.action?.trim() ?? '';
-      const safeAction =
-        rawAction && (/^https?:\/\//i.test(rawAction) || rawAction.startsWith('/'))
-          ? rawAction
-          : ''; // Empty string prompts browser to warn rather than silently submit wrongly
-      return `<form action="${escapeAttr(safeAction)}" method="post" style="display:flex;flex-direction:column;gap:8px;width:100%;height:100%;padding:12px;">
-        ${content.fields.map((f) => `
-          <label style="display:flex;flex-direction:column;gap:4px;font-size:11px;color:#fff;">
-            <span>${escapeHtml(f.label)}${f.required ? ' *' : ''}</span>
-            ${f.fieldType === 'textarea'
-              ? `<textarea name="${escapeAttr(f.label)}" ${f.required ? 'required' : ''} rows="3" style="padding:6px;"></textarea>`
-              : `<input name="${escapeAttr(f.label)}" type="${escapeAttr(f.fieldType)}" ${f.required ? 'required' : ''} style="padding:6px;">`}
-          </label>
-        `).join('')}
-        <button type="submit" style="padding:8px 16px;background:#3b82f6;color:#fff;border:0;border-radius:8px;font-weight:600;cursor:pointer;">Submit</button>
-      </form>`;
-    }
-    case 'map':
-      return `<iframe title="map" loading="lazy" src="https://maps.google.com/maps?q=${content.lat},${content.lng}&z=${content.zoom}&output=embed" style="width:100%;height:100%;border:0;"></iframe>`;
-    case 'accordion':
-      return `<div style="width:100%;height:100%;">${content.sections
-        .map(
-          (s) => `<details style="padding:6px;"><summary>${escapeHtml(s.title)}</summary><div>${escapeHtml(s.content)}</div></details>`,
-        )
-        .join('')}</div>`;
-    case 'tabs': {
-      const tabId = `tabs-${el.id}`;
-      const tabBtns = content.tabs
-        .map(
-          (t, i) =>
-            `<button data-tab-target="${tabId}-panel-${i}" onclick="stakkedSwitchTab(this,'${tabId}')" style="padding:6px 14px;background:${i === 0 ? 'var(--accent,#3b82f6)' : 'transparent'};color:#fff;border:1px solid rgba(255,255,255,0.15);border-radius:6px;cursor:pointer;font-size:12px;">${escapeHtml(t.label)}</button>`,
-        )
-        .join('');
-      const tabPanels = content.tabs
-        .map(
-          (t, i) =>
-            `<div id="${tabId}-panel-${i}"${i === 0 ? '' : ' hidden'} style="padding:12px;"><div>${escapeHtml(t.content)}</div></div>`,
-        )
-        .join('');
-      return `<div id="${tabId}" style="width:100%;height:100%;display:flex;flex-direction:column;">` +
-        `<div style="display:flex;gap:6px;padding:8px 8px 0;">${tabBtns}</div>` +
-        `<div style="flex:1;overflow-y:auto;">${tabPanels}</div>` +
-        `</div>`;
     }
     case 'line': {
       const t = content.thickness ?? 2;
@@ -504,16 +372,6 @@ function renderContent(el: StakkedElement, elementMap: Map<string, StakkedElemen
     default:
       return '';
   }
-}
-
-function renderMarqueeHtml(items: string[], speed: number, direction: 'left' | 'right'): string {
-  const duration = Math.max(6, 60 / Math.max(speed, 1));
-  const loop = [...items, ...items];
-  return `<div style="overflow:hidden;width:100%;height:100%;display:flex;align-items:center;">
-    <div style="display:inline-flex;gap:24px;white-space:nowrap;animation:stakked-marquee-${direction} ${duration}s linear infinite;">
-      ${loop.map((item) => `<span>${escapeHtml(item)}</span>`).join('')}
-    </div>
-  </div>`;
 }
 
 /* --------------------------------------------------------------- */
@@ -614,30 +472,8 @@ function resolveBackgroundCss(bg?: Background): string {
  * Emit one CSS block per element that has an animation, plus the shared
  * marquee keyframes.
  */
-function collectPageCss(page: StakkedPage): string {
-  const animCss: string[] = [];
-  for (const el of page.elements) {
-    const anim: Animation | undefined = el.animations?.[0];
-    if (!anim) continue;
-    try {
-      const { css } = getAnimationCSS(anim);
-      if (css) animCss.push(css);
-    } catch {
-      /* animation-engine returns '' for unsupported shapes; ignore */
-    }
-  }
-
-  return `
-  @keyframes stakked-marquee-left {
-    from { transform: translateX(0); }
-    to   { transform: translateX(-50%); }
-  }
-  @keyframes stakked-marquee-right {
-    from { transform: translateX(-50%); }
-    to   { transform: translateX(0); }
-  }
-${animCss.join('\n')}
-`.trim();
+function collectPageCss(_page: StakkedPage): string {
+  return ''; // Animation system removed
 }
 
 /* --------------------------------------------------------------- */

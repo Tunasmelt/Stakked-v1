@@ -1,6 +1,6 @@
 'use client';
 
-import React, { memo, useRef, useCallback, useState } from 'react';
+import React, { memo, useRef, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { Lock } from 'lucide-react';
 import { useProjectStore } from '@/stores/project-store';
@@ -13,7 +13,6 @@ import { ElementErrorBoundary } from './ElementErrorBoundary';
 import { useInteractivity } from '@/hooks/useInteractivity';
 import { useUIStore } from '@/stores/ui-store';
 import { useParallax } from '@/hooks/useParallax';
-import { getMotionTriggerProps } from '@/lib/animation-engine';
 
 interface CanvasElementProps {
   id: string;
@@ -201,14 +200,6 @@ export const CanvasElement = memo(({ id, isPublic, containerPos }: CanvasElement
   // the custom pan/zoom canvas, and motion values would fight Moveable transforms.
   const parallaxProps = useParallax(element, !isPublic);
 
-  const animation = element?.animations?.[0];
-  const [animTriggered, setAnimTriggered] = useState(false);
-  // In the editor (non-public, non-preview) suppress all motion props so Framer
-  // doesn't fight Moveable's transform mutations during drag/resize.
-  const motionProps = (animation && (isPublic || previewMode))
-    ? getMotionTriggerProps(animation, animation.trigger === 'onClick' ? animTriggered : false)
-    : {};
-
   // All hooks must run before any early return
   if (!element || !element.visible) return null;
 
@@ -275,8 +266,6 @@ export const CanvasElement = memo(({ id, isPublic, containerPos }: CanvasElement
         onPointerDown={handlePointerDown}
         onDoubleClick={handleDoubleClick}
         onContextMenu={fireContextMenu}
-        onClick={animation?.trigger === 'onClick' ? () => setAnimTriggered(v => !v) : undefined}
-        {...motionProps}
         {...interactionHandlers}
       >
         <ElementRenderer

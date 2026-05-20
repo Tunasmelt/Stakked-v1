@@ -3,15 +3,13 @@ import { persist } from 'zustand/middleware';
 import { v4 as uuidv4 } from 'uuid';
 
 export type LeftPanelTab = 'elements' | 'layers' | 'pages' | 'assets';
-export type RightPanelTab = 'design' | 'style' | 'animate';
+export type RightPanelTab = 'design' | 'style';
 
 export type ChromeTheme = 'ghost' | 'neon' | 'brutal' | 'paper' | 'sunset';
 export type ChromeMode = 'dark' | 'light';
 export type ChromeDensity = 'compact' | 'cozy' | 'spacious';
 export type ChromeIntensity = 'minimal' | 'balanced' | 'edgy';
 export type FontPairing = 'geist' | 'jb' | 'space';
-export type ViewMode = 'canvas' | 'workflow';
-
 export type ToastKind = 'info' | 'success' | 'warning' | 'error';
 
 export interface Toast {
@@ -37,7 +35,6 @@ interface UIState {
   leftPanelTab: LeftPanelTab;
   rightPanelTab: RightPanelTab;
   previewMode: boolean;
-  viewMode: ViewMode;
 
   // Claude Design token selection
   theme: ChromeTheme;
@@ -82,7 +79,6 @@ interface UIState {
   setLeftPanelTab: (tab: LeftPanelTab) => void;
   setRightPanelTab: (tab: RightPanelTab) => void;
   setPreviewMode: (mode: boolean) => void;
-  setViewMode: (mode: ViewMode) => void;
 
   setTheme: (t: ChromeTheme) => void;
   setMode: (m: ChromeMode) => void;
@@ -112,7 +108,6 @@ export const useUIStore = create<UIState>()(
       leftPanelTab: 'elements',
       rightPanelTab: 'design',
       previewMode: false,
-      viewMode: 'canvas',
 
       theme: 'ghost',
       mode: 'dark',
@@ -140,7 +135,6 @@ export const useUIStore = create<UIState>()(
       setLeftPanelTab: (tab) => set({ leftPanelTab: tab, leftPanelOpen: true }),
       setRightPanelTab: (tab) => set({ rightPanelTab: tab, rightPanelOpen: true }),
       setPreviewMode: (mode) => set({ previewMode: mode }),
-      setViewMode: (mode) => set({ viewMode: mode }),
 
       setTheme: (t) => set({ theme: t }),
       setMode: (m) => set({ mode: m }),

@@ -48,7 +48,6 @@ interface Props {
 export const ViewerCanvas: React.FC<Props> = ({ project }) => {
   const activePageIndex = useProjectStore((s) => s.activePageIndex);
   const setActivePageIndex = useProjectStore((s) => s.setActivePageIndex);
-  const globalValues = useGlobalState((s) => s.values);
   const setGlobalValue = useGlobalState((s) => s.setValue);
 
   const page = project.pages[activePageIndex] ?? project.pages[0];
@@ -66,7 +65,6 @@ export const ViewerCanvas: React.FC<Props> = ({ project }) => {
    * Mirrors the logic in useInteractivity.ts.
    */
   const resolveTarget = useCallback((targetId: string): number | null => {
-    const workflow = project.workflow;
     let current = targetId;
     const limit = 10;
     let itr = 0;
@@ -76,24 +74,12 @@ export const ViewerCanvas: React.FC<Props> = ({ project }) => {
         const idx = project.pages.findIndex(p => p.id === pageId);
         return idx !== -1 ? idx : null;
       }
-      if (current.startsWith('logic-') && workflow) {
-        const node = workflow.nodes.find(n => n.id === current);
-        if (!node) return null;
-        const { variable, value: expected } = node.data;
-        const actual = globalValues[variable];
-        const result = String(actual) === String(expected);
-        const edge = workflow.edges.find(
-          e => e.source === current && e.sourceHandle === (result ? 'true' : 'false')
-        );
-        if (edge) { current = edge.target; continue; }
-        return null;
-      }
-      // Legacy: bare page ID
+      // Bare page ID
       const idx = project.pages.findIndex(p => p.id === current);
       return idx !== -1 ? idx : null;
     }
     return null;
-  }, [project, globalValues]);
+  }, [project]);
 
   // Expose navigation and state to window for the inline exported runtime
   // (countdown, tabs) as well as any clicks wired via useInteractivity
@@ -125,7 +111,7 @@ export const ViewerCanvas: React.FC<Props> = ({ project }) => {
     boxShadow: '0 0 100px rgba(0,0,0,0.5)',
   };
 
-  const pageVariants = getPageVariants(page?.transition);
+  const pageVariants = getPageVariants(undefined);
 
   return (
     <div
