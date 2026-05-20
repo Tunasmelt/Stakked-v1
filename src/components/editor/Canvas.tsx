@@ -21,6 +21,8 @@ import { CanvasContextMenu } from './CanvasContextMenu';
 const MIN_ZOOM = 0.10;   // 10%
 const MAX_ZOOM = 4.00;   // 400%
 const SNAP_THRESHOLD = 5;
+// Snap threshold in screen pixels (normalised to canvas space during drag)
+const SNAP_SCREEN_PX = 8;
 
 // Stable fallback so `|| []` never creates a fresh array per render
 const STABLE_EMPTY: readonly StakkedElement[] = Object.freeze([]);
@@ -98,11 +100,17 @@ export const Canvas: React.FC = memo(() => {
 
   // Local UI state
   const [contextMenu, setContextMenu]   = useState<{ x: number; y: number; elementId: string | null } | null>(null);
-  const [activeGuides, setActiveGuides] = useState<{ x: number[]; y: number[] }>({ x: [], y: [] });
+  const [activeGuides, setActiveGuides] = useState<{ x: number[]; y: number[]; gaps: { x1: number; y1: number; x2: number; y2: number }[] }>({ x: [], y: [], gaps: [] });
   const [showGrid, setShowGrid]         = useState(false);
   const [isShiftDown, setIsShiftDown]   = useState(false);
+  const [isAltDown, setIsAltDown]       = useState(false);
   const [dropGhost, setDropGhost]       = useState<{ x: number; y: number; label: string } | null>(null);
   const [sizeTooltip, setSizeTooltip]   = useState<{ x: number; y: number; w: number; h: number; mode: 'drag' | 'resize' } | null>(null);
+
+  // Tracks whether Alt was held at drag-start (for alt+drag duplicate)
+  const altWasPressedOnDragStart = useRef(false);
+  // Original position before alt+drag (so the duplicated copy stays in place)
+  const altDragOriginalPos = useRef<{ x: number; y: number } | null>(null);
 
   // Cursor: driven by activeTool (overridden to 'grabbing' while panning)
   const wrapperCursor = activeTool === 'hand' ? 'grab' : activeTool === 'text' ? 'text' : 'default';
@@ -117,10 +125,16 @@ export const Canvas: React.FC = memo(() => {
   const marqueeStartRef = useRef<{ canvasX: number; canvasY: number } | null>(null);
   const isMarqueeingRef = useRef(false);
 
-  // ── Shift key tracking ──
+  // ── Shift + Alt key tracking ──
   useEffect(() => {
-    const dn = (e: KeyboardEvent) => { if (e.key === 'Shift') setIsShiftDown(true); };
-    const up = (e: KeyboardEvent) => { if (e.key === 'Shift') setIsShiftDown(false); };
+    const dn = (e: KeyboardEvent) => {
+      if (e.key === 'Shift') setIsShiftDown(true);
+      if (e.key === 'Alt')   setIsAltDown(true);
+    };
+    const up = (e: KeyboardEvent) => {
+      if (e.key === 'Shift') setIsShiftDown(false);
+      if (e.key === 'Alt')   setIsAltDown(false);
+    };
     window.addEventListener('keydown', dn);
     window.addEventListener('keyup', up);
     return () => { window.removeEventListener('keydown', dn); window.removeEventListener('keyup', up); };
@@ -472,31 +486,111 @@ export const Canvas: React.FC = memo(() => {
     };
   }, [canvasSize.width, canvasSize.height]);
 
-  const computeElementGuides = useCallback((movingId: string, mx: number, my: number) => {
-    const movingEl = elements.find(e => e.id === movingId);
-    if (!movingEl) return;
-    const mW = typeof movingEl.size.width  === 'number' ? movingEl.size.width  : 0;
-    const mH = typeof movingEl.size.height === 'number' ? movingEl.size.height : 0;
+  /**
+   * Compute element-to-element snap guides and return clamped [nx, ny].
+   * Returns the (possibly adjusted) position after snapping.
+   * Also detects equal-gap opportunities for gap snap guides.
+   */
+  const computeElementGuides = useCallback((
+    movingIds: string[],
+    mx: number,
+    my: number,
+    mW: number,
+    mH: number,
+  ): { nx: number; ny: number } => {
+    const threshold = SNAP_SCREEN_PX / zoomRef.current;
+
+    // 6 snap points of the dragged element (left, centerX, right / top, centerY, bottom)
+    const dragXPoints = [mx, mx + mW / 2, mx + mW];
+    const dragYPoints = [my, my + mH / 2, my + mH];
+
+    let bestSnapX: { delta: number; guide: number; offset: number } | null = null;
+    let bestSnapY: { delta: number; guide: number; offset: number } | null = null;
+
     const gX = new Set<number>();
     const gY = new Set<number>();
 
-    // Element-to-element alignment
-    for (const el of elements) {
-      if (el.id === movingId || !el.visible) continue;
+    // Collect all non-selected, visible elements' snap lines
+    const staticElems = (elements as StakkedElement[]).filter(
+      el => !movingIds.includes(el.id) && el.visible
+    );
+
+    for (const el of staticElems) {
       const eW = typeof el.size.width  === 'number' ? el.size.width  : 0;
       const eH = typeof el.size.height === 'number' ? el.size.height : 0;
-      for (const cx of [el.position.x, el.position.x + eW, el.position.x + eW / 2]) {
-        for (const px of [mx, mx + mW, mx + mW / 2]) {
-          if (Math.abs(cx - px) <= SNAP_THRESHOLD) gX.add(cx);
+      const snapXCandidates = [el.position.x, el.position.x + eW / 2, el.position.x + eW];
+      const snapYCandidates = [el.position.y, el.position.y + eH / 2, el.position.y + eH];
+
+      for (const candidate of snapXCandidates) {
+        for (let pi = 0; pi < dragXPoints.length; pi++) {
+          const delta = Math.abs(candidate - dragXPoints[pi]);
+          if (delta <= threshold) {
+            gX.add(candidate);
+            if (!bestSnapX || delta < bestSnapX.delta) {
+              bestSnapX = { delta, guide: candidate, offset: pi === 0 ? 0 : pi === 1 ? mW / 2 : mW };
+            }
+          }
         }
       }
-      for (const cy of [el.position.y, el.position.y + eH, el.position.y + eH / 2]) {
-        for (const py of [my, my + mH, my + mH / 2]) {
-          if (Math.abs(cy - py) <= SNAP_THRESHOLD) gY.add(cy);
+
+      for (const candidate of snapYCandidates) {
+        for (let pi = 0; pi < dragYPoints.length; pi++) {
+          const delta = Math.abs(candidate - dragYPoints[pi]);
+          if (delta <= threshold) {
+            gY.add(candidate);
+            if (!bestSnapY || delta < bestSnapY.delta) {
+              bestSnapY = { delta, guide: candidate, offset: pi === 0 ? 0 : pi === 1 ? mH / 2 : mH };
+            }
+          }
         }
       }
     }
-    setActiveGuides({ x: Array.from(gX), y: Array.from(gY) });
+
+    const snappedNx = bestSnapX ? bestSnapX.guide - bestSnapX.offset : mx;
+    const snappedNy = bestSnapY ? bestSnapY.guide - bestSnapY.offset : my;
+
+    // ── Equal-gap detection ────────────────────────────────────────────────
+    // Check if spacing between the dragged element and two static neighbours is equal
+    const gapLines: { x1: number; y1: number; x2: number; y2: number }[] = [];
+    const dragCx = snappedNx + mW / 2;
+    const dragCy = snappedNy + mH / 2;
+
+    // Collect centres of static elements
+    const staticCentres = staticElems.map(el => ({
+      cx: el.position.x + (typeof el.size.width  === 'number' ? el.size.width  : 0) / 2,
+      cy: el.position.y + (typeof el.size.height === 'number' ? el.size.height : 0) / 2,
+      el,
+    }));
+
+    // Sort by horizontal distance; check if gap from left neighbour === gap to right neighbour
+    const byHDist = staticCentres.slice().sort((a, b) => Math.abs(a.cx - dragCx) - Math.abs(b.cx - dragCx));
+    if (byHDist.length >= 2) {
+      const left  = byHDist.find(s => s.cx < dragCx);
+      const right = byHDist.find(s => s.cx > dragCx);
+      if (left && right) {
+        const gapL = dragCx - left.cx;
+        const gapR = right.cx - dragCx;
+        if (Math.abs(gapL - gapR) <= threshold * 2) {
+          gapLines.push({ x1: left.cx, y1: dragCy, x2: right.cx, y2: dragCy });
+        }
+      }
+    }
+
+    const byVDist = staticCentres.slice().sort((a, b) => Math.abs(a.cy - dragCy) - Math.abs(b.cy - dragCy));
+    if (byVDist.length >= 2) {
+      const above = byVDist.find(s => s.cy < dragCy);
+      const below = byVDist.find(s => s.cy > dragCy);
+      if (above && below) {
+        const gapA = dragCy - above.cy;
+        const gapB = below.cy - dragCy;
+        if (Math.abs(gapA - gapB) <= threshold * 2) {
+          gapLines.push({ x1: dragCx, y1: above.cy, x2: dragCx, y2: below.cy });
+        }
+      }
+    }
+
+    setActiveGuides({ x: Array.from(gX), y: Array.from(gY), gaps: gapLines });
+    return { nx: snappedNx, ny: snappedNy };
   }, [elements]);
 
   // ── Helper: restore the full CSS transform after Moveable moves ──
@@ -509,7 +603,10 @@ export const Canvas: React.FC = memo(() => {
     const tr = el.style?.transform;
     const parts: string[] = [`rotate(${el.rotation ?? 0}deg)`];
     if (tr) {
-      if ((tr.scaleX ?? 1) !== 1 || (tr.scaleY ?? 1) !== 1) parts.push(`scale(${tr.scaleX ?? 1},${tr.scaleY ?? 1})`);
+      // scaleX/scaleY may be -1 for flip — always include when non-identity
+      const sx = tr.scaleX ?? 1;
+      const sy = tr.scaleY ?? 1;
+      if (sx !== 1 || sy !== 1) parts.push(`scale(${sx},${sy})`);
       if (tr.skewX)      parts.push(`skewX(${tr.skewX}deg)`);
       if (tr.skewY)      parts.push(`skewY(${tr.skewY}deg)`);
       if (tr.translateX) parts.push(`translateX(${tr.translateX}px)`);
@@ -677,6 +774,8 @@ export const Canvas: React.FC = memo(() => {
                   // zoom prop = visual handle scale (NOT coordinate scaling)
                   zoom={1 / zoomRef.current}
                   keepRatio={isShiftDown}
+                  rotationSnaps={isShiftDown ? [0, 45, 90, 135, 180, 225, 270, 315] : []}
+                  rotationSnapTolerance={5}
                   verticalGuidelines={verticalGuidelines}
                   horizontalGuidelines={horizontalGuidelines}
                   elementGuidelines={elementGuidelines}
@@ -689,21 +788,30 @@ export const Canvas: React.FC = memo(() => {
                     setDragging(true);
                     const id = elementIdFromDom(target as HTMLElement);
                     const el = elements.find(e => e.id === id);
-                    if (el) moveRef.current[id] = { x: el.position.x, y: el.position.y };
+                    if (el) {
+                      moveRef.current[id] = { x: el.position.x, y: el.position.y };
+                      // Alt+drag: record whether Alt is held at gesture start
+                      altWasPressedOnDragStart.current = isAltDown;
+                      altDragOriginalPos.current = { x: el.position.x, y: el.position.y };
+                    }
                   }}
                   onDrag={({ target, dist, clientX, clientY }: OnDrag) => {
                     const id    = elementIdFromDom(target as HTMLElement);
                     const start = moveRef.current[id] ?? { x: 0, y: 0 };
+                    const rawNx = start.x + dist[0];
+                    const rawNy = start.y + dist[1];
+                    const el    = elements.find(e => e.id === id);
+                    const mW    = el ? (typeof el.size.width  === 'number' ? el.size.width  : 0) : 0;
+                    const mH    = el ? (typeof el.size.height === 'number' ? el.size.height : 0) : 0;
+                    // Snap to nearest element edge/centre — returns clamped position
+                    const { nx, ny } = computeElementGuides([id], rawNx, rawNy, mW, mH);
                     // nx/ny are always canvas-absolute; child elements inside a
                     // container need their style written as container-relative.
-                    const nx = start.x + dist[0];
-                    const ny = start.y + dist[1];
-                    const t  = target as HTMLElement;
+                    const t   = target as HTMLElement;
                     const ctn = childToContainer.get(id);
                     t.style.left = ctn ? `${nx - ctn.position.x}px` : `${nx}px`;
                     t.style.top  = ctn ? `${ny - ctn.position.y}px` : `${ny}px`;
                     restoreTransform(target as HTMLElement, id);
-                    computeElementGuides(id, nx, ny);
                     // Show X,Y tooltip
                     if (wrapperRef.current) {
                       const wr = wrapperRef.current.getBoundingClientRect();
@@ -713,11 +821,15 @@ export const Canvas: React.FC = memo(() => {
                   onDragEnd={({ target, isDrag }: OnDragEnd) => {
                     setDragging(false);
                     setSizeTooltip(null);
-                    setActiveGuides({ x: [], y: [] });
+                    setActiveGuides({ x: [], y: [], gaps: [] });
                     const id = elementIdFromDom(target as HTMLElement);
                     // Always restore transform (clears any translate Moveable added on click)
                     restoreTransform(target as HTMLElement, id);
-                    if (!isDrag) return;
+                    if (!isDrag) {
+                      altWasPressedOnDragStart.current = false;
+                      altDragOriginalPos.current = null;
+                      return;
+                    }
                     // Read fresh state — Moveable caches the handler from the render
                     // that started the gesture; a concurrent edit (BroadcastChannel /
                     // 30 s cloud sync) may have updated `elements` since then.
@@ -729,11 +841,20 @@ export const Canvas: React.FC = memo(() => {
                       const ctn = childToContainer.get(el.id);
                       const ox = ctn?.position.x ?? 0;
                       const oy = ctn?.position.y ?? 0;
-                      commitElementMove(activePageIndex, el.id, moveRef.current[el.id], {
+                      commitElementMove(_ai, el.id, moveRef.current[el.id], {
                         x: parsePx((target as HTMLElement).style.left, el.position.x - ox) + ox,
                         y: parsePx((target as HTMLElement).style.top,  el.position.y - oy) + oy,
                       });
+
+                      // Alt+drag: duplicate the element at its ORIGINAL position
+                      // (the dragged copy is already committed above at its new position)
+                      if (altWasPressedOnDragStart.current && altDragOriginalPos.current) {
+                        const { duplicateSelection } = useProjectStore.getState();
+                        duplicateSelection(_ai, [el.id]);
+                      }
                     }
+                    altWasPressedOnDragStart.current = false;
+                    altDragOriginalPos.current = null;
                   }}
 
                   // ── Single element resize ────────────────────────
@@ -815,14 +936,34 @@ export const Canvas: React.FC = memo(() => {
                     }
                   }}
                   onDragGroup={({ events }: OnDragGroup) => {
+                    // Use the first element in the group as the snap reference
+                    const firstEvent = events[0];
+                    let snapNxOffset = 0;
+                    let snapNyOffset = 0;
+                    if (firstEvent) {
+                      const firstId    = elementIdFromDom(firstEvent.target as HTMLElement);
+                      const firstStart = moveRef.current[firstId];
+                      const firstEl    = elements.find(e => e.id === firstId);
+                      if (firstStart && firstEl) {
+                        const mW = typeof firstEl.size.width  === 'number' ? firstEl.size.width  : 0;
+                        const mH = typeof firstEl.size.height === 'number' ? firstEl.size.height : 0;
+                        const rawNx = firstStart.x + firstEvent.dist[0];
+                        const rawNy = firstStart.y + firstEvent.dist[1];
+                        const { nx: snappedNx, ny: snappedNy } = computeElementGuides(
+                          selectedElementIds, rawNx, rawNy, mW, mH
+                        );
+                        snapNxOffset = snappedNx - rawNx;
+                        snapNyOffset = snappedNy - rawNy;
+                      }
+                    }
                     for (const { target, dist } of events) {
                       const id    = elementIdFromDom(target as HTMLElement);
                       const start = moveRef.current[id];
                       if (!start) continue;
-                      const t = target as HTMLElement;
+                      const t   = target as HTMLElement;
                       const ctn = childToContainer.get(id);
-                      const nx = start.x + dist[0];
-                      const ny = start.y + dist[1];
+                      const nx  = start.x + dist[0] + snapNxOffset;
+                      const ny  = start.y + dist[1] + snapNyOffset;
                       t.style.left = ctn ? `${nx - ctn.position.x}px` : `${nx}px`;
                       t.style.top  = ctn ? `${ny - ctn.position.y}px` : `${ny}px`;
                       restoreTransform(target as HTMLElement, id);
@@ -830,7 +971,7 @@ export const Canvas: React.FC = memo(() => {
                   }}
                   onDragGroupEnd={({ targets, isDrag }: OnDragGroupEnd) => {
                     setDragging(false);
-                    setActiveGuides({ x: [], y: [] });
+                    setActiveGuides({ x: [], y: [], gaps: [] });
                     for (const t of targets) {
                       const id = elementIdFromDom(t as HTMLElement);
                       restoreTransform(t as HTMLElement, id);
@@ -970,6 +1111,19 @@ export const Canvas: React.FC = memo(() => {
                   {activeGuides.y.map(gy => (
                     <line key={`el-y-${gy}`} x1={-9999} y1={gy} x2={9999} y2={gy}
                       stroke="var(--ok, #22c55e)" strokeWidth={1} opacity={0.9} />
+                  ))}
+                  {/* Equal-gap measurement guides (orange double-ended lines) */}
+                  {activeGuides.gaps.map((g, i) => (
+                    <g key={`gap-${i}`} opacity={0.85}>
+                      <line x1={g.x1} y1={g.y1} x2={g.x2} y2={g.y2}
+                        stroke="#f97316" strokeWidth={1} strokeDasharray="3 2" />
+                      {/* Arrow-head at start */}
+                      <line x1={g.x1} y1={g.y1 - 4} x2={g.x1} y2={g.y1 + 4}
+                        stroke="#f97316" strokeWidth={1.5} />
+                      {/* Arrow-head at end */}
+                      <line x1={g.x2} y1={g.y2 - 4} x2={g.x2} y2={g.y2 + 4}
+                        stroke="#f97316" strokeWidth={1.5} />
+                    </g>
                   ))}
                 </svg>
               )}
