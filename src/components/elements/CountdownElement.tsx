@@ -37,7 +37,9 @@ export default function CountdownElement({ element }: { element: StakkedElement;
 
   useEffect(() => {
     if (!content) return;
-    setTimeLeft(computeTimeLeft(content.targetDate));
+    // Re-sync immediately when targetDate changes (the useState initializer
+    // above only covers the initial mount) — intentional, not a render loop.
+    setTimeLeft(computeTimeLeft(content.targetDate)); // eslint-disable-line react-hooks/set-state-in-effect
     const interval = setInterval(() => {
       setTimeLeft(computeTimeLeft(content.targetDate));
     }, 1000);

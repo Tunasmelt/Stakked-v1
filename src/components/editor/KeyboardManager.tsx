@@ -3,7 +3,6 @@
 import React, { useEffect, useCallback } from 'react';
 import { useProjectStore } from '@/stores/project-store';
 import { useEditorStore } from '@/stores/editor-store';
-import { useUIStore } from '@/stores/ui-store';
 import { useTutorialStore } from '@/stores/tutorial-store';
 
 /**

@@ -51,7 +51,7 @@ export function compileProjectToHtml(
   }
 
   const body = renderPage(page);
-  const pageCss = collectPageCss(page);
+  const pageCss = collectPageCss();
   const fontLink = embedGoogleFonts
     ? `<!-- Google Fonts: requires internet access. For offline use, self-host the WOFF2 files. -->\n` +
       `<link rel="preconnect" href="https://fonts.googleapis.com">\n` +
@@ -472,7 +472,7 @@ function resolveBackgroundCss(bg?: Background): string {
  * Emit one CSS block per element that has an animation, plus the shared
  * marquee keyframes.
  */
-function collectPageCss(_page: StakkedPage): string {
+function collectPageCss(): string {
   return ''; // Animation system removed
 }
 

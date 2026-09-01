@@ -21,7 +21,7 @@ export function useInteractivity(element: StakkedElement | undefined, isPublic =
     const project = useProjectStore.getState().project;
     if (!project) return;
 
-    let current = initialTargetId;
+    const current = initialTargetId;
     const limit = 10;
     let itr = 0;
 

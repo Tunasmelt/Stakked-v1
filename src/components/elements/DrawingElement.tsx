@@ -3,7 +3,6 @@
 import React, { useRef, useCallback, useState } from 'react';
 import { StakkedElement, StakkedDrawingContent, DrawingPath } from '@/types/element';
 import { useProjectStore } from '@/stores/project-store';
-import { useEditorStore } from '@/stores/editor-store';
 import { v4 as uuidv4 } from 'uuid';
 
 interface Props {
@@ -13,13 +12,6 @@ interface Props {
 }
 
 type DrawTool = 'pencil' | 'pen' | 'highlighter' | 'eraser';
-
-const TOOL_COLORS: Record<DrawTool, string> = {
-  pencil: '#ffffff',
-  pen: '#3b82f6',
-  highlighter: 'rgba(250,204,21,0.4)',
-  eraser: 'transparent',
-};
 
 /**
  * DrawingElement — interactive SVG canvas for freehand drawing.

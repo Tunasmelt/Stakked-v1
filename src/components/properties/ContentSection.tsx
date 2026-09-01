@@ -30,7 +30,7 @@ function urlToEmbedHtml(platform: string, url: string, autoplay: boolean, loop: 
   return '';
 }
 import { Select, NumberInput, Slider, Toggle, ColorPicker } from '@/components/ui/Primitives';
-import { Plus, Trash2, GripVertical } from 'lucide-react';
+import { Plus, Trash2 } from 'lucide-react';
 import styles from '@/styles/PropertiesPanel.module.css';
 
 const SHAPE_VARIANTS = [

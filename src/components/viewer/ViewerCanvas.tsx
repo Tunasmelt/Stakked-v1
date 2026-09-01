@@ -65,7 +65,7 @@ export const ViewerCanvas: React.FC<Props> = ({ project }) => {
    * Mirrors the logic in useInteractivity.ts.
    */
   const resolveTarget = useCallback((targetId: string): number | null => {
-    let current = targetId;
+    const current = targetId;
     const limit = 10;
     let itr = 0;
     while (itr++ < limit) {

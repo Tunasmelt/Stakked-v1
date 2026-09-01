@@ -41,8 +41,6 @@ export const Toolbar: React.FC = () => {
   const canRedo         = useProjectStore(state => state.future.length > 0);
   const project         = useProjectStore(state => state.project);
   const activePageIndex = useProjectStore(state => state.activePageIndex);
-  const updateElement   = useProjectStore(state => state.updateElement);
-  const commit          = useProjectStore(state => state.commit);
 
   // Individual selectors so dragging/resizing/selection changes don't re-render the toolbar
   const activeTool = useEditorStore(state => state.activeTool);

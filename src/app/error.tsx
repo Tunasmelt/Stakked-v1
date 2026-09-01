@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
+import Link from 'next/link';
 
 interface Props {
   error: Error & { digest?: string };
@@ -110,7 +111,7 @@ export default function GlobalError({ error, reset }: Props) {
         >
           try again
         </button>
-        <a
+        <Link
           href="/"
           style={{
             display: 'inline-flex',
@@ -128,7 +129,7 @@ export default function GlobalError({ error, reset }: Props) {
           }}
         >
           ← home
-        </a>
+        </Link>
       </div>
     </main>
   );
