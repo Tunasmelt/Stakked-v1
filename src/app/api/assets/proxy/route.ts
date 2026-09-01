@@ -88,15 +88,40 @@ export async function GET(request: NextRequest) {
   // ───────────────────────────────────────────────────────────────────────────
 
   try {
-    const response = await fetch(imageUrl, {
-      headers: {
-        'User-Agent': 'Stakked-Proxy/1.0',
-      },
-      // Prevent the Node fetch from following redirects to private hosts —
-      // a redirect to 169.254.x.x after passing the hostname check above
-      // would bypass the SSRF mitigation.
-      redirect: 'error',
-    });
+    // Many legitimate image hosts (picsum.photos, Unsplash's source redirector,
+    // etc.) serve the actual image via a redirect. Blanket-rejecting redirects
+    // breaks those hosts entirely, so we follow them ourselves — re-running the
+    // same https-only + private-IP checks on every hop — rather than trusting
+    // fetch's own redirect-following (which would let a redirect to
+    // 169.254.x.x etc. bypass the SSRF mitigation above).
+    let currentUrl = parsed;
+    let response: Response;
+    let hops = 0;
+    const MAX_REDIRECTS = 5;
+
+    for (;;) {
+      response = await fetch(currentUrl.toString(), {
+        headers: { 'User-Agent': 'Stakked-Proxy/1.0' },
+        redirect: 'manual',
+      });
+
+      if (response.status >= 300 && response.status < 400) {
+        const location = response.headers.get('location');
+        if (!location) throw new Error('Redirect with no Location header');
+        if (++hops > MAX_REDIRECTS) throw new Error('Too many redirects');
+
+        const nextUrl = new URL(location, currentUrl);
+        if (nextUrl.protocol !== 'https:') {
+          throw new Error('Redirect target must be https://');
+        }
+        if (isPrivateIp(nextUrl.hostname)) {
+          throw new Error('Redirect target resolves to a private/internal address');
+        }
+        currentUrl = nextUrl;
+        continue;
+      }
+      break;
+    }
 
     if (!response.ok) {
       throw new Error(`Failed to fetch image: ${response.statusText}`);
