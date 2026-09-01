@@ -4,22 +4,37 @@
 
 > Version 0.3.0 · Built with Next.js 16, React 19, Supabase, and Framer Motion
 
+![Stakked landing page](public/readme/landing.png)
+
 ---
 
 ## What Is Stakked?
 
-Stakked is a browser-native page builder designed for the creative industry. Drop in elements, wire up animations, publish with one click. Everything runs locally first (IndexedDB) with optional cloud sync and auth via Supabase.
+Stakked is a browser-native page builder designed for the creative industry. Drop in elements, style them with a full properties panel, publish with one click. Everything runs locally first (IndexedDB) with optional cloud sync and auth via Supabase.
 
 **Key capabilities:**
-- **Canvas editor** — pixel-precise drag, resize, rotate with multi-select and snap guides
-- **22 element types** — text, image, button, video, music player, form, map, gallery, marquee, countdown, drawing, and more
-- **Animation engine** — 16 preset animations with scroll triggers, hover triggers, and click triggers
+- **Canvas editor** — pixel-precise drag, resize, rotate with multi-select, snap guides, and grouping
+- **16 element types** — text, image, button, video, gallery, embed, icon, shape, line, drawing, table, container, divider, progress, countdown, and code
+- **Deep properties panel** — typography, multi-layer fill, border, effects, overlays, and transforms per element
 - **Responsive design** — per-element desktop / tablet / mobile style overrides
+- **Starter templates** — photographer portfolio, event landing page, podcast home, link-in-bio, product showcase, and more, fully pre-built
 - **One-click publish** — compiles the canvas to static HTML and deploys to Supabase Storage
 - **Community gallery** — browse and fork projects from other creators
 - **AI generation** — theme palettes, layout suggestions, and content summaries via Gemini or Groq
 - **PWA** — installable, works offline after first load
-- **Export** — PNG, PDF, GIF, and self-contained HTML
+- **Export** — PNG, JPEG, PDF, GIF, and self-contained HTML
+
+---
+
+## Screenshots
+
+| Canvas editor | Properties panel |
+|---|---|
+| ![Stakked canvas editor](public/readme/editor.png) | ![Stakked properties panel](public/readme/properties.png) |
+
+**Starter templates:**
+
+![Stakked templates gallery](public/readme/templates.png)
 
 ---
 
@@ -71,9 +86,6 @@ AI_DEFAULT_PROVIDER=gemini
 
 # Image search (optional)
 PEXELS_API_KEY=your-pexels-key
-
-# Mapbox (optional — for the Map element)
-NEXT_PUBLIC_MAPBOX_TOKEN=your-mapbox-token
 
 # Site URL
 NEXT_PUBLIC_SITE_URL=http://localhost:3000
@@ -127,7 +139,7 @@ src/
     workspace/           # Project dashboard
   components/
     editor/              # Canvas, CanvasElement, Toolbar, panels
-    elements/            # All 22 element renderers
+    elements/            # All 16 element renderers
     preview/             # Public-mode PreviewRenderer
     viewer/              # PublicApp wrapper
   data/templates/        # Starter template definitions
@@ -171,7 +183,6 @@ supabase/migrations/     # SQL migration files (apply with supabase db push)
 | `GROQ_API_KEY` | For AI features | Groq API key (alternative to Gemini) |
 | `AI_DEFAULT_PROVIDER` | No | `"gemini"` or `"groq"` (default: `gemini`) |
 | `PEXELS_API_KEY` | No | Enables the image search panel |
-| `NEXT_PUBLIC_MAPBOX_TOKEN` | No | Enables the Mapbox map element |
 | `NEXT_PUBLIC_SITE_URL` | No | Base URL for published share links |
 
 ---

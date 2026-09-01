@@ -1,7 +1,9 @@
 {
   "name": "stakked",
   "version": "0.3.0",
+  "description": "The visual OS for creators — a drag-and-drop canvas builder for musicians, artists, and brands to build stunning interactive pages without writing code.",
   "private": true,
+  "license": "MIT",
   "scripts": {
     "dev": "next dev --webpack",
     "build": "next build --webpack",
