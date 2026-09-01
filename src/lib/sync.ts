@@ -200,6 +200,13 @@ export interface AutoSyncController {
   flushNow: () => Promise<void>;
 }
 
+export interface AutoSyncHooks {
+  /** Called right before a sync attempt starts (e.g. to show a "syncing" indicator). */
+  onSyncStart?: () => void;
+  /** Called after a sync attempt settles, whether it succeeded or not. */
+  onSyncSettled?: () => void;
+}
+
 /**
  * Start a 30s interval that pushes the project whenever it is dirty and online.
  * Also wires online/offline listeners so a reconnection triggers an immediate flush.
@@ -213,6 +220,7 @@ export function startAutoSync(
   isDirty: () => boolean,
   onSynced: () => void,
   intervalMs: number = 30_000,
+  hooks: AutoSyncHooks = {},
 ): AutoSyncController {
   let stopped = false;
 
@@ -222,8 +230,13 @@ export function startAutoSync(
     if (typeof navigator !== 'undefined' && navigator.onLine === false) return;
     const project = getProject();
     if (!project) return;
-    const ok = await syncToCloud(project);
-    if (ok) onSynced();
+    hooks.onSyncStart?.();
+    try {
+      const ok = await syncToCloud(project);
+      if (ok) onSynced();
+    } finally {
+      hooks.onSyncSettled?.();
+    }
   };
 
   const timer = typeof window !== 'undefined'

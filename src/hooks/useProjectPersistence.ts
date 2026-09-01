@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useProjectStore } from '@/stores/project-store';
 import { useEditorStore } from '@/stores/editor-store';
 import { loadProject, saveProject } from '@/lib/db';
-import { resolveProjectSource, syncToCloud, broadcastLocalSync, subscribeToLocalSync } from '@/lib/sync';
+import { resolveProjectSource, startAutoSync, broadcastLocalSync, subscribeToLocalSync } from '@/lib/sync';
 
 /**
  * useProjectPersistence: Logic for resolving initial project state
@@ -51,36 +51,30 @@ export function useProjectPersistence(projectId: string) {
   }, [projectId, setProject, createProject]);
 
   // 2. Auto-Sync Loop (Local & Cloud)
+  // IndexedDB is already handled by useAutoSave (1s debounce) — this loop
+  // handles cloud sync only. startAutoSync also wires an 'online' listener
+  // so a reconnect triggers an immediate flush instead of waiting up to 30s.
   useEffect(() => {
     if (isInitializing || !projectId) return;
 
-    const intervalId = setInterval(async () => {
-      const { project, isDirty } = useProjectStore.getState();
-      if (!project || !isDirty) return;
-
-      // IndexedDB is already handled by useAutoSave (1s debounce).
-      // This loop handles cloud sync only.
-      if (!navigator.onLine) return;
-
-      try {
-        setSyncing(true);
-        await syncToCloud(project);
+    const controller = startAutoSync(
+      () => useProjectStore.getState().project,
+      () => useProjectStore.getState().isDirty,
+      () => {
         // Stamp updatedAt and clear dirty flag WITHOUT calling setProject — that
         // action resets history = [] which would wipe the entire undo stack on
-        // every 30-second sync.  Mutate only the fields we need via Immer.
+        // every sync.  Mutate only the fields we need via Immer.
         useProjectStore.setState((s) => {
           if (s.project) s.project.updatedAt = new Date().toISOString();
           s.isDirty = false;
           s.lastSavedAt = new Date().toISOString();
         });
-      } catch (err) {
-        console.error('Cloud sync failed:', err);
-      } finally {
-        setSyncing(false);
-      }
-    }, 30000);
+      },
+      30000,
+      { onSyncStart: () => setSyncing(true), onSyncSettled: () => setSyncing(false) },
+    );
 
-    return () => clearInterval(intervalId);
+    return () => controller.stop();
   }, [projectId, isInitializing, setSyncing]);
 
   // 3. Multi-Tab Sync (BroadcastChannel)
