@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation';
 import {
   Plus, Briefcase, Clock, Trash2, FolderOpen, Users, Settings, BookOpen, Edit2, Globe, HelpCircle,
 } from 'lucide-react';
-import { listProjects, saveProject, deleteProject } from '@/lib/db';
+import { listProjects, saveProject, deleteProject, getStorageEstimate } from '@/lib/db';
 import { StakkedProject } from '@/types/project';
 import { useProjectStore } from '@/stores/project-store';
 import { useUIStore, CHROME_THEMES } from '@/stores/ui-store';
@@ -17,21 +17,17 @@ import { TutorialOverlay } from '@/components/system/TutorialOverlay';
 import { STARTER_TEMPLATES } from '@/data/templates/starters';
 import styles from '@/styles/Workspace.module.css';
 
-/** Template metadata for display */
-const TEMPLATE_CARDS = [
-  {
-    key: 'neon-arcade',
-    name: 'Neon Archive',
-    desc: 'Music Portfolio · Dark',
-    accent: 'var(--accent)',
-  },
-  {
-    key: 'static-bloom',
-    name: 'Minimal Studio',
-    desc: 'Editorial · White Space',
-    accent: 'var(--surface)',
-  },
-] as const;
+/** Template metadata for display — derived from STARTER_TEMPLATES so every
+ *  defined template is reachable from the UI (a hand-maintained subset here
+ *  previously went stale and pointed at two empty stub templates). */
+const TEMPLATE_CARDS = Object.entries(STARTER_TEMPLATES)
+  .filter(([, tmpl]) => (tmpl.pages?.[0]?.elements.length ?? 0) > 0)
+  .map(([key, tmpl], i) => ({
+    key,
+    name: tmpl.title ?? key,
+    desc: [tmpl.category, tmpl.tags?.[0]].filter(Boolean).join(' · '),
+    accent: i % 2 === 0 ? 'var(--accent)' : 'var(--surface)',
+  }));
 
 /**
  * Workspace Dashboard — project management hub.
@@ -55,6 +51,7 @@ export default function WorkspacePage() {
   }
   const [submissions, setSubmissions] = useState<FormSubmission[]>([]);
   const [submissionsLoading, setSubmissionsLoading] = useState(false);
+  const [storagePct, setStoragePct] = useState(0);
   const createProjectTemplate = useProjectStore((state) => state.createProject);
   const { showConfirm, showPrompt, addToast, theme, setTheme } = useUIStore();
   const { startTour } = useTutorialStore();
@@ -88,6 +85,14 @@ export default function WorkspacePage() {
         setSubmissionsLoading(false);
       });
   }, [view, userId]);
+
+  // Fetch real browser storage usage when settings tab opens
+  useEffect(() => {
+    if (view !== 'settings') return;
+    getStorageEstimate().then(({ usage, quota }) => {
+      setStoragePct(quota ? Math.min(100, Math.round(((usage ?? 0) / quota) * 100)) : 0);
+    });
+  }, [view]);
 
   const handleSignOut = async () => {
     if (!supabase) return;
@@ -485,7 +490,7 @@ export default function WorkspacePage() {
                       <span>{projects.length} files</span>
                     </div>
                     <div style={{ height: 4, background: 'var(--line)', borderRadius: 2, marginTop: 8 }}>
-                      <div style={{ width: '12%', height: '100%', background: 'var(--accent)', borderRadius: 2 }} />
+                      <div style={{ width: `${storagePct}%`, height: '100%', background: 'var(--accent)', borderRadius: 2 }} />
                     </div>
                   </div>
                 </section>

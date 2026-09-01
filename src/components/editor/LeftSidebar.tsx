@@ -478,7 +478,13 @@ function LayersPanel({ activePageIndex }: { activePageIndex: number }) {
               <button
                 className={styles.itemButton}
                 style={isHidden ? { color: 'var(--text-dim)', opacity: 1 } : {}}
-                onClick={(ev) => { ev.stopPropagation(); toggleElementVisibility(activePageIndex, element.id); }}
+                onClick={(ev) => {
+                  ev.stopPropagation();
+                  toggleElementVisibility(activePageIndex, element.id);
+                  // Hiding the currently-selected element would otherwise leave Moveable's
+                  // selection handles stuck on screen, targeting a DOM node that just unmounted.
+                  if (!isHidden && isSelected) setSelection(selectedElementIds.filter((id) => id !== element.id));
+                }}
                 title={isHidden ? 'Show layer' : 'Hide layer'}
                 aria-label={isHidden ? 'Show layer' : 'Hide layer'}
               >

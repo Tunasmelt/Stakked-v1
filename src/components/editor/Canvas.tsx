@@ -6,6 +6,7 @@ import React, {
 import { motion, AnimatePresence } from 'framer-motion';
 import { useProjectStore } from '@/stores/project-store';
 import { useEditorStore } from '@/stores/editor-store';
+import { useUIStore } from '@/stores/ui-store';
 import { defaultElement, ElementType, StakkedElement } from '@/types/element';
 import { CanvasElement } from './CanvasElement';
 import { Rulers } from './Rulers';
@@ -97,6 +98,7 @@ export const Canvas: React.FC = memo(() => {
   const pan                = useEditorStore(s => s.pan);
   const { setZoom: storeSetZoom, setPan: storeSetPan } = useEditorStore.getState();
   const isDragging         = useEditorStore(s => s.isDragging);
+  const previewMode        = useUIStore(s => s.previewMode);
 
   // Local UI state
   const [contextMenu, setContextMenu]   = useState<{ x: number; y: number; elementId: string | null } | null>(null);
@@ -457,6 +459,7 @@ export const Canvas: React.FC = memo(() => {
       el.style.position.y = dropY;
       addElement(activePageIndex, el);
       setSelection([el.id]);
+      setDropGhost(null);
       return;
     }
     const assetUrl = e.dataTransfer.getData('stakked/asset-url');
@@ -754,7 +757,7 @@ export const Canvas: React.FC = memo(() => {
               </div>
 
               {/* Centralised Moveable ── only when elements are selected */}
-              {selectedElementIds.length > 0 && !isEditingText && (
+              {selectedElementIds.length > 0 && !isEditingText && !previewMode && (
                 <Moveable
                   target={
                     selectedElementIds.length === 1
