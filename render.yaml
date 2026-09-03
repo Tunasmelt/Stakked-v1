@@ -1,0 +1,32 @@
+services:
+  - type: web
+    name: stakked
+    runtime: node
+    region: oregon
+    plan: free
+    branch: master
+    buildCommand: npm ci && npm run build
+    startCommand: npm run start
+    autoDeploy: true
+    envVars:
+      - key: NODE_ENV
+        value: production
+      # Cloud features (auth, cloud sync, publish) and AI features (layout
+      # generation, theme suggestions, summaries) are optional — Stakked runs
+      # fully in offline/guest mode without them. Set these in the Render
+      # dashboard (Environment tab) to enable them; adding/changing a value
+      # there triggers an automatic redeploy. See .env.example for the full list.
+      - key: NEXT_PUBLIC_SUPABASE_URL
+        sync: false
+      - key: NEXT_PUBLIC_SUPABASE_ANON_KEY
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GROQ_API_KEY
+        sync: false
+      - key: AI_DEFAULT_PROVIDER
+        value: gemini
+      - key: PEXELS_API_KEY
+        sync: false
+      - key: NEXT_PUBLIC_SITE_URL
+        sync: false
